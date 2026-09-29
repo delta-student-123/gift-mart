@@ -34,6 +34,7 @@ export const FILTER_ITEMS = [
     titlePart2: '& Flasks',
     icon: '🍶', 
     image: '/images/drinkware_flask.jpg',
+    bannerBg: '/images/test_flask_banner.png',
     handwrittenNote: 'Hydrate in Pure Style',
     tagline: 'Smart LED digital temperature flasks, insulated stainless steel tumblers & matte coffee mugs',
     features: ['⚡ Real-time Temp Display', '❄️ 24h Hot & Cold', '🖋️ Laser Engraved Name', '💧 100% BPA Free']
@@ -45,6 +46,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Leather',
     icon: '💼', 
     image: '/images/executive_wallet.jpg',
+    bannerBg: '/images/wallets_banner_bg.png',
     handwrittenNote: 'Everyday Elegance',
     tagline: 'Laser-personalized vegan leather men’s & women’s wallets, passport holders, and executive sets',
     features: ['🪪 Custom Metal Charm', '💳 RFID Protection', '🎁 Luxe Gift Box', '✨ Handcrafted Leather']
@@ -56,6 +58,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Pens',
     icon: '✍️', 
     image: '/images/executive_pen.jpg',
+    bannerBg: '/images/pens_banner_bg.png',
     handwrittenNote: 'Write Your Legacy',
     tagline: 'Heavyweight metallic rollerball, ballpoint and fountain pens precision-engraved with your name',
     features: ['🖋️ Permanent Engraving', '💼 Velvet Gift Case', '🇩🇪 German Ink Refill', '⚡ 24h Dispatch']
@@ -67,6 +70,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Planners',
     icon: '📖', 
     image: '/images/executive_diary.jpg',
+    bannerBg: '/images/diaries_banner_bg.png',
     handwrittenNote: 'Plan Your Success',
     tagline: 'Hardbound magnetic organizer diaries, undated daily planners & matching executive pen combos',
     features: ['📖 192 Acid-Free Pages', '🧲 Magnetic Lock', '🖋️ Engraved Name Plate', '💼 Corporate Ready']
@@ -78,6 +82,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Lamps',
     icon: '✨', 
     image: '/images/acrylic_lamp.jpg',
+    bannerBg: '/images/lamps_banner_bg.png',
     handwrittenNote: 'Illuminate Memories',
     tagline: 'Optical illusion 3D acrylic LED portrait lamps, warm bedside nightlights & custom photo memorials',
     features: ['💡 Warm Ambient Glow', '🪵 Solid Wood Base', '🖼️ Laser Photo Etching', '🔌 USB Powered']
@@ -89,6 +94,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Mugs',
     icon: '☕', 
     image: '/images/custom_mug.jpg',
+    bannerBg: '/images/test_mug_proper.png',
     handwrittenNote: 'Warm Sips, Warm Smiles',
     tagline: 'Heat-activated color change magic mugs, ceramic coffee cups & personalized photo prints',
     features: ['☕ Dishwasher Safe', '✨ Magic Color Reveal', '📸 Ultra-HD Photo Print', '🎁 Gift Packaging']
@@ -100,6 +106,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Hampers',
     icon: '🧺', 
     image: '/images/luxury_hamper.jpg',
+    bannerBg: '/images/hampers_banner_bg.png',
     handwrittenNote: 'Unbox Celebrations',
     tagline: 'Grand celebratory velvet trunks, festive gift hampers, artisanal treats & personalized goodies',
     features: ['🎀 Satin Ribbon Finish', '🍫 Gourmet Chocolates', '💌 Handwritten Card', '🚚 Pan-India Delivery']
@@ -111,6 +118,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Gifting',
     icon: '🏢', 
     image: '/images/recipient_clients.jpg',
+    bannerBg: '/images/corporate_banner_bg.png',
     handwrittenNote: 'Celebrate Your Team',
     tagline: 'End-to-end corporate gifting solutions, client appreciation gifts, and custom branded merchandise',
     features: ['🏢 Pan-India Shipping', '📦 Low 10 Pcs MOQ', '⚡ Dedicated Manager', '💰 GST Invoice ITC'],
@@ -124,6 +132,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Quote',
     icon: '⚡', 
     image: '/images/recipient_employees.jpg',
+    bannerBg: '/images/corporate_banner_bg.png',
     handwrittenNote: 'Fast Wholesale Pricing',
     tagline: 'Instant quotation generator for bulk orders (50+ to 10,000+ units) with wholesale pricing',
     features: ['⚡ 30-Min Fast Quotes', '🎨 Free Digital Mockup', '📉 Up to 40% Savings', '🏭 Factory Direct Supply'],
@@ -313,82 +322,24 @@ export const ShopPage = () => {
             overflow: 'hidden',
             marginBottom: '2rem',
             border: '1.5px solid rgba(245, 168, 0, 0.22)',
-            background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
+            backgroundColor: '#FFFDF8',
+            backgroundImage: `url(${currentFilterInfo.bannerBg || currentFilterInfo.image || '/images/test_mug_proper.png'})`,
+            backgroundPosition: 'center right',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
             boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
             padding: 0,
             width: '100%',
-            minHeight: '275px'
+            minHeight: '275px',
+            display: 'flex',
+            alignItems: 'center'
           }} className="category-hero-container">
-
-            {/* SVG Clip Path definition for organic showcase curve */}
-            <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
-              <defs>
-                <clipPath id="heroOrganicMask" clipPathUnits="objectBoundingBox">
-                  <path d="M 0.22 0 C 0.42 0.04, 0.68 0.34, 1 0.36 L 1 1 L 0.16 1 C -0.05 0.62, -0.03 0.32, 0.22 0 Z" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            {/* Radiant sunshine rays in center transition zone */}
-            <div style={{
-              position: 'absolute',
-              left: '49%',
-              top: '16%',
-              zIndex: 4,
-              pointerEvents: 'none'
-            }} className="category-hero-rays">
-              <svg width="46" height="42" viewBox="0 0 46 42" fill="none">
-                <line x1="30" y1="2" x2="36" y2="15" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
-                <line x1="14" y1="14" x2="26" y2="23" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
-                <line x1="2" y1="33" x2="17" y2="33" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
-              </svg>
-            </div>
-
-            {/* Floating Cursive Note in Top-Right Cream Scoop */}
-            <div style={{
-              position: 'absolute',
-              top: '16px',
-              right: '26px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              zIndex: 5,
-              pointerEvents: 'none'
-            }} className="category-hero-cursive">
-              <span style={{
-                fontFamily: "'Caveat', cursive",
-                fontSize: '1.45rem',
-                fontWeight: 700,
-                color: '#171717',
-                transform: 'rotate(-4deg)',
-                letterSpacing: '0.02em',
-                whiteSpace: 'nowrap',
-                textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)'
-              }}>
-                {currentFilterInfo.handwrittenNote || 'Make Every Moment Special'}
-              </span>
-              <svg width="84" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
-                <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
-              </svg>
-            </div>
-
-            {/* Sparkle icon at top-right */}
-            <div style={{
-              position: 'absolute',
-              top: '22px',
-              right: '12px',
-              color: '#F5A800',
-              opacity: 0.55,
-              fontSize: '1.3rem',
-              zIndex: 5,
-              pointerEvents: 'none',
-              userSelect: 'none'
-            }} className="category-hero-sparkle">✦</div>
 
             {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, PILLS, CTA */}
             <div style={{
-              width: '56%',
-              padding: '1.8rem 1rem 1.8rem 2.4rem',
+              width: '100%',
+              maxWidth: '640px',
+              padding: '2.2rem 1.5rem 2.2rem 2.5rem',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -534,33 +485,6 @@ export const ShopPage = () => {
                   </button>
                 )}
               </div>
-            </div>
-
-            {/* RIGHT COLUMN: SHOWCASE IMAGE WITH ORGANIC WAVE MASK */}
-            <div style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-              width: '50%',
-              height: '100%',
-              overflow: 'hidden',
-              zIndex: 1
-            }} className="category-hero-right">
-              <img
-                src={currentFilterInfo.image || '/images/corporate_welcome_box.jpg'}
-                alt={currentFilterInfo.label}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  clipPath: 'url(#heroOrganicMask)',
-                  WebkitClipPath: 'url(#heroOrganicMask)',
-                  display: 'block'
-                }}
-                className="category-hero-img"
-              />
             </div>
 
           </div>
@@ -924,28 +848,13 @@ export const ShopPage = () => {
         @media (max-width: 960px) {
           .category-hero-container {
             min-height: auto !important;
-            display: flex !important;
-            flex-direction: column !important;
+            background-size: cover !important;
+            background-position: right center !important;
           }
           .category-hero-left {
             width: 100% !important;
-            padding: 1.25rem 1.25rem 1rem 1.25rem !important;
-          }
-          .category-hero-rays,
-          .category-hero-cursive,
-          .category-hero-sparkle {
-            display: none !important;
-          }
-          .category-hero-right {
-            position: relative !important;
-            width: 100% !important;
-            height: 200px !important;
-          }
-          .category-hero-img {
-            clip-path: none !important;
-            -webkit-clip-path: none !important;
-            border-radius: 0 0 24px 24px !important;
-            height: 200px !important;
+            max-width: 100% !important;
+            padding: 1.5rem 1.25rem !important;
           }
           .category-feature-pills {
             flex-wrap: wrap !important;
