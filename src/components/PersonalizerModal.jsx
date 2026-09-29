@@ -7,7 +7,10 @@ import {
   Image as ImageIcon,
   Type,
   Gift,
-  ShoppingBag
+  ShoppingBag,
+  AlignLeft,
+  AlignCenter,
+  AlignRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -21,6 +24,7 @@ export const PersonalizerModal = () => {
   const [customText, setCustomText] = useState('Rahul & Sneha');
   const [recipientDate, setRecipientDate] = useState('24.10.2024');
   const [selectedFont, setSelectedFont] = useState('serif'); // 'serif', 'sans', 'cursive'
+  const [selectedAlignment, setSelectedAlignment] = useState('center'); // 'left', 'center', 'right'
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
 
   if (!personalizerProduct) return null;
@@ -35,6 +39,7 @@ export const PersonalizerModal = () => {
       text: customText,
       date: recipientDate,
       font: selectedFont,
+      alignment: selectedAlignment,
       photoUrl: uploadedPhoto
     });
     closePersonalizer();
@@ -138,11 +143,11 @@ export const PersonalizerModal = () => {
                   backgroundColor: 'rgba(0,0,0,0.4)',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
+                  alignItems: selectedAlignment === 'left' ? 'flex-start' : selectedAlignment === 'right' ? 'flex-end' : 'center',
                   justifyContent: 'center',
                   color: '#F5A800',
-                  textAlign: 'center',
-                  padding: '1rem',
+                  textAlign: selectedAlignment,
+                  padding: '1.5rem',
                   textShadow: '0 0 12px rgba(245, 168, 0, 0.9), 0 0 20px rgba(245, 168, 0, 0.6)'
                 }}>
                   <div style={{
@@ -245,6 +250,47 @@ export const PersonalizerModal = () => {
                       {f.name}
                     </button>
                   ))}
+                </div>
+              </div>
+
+              {/* Laser Engraving Alignment */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label style={{ fontSize: '0.82rem', fontWeight: 700, display: 'block', marginBottom: 6, color: 'var(--charcoal-dark)' }}>
+                  Laser Engraving Alignment:
+                </label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                  {[
+                    { id: 'left', label: 'Left', icon: AlignLeft },
+                    { id: 'center', label: 'Center', icon: AlignCenter },
+                    { id: 'right', label: 'Right', icon: AlignRight }
+                  ].map(align => {
+                    const Icon = align.icon;
+                    const isActive = selectedAlignment === align.id;
+                    return (
+                      <button
+                        key={align.id}
+                        type="button"
+                        onClick={() => setSelectedAlignment(align.id)}
+                        style={{
+                          padding: '0.45rem',
+                          borderRadius: 'var(--radius-md)',
+                          border: isActive ? '2px solid var(--primary)' : '1px solid var(--border-subtle)',
+                          background: isActive ? 'var(--primary-subtle)' : '#ffffff',
+                          color: isActive ? 'var(--primary-dark)' : 'var(--charcoal-muted)',
+                          fontSize: '0.8rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: 5
+                        }}
+                      >
+                        <Icon size={14} />
+                        <span>{align.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

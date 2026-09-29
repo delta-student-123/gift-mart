@@ -43,7 +43,10 @@ import {
   Briefcase,
   CheckCircle2,
   Mail,
-  Headphones
+  Headphones,
+  AlignLeft,
+  AlignCenter,
+  AlignRight
 } from 'lucide-react';
 
 export const HomePage = () => {
@@ -205,7 +208,8 @@ export const HomePage = () => {
   const [engravingText, setEngravingText] = useState('Vikram Sharma');
   const [fontFamily, setFontFamily] = useState('Dancing Script, cursive');
   const [laserTone, setLaserTone] = useState('gold'); // 'gold', 'silver', 'white'
-  const [bottleOrientation, setBottleOrientation] = useState('horizontal'); // 'horizontal' | 'vertical'
+  const [engravingAlignment, setEngravingAlignment] = useState('horizontal'); // 'horizontal' | 'vertical'
+  const [textAlignment, setTextAlignment] = useState('center'); // 'left' | 'center' | 'right'
 
   // Corporate Bulk Quantity Calculator State
   const [bulkQty, setBulkQty] = useState(50);
@@ -878,50 +882,95 @@ export const HomePage = () => {
                 </div>
               </div>
 
-              {/* Step 4: Bottle Engraving Alignment (when bottle is active) */}
-              {selectedStudioProduct.id === 'sim-bottle' && (
-                <div style={{ marginBottom: '1.75rem' }}>
-                  <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Bottle Alignment
-                  </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                    <button
-                      type="button"
-                      onClick={() => setBottleOrientation('horizontal')}
-                      style={{
-                        padding: '0.5rem 0.65rem',
-                        borderRadius: 'var(--radius-md)',
-                        background: bottleOrientation === 'horizontal' ? 'var(--primary)' : '#1a1a1a',
-                        color: bottleOrientation === 'horizontal' ? '#171717' : '#ffffff',
-                        border: bottleOrientation === 'horizontal' ? '1px solid var(--primary)' : '1px solid #3b3b3b',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        transition: 'all 150ms ease'
-                      }}
-                    >
-                      ↔ Horizontal (Body)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setBottleOrientation('vertical')}
-                      style={{
-                        padding: '0.5rem 0.65rem',
-                        borderRadius: 'var(--radius-md)',
-                        background: bottleOrientation === 'vertical' ? 'var(--primary)' : '#1a1a1a',
-                        color: bottleOrientation === 'vertical' ? '#171717' : '#ffffff',
-                        border: bottleOrientation === 'vertical' ? '1px solid var(--primary)' : '1px solid #3b3b3b',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        transition: 'all 150ms ease'
-                      }}
-                    >
-                      ↕ Vertical (Cylinder)
-                    </button>
-                  </div>
+              {/* Step 4: Engraving Alignment (Available for ALL products) */}
+              <div style={{ marginBottom: '1.75rem' }}>
+                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  4. Choose Engraving Alignment
+                </label>
+                
+                {/* Horizontal / Vertical Layout Alignment */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginBottom: '0.55rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => setEngravingAlignment('horizontal')}
+                    style={{
+                      padding: '0.55rem 0.65rem',
+                      borderRadius: 'var(--radius-md)',
+                      background: engravingAlignment === 'horizontal' ? 'var(--primary)' : '#1a1a1a',
+                      color: engravingAlignment === 'horizontal' ? '#171717' : '#ffffff',
+                      border: engravingAlignment === 'horizontal' ? '1px solid var(--primary)' : '1px solid #3b3b3b',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 150ms ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 6
+                    }}
+                  >
+                    <span>↔ Horizontal</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setEngravingAlignment('vertical')}
+                    style={{
+                      padding: '0.55rem 0.65rem',
+                      borderRadius: 'var(--radius-md)',
+                      background: engravingAlignment === 'vertical' ? 'var(--primary)' : '#1a1a1a',
+                      color: engravingAlignment === 'vertical' ? '#171717' : '#ffffff',
+                      border: engravingAlignment === 'vertical' ? '1px solid var(--primary)' : '1px solid #3b3b3b',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 150ms ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 6
+                    }}
+                  >
+                    <span>↕ Vertical</span>
+                  </button>
                 </div>
-              )}
+
+                {/* Left / Center / Right Text Alignment */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                  {[
+                    { id: 'left', label: 'Left', icon: AlignLeft },
+                    { id: 'center', label: 'Center', icon: AlignCenter },
+                    { id: 'right', label: 'Right', icon: AlignRight }
+                  ].map(align => {
+                    const Icon = align.icon;
+                    const isActive = textAlignment === align.id;
+                    return (
+                      <button
+                        key={align.id}
+                        type="button"
+                        onClick={() => setTextAlignment(align.id)}
+                        style={{
+                          padding: '0.45rem 0.5rem',
+                          borderRadius: 'var(--radius-md)',
+                          background: isActive ? '#ffffff' : '#1a1a1a',
+                          color: isActive ? '#171717' : '#9ca3af',
+                          border: isActive ? '1px solid #ffffff' : '1px solid #3b3b3b',
+                          fontSize: '0.74rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: 5,
+                          transition: 'all 150ms ease'
+                        }}
+                      >
+                        <Icon size={13} />
+                        <span>{align.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               {/* Action Buttons */}
               <div style={{ display: 'flex', gap: '0.85rem' }}>
@@ -933,6 +982,7 @@ export const HomePage = () => {
                       addToCart(selectedStudioProduct.originalProduct, 1, {
                         recipientName: engravingText || 'Vikram Sharma',
                         font: fontFamily,
+                        alignment: `${engravingAlignment} (${textAlignment})`,
                         note: 'Laser Engraved via Step IN Live Studio'
                       });
                       showToast(`Added laser engraved "${selectedStudioProduct.name}" to cart!`);
@@ -983,7 +1033,7 @@ export const HomePage = () => {
                   const isPen = selectedStudioProduct.id === 'sim-pen';
                   const isWallet = selectedStudioProduct.id === 'sim-wallet';
                   const isLamp = selectedStudioProduct.id === 'sim-lamp';
-                  const isVertical = (isBottle && bottleOrientation === 'vertical') || isPen;
+                  const isVertical = engravingAlignment === 'vertical';
 
                   // Dynamic font size strictly fitted to each product's surface area
                   let fontSize = '1.35rem';
@@ -1006,20 +1056,20 @@ export const HomePage = () => {
                       subtext = '✦ FIBER LASER ✦';
                     }
                   } else if (isPen) {
-                    topPos = '58%';
+                    topPos = isVertical ? '58%' : '56%';
                     leftPos = '49.5%';
-                    containerWidth = '175px';
+                    containerWidth = isVertical ? '175px' : '160px';
                     fontSize = engravingText.length > 18 ? '0.54rem' : engravingText.length > 12 ? '0.64rem' : '0.74rem';
                     textGlow = '0 1px 1px rgba(0,0,0,0.9), 0 0 5px rgba(245, 169, 0, 0.7)';
                     subtext = null; // Pen is slim, name only
                   } else if (isWallet) {
-                    topPos = '52%';
-                    containerWidth = '230px';
+                    topPos = isVertical ? '50%' : '52%';
+                    containerWidth = isVertical ? '230px' : '230px';
                     fontSize = engravingText.length > 18 ? '0.96rem' : engravingText.length > 12 ? '1.16rem' : '1.38rem';
                     textGlow = '0 1px 2px rgba(0,0,0,0.9), 0 0 8px rgba(245, 169, 0, 0.6)';
                     subtext = '✦ 100% LASER EMBOSSED ✦';
                   } else if (isLamp) {
-                    topPos = '46%';
+                    topPos = isVertical ? '44%' : '46%';
                     containerWidth = '220px';
                     fontSize = engravingText.length > 18 ? '1.05rem' : engravingText.length > 12 ? '1.3rem' : '1.6rem';
                     textColor = '#fffbeb';
@@ -1036,7 +1086,10 @@ export const HomePage = () => {
                       transformOrigin: 'center center',
                       width: containerWidth,
                       maxWidth: containerWidth,
-                      textAlign: 'center',
+                      textAlign: textAlignment,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: textAlignment === 'left' ? 'flex-start' : textAlignment === 'right' ? 'flex-end' : 'center',
                       pointerEvents: 'none',
                       zIndex: 3
                     }}>
@@ -1051,6 +1104,8 @@ export const HomePage = () => {
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         lineHeight: 1.15,
+                        width: '100%',
+                        textAlign: textAlignment,
                         transition: 'all 200ms ease'
                       }}>
                         {engravingText || 'Your Name Here'}
@@ -1066,7 +1121,9 @@ export const HomePage = () => {
                           fontWeight: 700,
                           textShadow: '0 1px 2px rgba(0,0,0,0.85)',
                           whiteSpace: 'nowrap',
-                          overflow: 'hidden'
+                          overflow: 'hidden',
+                          width: '100%',
+                          textAlign: textAlignment
                         }}>
                           {subtext}
                         </div>
