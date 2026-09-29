@@ -12,7 +12,8 @@ import {
   Sparkles, 
   FileText, 
   HelpCircle,
-  ChevronDown
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -62,21 +63,120 @@ export const CorporatePage = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '3.5rem 0 6rem' }}>
-      <div className="container" style={{ maxWidth: 1080 }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '2rem 0 6rem' }}>
+      <div className="container" style={{ maxWidth: 1140 }}>
         
-        {/* 1. HERO SECTION */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="section-tag" style={{ background: '#fdf2f8', color: 'var(--primary)' }}>
-            <Building size={14} />
-            <span>STEP IN GIFT MART ENTERPRISE SOLUTIONS</span>
+        {/* 1. SIGNATURE HERO BANNER */}
+        <div style={{
+          position: 'relative',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          marginBottom: '3.5rem',
+          border: '1.5px solid rgba(245, 168, 0, 0.22)',
+          background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
+          boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
+          padding: 0,
+          width: '100%',
+          minHeight: '235px'
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(340px, 1.25fr) minmax(280px, 1fr)',
+            alignItems: 'stretch',
+            gap: 0,
+            minHeight: '235px'
+          }}>
+            {/* LEFT COLUMN */}
+            <div style={{ padding: '1.4rem 1.25rem 1.4rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 7,
+                background: '#FFF2D6',
+                border: '1px solid rgba(245, 168, 0, 0.45)',
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                marginBottom: '0.45rem',
+                alignSelf: 'flex-start'
+              }}>
+                <span style={{ fontSize: '0.95rem' }}>🏢</span>
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#171717', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  ENTERPRISE SOLUTIONS
+                </span>
+              </div>
+
+              <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.35rem' }}>
+                <h1 style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.025em', lineHeight: 1.1, margin: 0 }}>
+                  <span style={{ color: '#171717' }}>Corporate </span>
+                  <span style={{ color: '#F5A800' }}>Gifting</span>
+                </h1>
+                <div style={{ position: 'absolute', top: '-6px', right: '-32px', pointerEvents: 'none' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
+                  </svg>
+                </div>
+              </div>
+
+              <p style={{ fontSize: '0.88rem', color: '#4B5563', lineHeight: 1.48, marginBottom: '0.85rem', maxWidth: '500px' }}>
+                Bespoke employee onboarding packs, client luxury trunks & festive hampers with company logo engraving & GST input benefits.
+              </p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+                {[
+                  { icon: '🏢', text: 'Custom Company Logo' },
+                  { icon: '📦', text: 'Doorstep Multi-Delivery' },
+                  { icon: '🏷️', text: 'Tiered Bulk Savings' },
+                  { icon: '⚡', text: 'Dedicated Manager' }
+                ].map((pill, idx) => (
+                  <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ffffff', border: '1px solid #EFE4D2', borderRadius: '11px', padding: '0.24rem 0.6rem 0.24rem 0.35rem' }}>
+                    <div style={{ width: 22, height: 22, borderRadius: '50%', backgroundColor: '#FFF0D0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem' }}>
+                      {pill.icon}
+                    </div>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>{pill.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <a href="#corporate-inquiry-form" style={{
+                  background: '#171717',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  borderRadius: '9999px',
+                  padding: '0.45rem 1.25rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  boxShadow: '0 3px 10px rgba(23, 23, 23, 0.18)'
+                }}>
+                  <span>Request Custom Proposal</span>
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div style={{ position: 'relative', height: '100%', minHeight: '235px', display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '12px', right: '22px', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, pointerEvents: 'none' }}>
+                <span style={{ fontFamily: "'Caveat', cursive", fontSize: '1.35rem', fontWeight: 700, color: '#171717', transform: 'rotate(-4deg)', letterSpacing: '0.02em', whiteSpace: 'nowrap', textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)' }}>
+                  Strengthen Business Bonds
+                </span>
+                <svg width="75" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
+                  <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              <div style={{ position: 'absolute', top: 10, right: 14, color: '#F5A800', opacity: 0.45, fontSize: '1.2rem', zIndex: 3, pointerEvents: 'none' }}>✦</div>
+
+              <img
+                src="/images/recipient_clients.jpg"
+                alt="Corporate Gifting Executive Solutions"
+                style={{ width: '100%', height: '100%', minHeight: '235px', objectFit: 'cover', objectPosition: 'center', borderRadius: '44px 0 0 44px', display: 'block' }}
+              />
+            </div>
           </div>
-          <h1 style={{ fontSize: '2.8rem', fontWeight: 800, color: 'var(--charcoal-dark)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
-            Make Business Relationships More Meaningful.
-          </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--charcoal-body)', maxWidth: 720, margin: '0 auto', lineHeight: 1.6 }}>
-            Thoughtful corporate gifting solutions for employees, clients and business partners — crafted with bespoke branding, pan-India direct dispatch, and GST invoicing.
-          </p>
         </div>
 
         {/* 2. CORPORATE SOLUTIONS GRID */}

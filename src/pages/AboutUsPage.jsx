@@ -8,7 +8,8 @@ import {
   Truck, 
   Smile, 
   Users,
-  Gift
+  Gift,
+  ArrowRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -16,22 +17,124 @@ export const AboutUsPage = () => {
   const { navigateTo } = useApp();
 
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '3.5rem 0 6rem' }}>
-      <div className="container" style={{ maxWidth: 980 }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '2rem 0 6rem' }}>
+      <div className="container" style={{ maxWidth: 1040 }}>
         
-        {/* Header Hero */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="section-tag" style={{ background: '#fdf2f8', color: 'var(--primary)' }}>
-            <Heart size={14} />
-            <span>OUR STORY & VALUES</span>
+        {/* SIGNATURE HERO BANNER */}
+        <div style={{
+          position: 'relative',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          marginBottom: '3.5rem',
+          border: '1.5px solid rgba(245, 168, 0, 0.22)',
+          background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
+          boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
+          padding: 0,
+          width: '100%',
+          minHeight: '235px'
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(340px, 1.25fr) minmax(280px, 1fr)',
+            alignItems: 'stretch',
+            gap: 0,
+            minHeight: '235px'
+          }}>
+            {/* LEFT COLUMN */}
+            <div style={{ padding: '1.4rem 1.25rem 1.4rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 7,
+                background: '#FFF2D6',
+                border: '1px solid rgba(245, 168, 0, 0.45)',
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                marginBottom: '0.45rem',
+                alignSelf: 'flex-start'
+              }}>
+                <span style={{ fontSize: '0.95rem' }}>💝</span>
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#171717', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  OUR STORY & VALUES
+                </span>
+              </div>
+
+              <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.35rem' }}>
+                <h1 style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.025em', lineHeight: 1.1, margin: 0 }}>
+                  <span style={{ color: '#171717' }}>About </span>
+                  <span style={{ color: '#F5A800' }}>Step IN</span>
+                </h1>
+                <div style={{ position: 'absolute', top: '-6px', right: '-32px', pointerEvents: 'none' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
+                  </svg>
+                </div>
+              </div>
+
+              <p style={{ fontSize: '0.88rem', color: '#4B5563', lineHeight: 1.48, marginBottom: '0.85rem', maxWidth: '500px' }}>
+                Delivering heartfelt celebrations, bespoke artisan keepsakes & master-engraved personalized gifts across India since 2018.
+              </p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+                {[
+                  { icon: '⭐', text: '4.9/5 Rating' },
+                  { icon: '🚚', text: 'Express Delivery' },
+                  { icon: '✨', text: 'Free Laser Engraving' },
+                  { icon: '❤️', text: '100K+ Celebrations' }
+                ].map((pill, idx) => (
+                  <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ffffff', border: '1px solid #EFE4D2', borderRadius: '11px', padding: '0.24rem 0.6rem 0.24rem 0.35rem' }}>
+                    <div style={{ width: 22, height: 22, borderRadius: '50%', backgroundColor: '#FFF0D0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem' }}>
+                      {pill.icon}
+                    </div>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>{pill.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <button
+                  onClick={() => navigateTo('shop')}
+                  style={{
+                    background: '#171717',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '9999px',
+                    padding: '0.45rem 1.25rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    boxShadow: '0 3px 10px rgba(23, 23, 23, 0.18)'
+                  }}
+                >
+                  <span>Explore Gift Catalog</span>
+                  <ArrowRight size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div style={{ position: 'relative', height: '100%', minHeight: '235px', display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '12px', right: '22px', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 3, pointerEvents: 'none' }}>
+                <span style={{ fontFamily: "'Caveat', cursive", fontSize: '1.35rem', fontWeight: 700, color: '#171717', transform: 'rotate(-4deg)', letterSpacing: '0.02em', whiteSpace: 'nowrap', textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)' }}>
+                  Spreading Pure Happiness
+                </span>
+                <svg width="75" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
+                  <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              <div style={{ position: 'absolute', top: 10, right: 14, color: '#F5A800', opacity: 0.45, fontSize: '1.2rem', zIndex: 3, pointerEvents: 'none' }}>✦</div>
+
+              <img
+                src="/images/celebration_couple.jpg"
+                alt="Step IN Gift Mart Gifting Celebrations"
+                style={{ width: '100%', height: '100%', minHeight: '235px', objectFit: 'cover', objectPosition: 'center', borderRadius: '44px 0 0 44px', display: 'block' }}
+              />
+            </div>
           </div>
-          <h1 style={{ fontSize: '2.8rem', fontWeight: 800, color: 'var(--charcoal-dark)', lineHeight: 1.2, marginBottom: '1.25rem' }}>
-            We Deliver Not Just Gifts, <br />
-            <span style={{ color: 'var(--primary)' }}>But Unforgettable Joy.</span>
-          </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--charcoal-body)', maxWidth: 680, margin: '0 auto', lineHeight: 1.6 }}>
-            At <strong>Step IN Gift Mart</strong>, we believe every special milestone in life deserves to be celebrated with genuine thoughtfulness, exquisite craftsmanship, and seamless delight.
-          </p>
         </div>
 
         {/* 1. Brand Story */}
