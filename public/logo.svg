@@ -1,0 +1,43 @@
+<svg width="400" height="400" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Arch Interior (Warm Ivory) -->
+  <path d="M 68 136 L 68 64 A 32 32 0 0 1 132 64 L 132 136 Z" fill="#FFF9F0" />
+  
+  <!-- Perspective Light Triangle inside doorway -->
+  <path d="M 84 136 L 132 136 L 126 126 L 84 126 Z" fill="#FFFFFF" opacity="0.9" />
+  <path d="M 84 136 L 132 136 L 132 128 L 84 133 Z" fill="#F4EBDD" />
+
+  <!-- Gift Box -->
+  <rect x="94" y="96" width="32" height="28" rx="2" fill="#2E7D5B" />
+  <rect x="91" y="88" width="38" height="9" rx="2" fill="#2E7D5B" />
+  <!-- Ribbon -->
+  <rect x="107" y="88" width="6" height="36" fill="#F5A800" />
+  <!-- Ribbon Bow -->
+  <path d="M 110 88 C 105 81 93 72 98 68 C 104 64 110 78 110 88 Z" fill="#F5A800" />
+  <path d="M 110 88 C 115 81 127 72 122 68 C 116 64 110 78 110 88 Z" fill="#F5A800" />
+  <circle cx="110" cy="88" r="2.5" fill="#df9900" />
+
+  <!-- Arch Frame (Charcoal #171717) -->
+  <path d="M 52 136 L 52 64 A 48 48 0 0 1 148 64 L 148 136 L 152 136 L 152 140 L 48 140 L 48 136 L 52 136 Z
+           M 68 136 L 132 136 L 132 64 A 32 32 0 0 0 68 64 L 68 136 Z" fill="#171717" fill-rule="evenodd" />
+
+  <!-- Threshold Ground -->
+  <path d="M 48 140 L 152 140 L 148 136 L 52 136 Z" fill="#171717" />
+  <!-- Shadow cast across threshold -->
+  <path d="M 60 140 L 148 140 L 148 136 L 84 136 Z" fill="#171717" opacity="0.9" />
+
+  <!-- Open Door (Premium Gold #F5A800) -->
+  <!-- 3D Bevel Edge -->
+  <path d="M 42 38 L 48 34 L 48 140 L 42 142 Z" fill="#df9900" />
+  <!-- Door Face -->
+  <path d="M 48 34 L 84 54 L 84 134 L 48 140 Z" fill="#F5A800" />
+  <!-- Doorknob -->
+  <circle cx="58" cy="90" r="3.5" fill="#171717" />
+
+  <!-- Typography -->
+  <text x="100" y="172" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="27" font-weight="800" fill="#171717" letter-spacing="-0.5">Step In</text>
+  
+  <!-- Dashes & Gift Mart -->
+  <line x1="28" y1="187" x2="48" y2="187" stroke="#F5A800" stroke-width="2.5" stroke-linecap="round" />
+  <text x="100" y="191" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="11.5" font-weight="700" fill="#F5A800" letter-spacing="3.5">GIFT MART</text>
+  <line x1="152" y1="187" x2="172" y2="187" stroke="#F5A800" stroke-width="2.5" stroke-linecap="round" />
+</svg>
