@@ -12,6 +12,7 @@ export const FILTER_ITEMS = [
     titlePart2: 'Gifts',
     icon: '🎁', 
     image: '/images/luxury_hamper.jpg',
+    bannerBg: '/images/all_gifts_banner_bg.png',
     handwrittenNote: 'Gifts That Speak Love',
     tagline: 'Explore our complete collection of personalized gifts, corporate hampers & luxury keepsakes',
     features: ['⚡ Free Laser Engraving', '🚚 Express Delivery', '⭐ 4.9/5 Rating', '🛡️ Quality Guaranteed']
@@ -323,7 +324,7 @@ export const ShopPage = () => {
             marginBottom: '2rem',
             border: '1.5px solid rgba(245, 168, 0, 0.22)',
             backgroundColor: '#FFFDF8',
-            backgroundImage: `url(${currentFilterInfo.bannerBg || currentFilterInfo.image || '/images/test_mug_proper.png'})`,
+            backgroundImage: `linear-gradient(90deg, #FFFDF8 0%, #FFFDF8 42%, rgba(255, 253, 248, 0.96) 54%, rgba(255, 253, 248, 0.3) 72%, rgba(255, 253, 248, 0) 86%), url(${currentFilterInfo.bannerBg || currentFilterInfo.image || '/images/all_gifts_banner_bg.png'})`,
             backgroundPosition: 'center right',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -378,19 +379,20 @@ export const ShopPage = () => {
                 fontWeight: 900,
                 letterSpacing: '-0.025em',
                 lineHeight: 1.1,
-                margin: '0 0 0.4rem 0'
+                margin: '0 0 0.45rem 0'
               }}>
                 <span style={{ color: '#171717' }}>{currentFilterInfo.titlePart1 || 'Personalized'} </span>
                 <span style={{ color: '#F5A800' }}>{currentFilterInfo.titlePart2 || 'Gifts'}</span>
               </h1>
 
-              {/* Subtitle */}
+              {/* Subtitle / Tagline - High Contrast & High Legibility */}
               <p style={{
-                fontSize: '0.86rem',
-                color: '#4B5563',
-                lineHeight: 1.45,
-                marginBottom: '0.85rem',
-                maxWidth: '480px'
+                fontSize: '0.92rem',
+                color: '#262626',
+                fontWeight: 600,
+                lineHeight: 1.48,
+                marginBottom: '0.95rem',
+                maxWidth: '520px'
               }}>
                 {currentFilterInfo.tagline}
               </p>
