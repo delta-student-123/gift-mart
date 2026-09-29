@@ -267,14 +267,13 @@ export const ShopPage = () => {
         {selectedCategory === 'welcome-kits' ? (
           <div style={{
             position: 'relative',
-            borderRadius: '20px',
+            borderRadius: '24px',
             overflow: 'hidden',
-            marginBottom: '1.75rem',
+            marginBottom: '2rem',
             boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
             border: '1.5px solid rgba(245, 168, 0, 0.22)',
             backgroundColor: '#FFFBF3',
-            maxWidth: '980px',
-            margin: '0 auto 1.75rem auto'
+            width: '100%'
           }} className="welcome-kits-exact-banner">
             <img
               src="/images/welcome_kits_banner.png"
@@ -282,8 +281,6 @@ export const ShopPage = () => {
               style={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '260px',
-                objectFit: 'contain',
                 display: 'block',
                 imageRendering: '-webkit-optimize-contrast'
               }}
