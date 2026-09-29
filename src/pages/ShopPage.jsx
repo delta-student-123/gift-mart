@@ -440,7 +440,7 @@ export const ShopPage = () => {
 
                 {/* Counter and CTA Row */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap 6 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span style={{ width: 3, height: 16, backgroundColor: '#F5A800', borderRadius: 2 }} />
                     <span style={{ fontSize: '0.80rem', fontWeight: 700, color: '#171717' }}>
                       Showing {filteredProducts.length} curated items
