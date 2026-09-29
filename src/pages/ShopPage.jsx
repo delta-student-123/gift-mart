@@ -36,7 +36,7 @@ export const FILTER_ITEMS = [
     image: '/images/drinkware_flask.jpg',
     handwrittenNote: 'Hydrate in Pure Style',
     tagline: 'Smart LED digital temperature flasks, insulated stainless steel tumblers & matte coffee mugs',
-    features: ['⚡ Real-time LED Temp Display', '❄️ 24h Hot & Cold Insulation', '🖋️ Laser Engraved Name', '💧 100% BPA Free']
+    features: ['⚡ Real-time Temp Display', '❄️ 24h Hot & Cold', '🖋️ Laser Engraved Name', '💧 100% BPA Free']
   },
   { 
     id: 'wallets', 
@@ -47,7 +47,7 @@ export const FILTER_ITEMS = [
     image: '/images/executive_wallet.jpg',
     handwrittenNote: 'Everyday Elegance',
     tagline: 'Laser-personalized vegan leather men’s & women’s wallets, passport holders, and executive sets',
-    features: ['🪪 Custom Name & Metal Charm', '💳 RFID Anti-theft Protection', '🎁 Luxe Gift Box Packing', '✨ Handcrafted Leather']
+    features: ['🪪 Custom Metal Charm', '💳 RFID Protection', '🎁 Luxe Gift Box', '✨ Handcrafted Leather']
   },
   { 
     id: 'pens', 
@@ -58,7 +58,7 @@ export const FILTER_ITEMS = [
     image: '/images/executive_pen.jpg',
     handwrittenNote: 'Write Your Legacy',
     tagline: 'Heavyweight metallic rollerball, ballpoint and fountain pens precision-engraved with your name',
-    features: ['🖋️ Permanent Laser Name Engraving', '💼 Velvet / Wooden Gift Case', '🇩🇪 German Smooth Ink Refill', '⚡ Ships in 24 Hours']
+    features: ['🖋️ Permanent Engraving', '💼 Velvet Gift Case', '🇩🇪 German Ink Refill', '⚡ 24h Dispatch']
   },
   { 
     id: 'diaries', 
@@ -69,7 +69,7 @@ export const FILTER_ITEMS = [
     image: '/images/executive_diary.jpg',
     handwrittenNote: 'Plan Your Success',
     tagline: 'Hardbound magnetic organizer diaries, undated daily planners & matching executive pen combos',
-    features: ['📖 192 Acid-Free 80GSM Pages', '🧲 Magnetic Lock & Card Slots', '🖋️ Name Engraved on Plate', '💼 Corporate Ready']
+    features: ['📖 192 Acid-Free Pages', '🧲 Magnetic Lock', '🖋️ Engraved Name Plate', '💼 Corporate Ready']
   },
   { 
     id: 'lamps', 
@@ -80,7 +80,7 @@ export const FILTER_ITEMS = [
     image: '/images/acrylic_lamp.jpg',
     handwrittenNote: 'Illuminate Memories',
     tagline: 'Optical illusion 3D acrylic LED portrait lamps, warm bedside nightlights & custom photo memorials',
-    features: ['💡 Warm Ambient LED Glow', '🪵 Premium Solid Wooden Base', '🖼️ High-Res Laser Photo Etching', '🔌 USB Powered']
+    features: ['💡 Warm Ambient Glow', '🪵 Solid Wood Base', '🖼️ Laser Photo Etching', '🔌 USB Powered']
   },
   { 
     id: 'mugs', 
@@ -91,7 +91,7 @@ export const FILTER_ITEMS = [
     image: '/images/custom_mug.jpg',
     handwrittenNote: 'Warm Sips, Warm Smiles',
     tagline: 'Heat-activated color change magic mugs, ceramic coffee cups & personalized photo prints',
-    features: ['☕ Microwave & Dishwasher Safe', '✨ Magic Color Reveal on Hot Pour', '📸 Ultra-HD Vivid Photo Print', '🎁 Break-proof Packaging']
+    features: ['☕ Dishwasher Safe', '✨ Magic Color Reveal', '📸 Ultra-HD Photo Print', '🎁 Gift Packaging']
   },
   { 
     id: 'hampers', 
@@ -102,7 +102,7 @@ export const FILTER_ITEMS = [
     image: '/images/luxury_hamper.jpg',
     handwrittenNote: 'Unbox Celebrations',
     tagline: 'Grand celebratory velvet trunks, festive gift hampers, artisanal treats & personalized goodies',
-    features: ['🎀 Hand-tied Satin Ribbon Finish', '🍫 Gourmet Chocolates & Dry Fruits', '💌 Handwritten Greeting Card', '🚚 All-India Delivery']
+    features: ['🎀 Satin Ribbon Finish', '🍫 Gourmet Chocolates', '💌 Handwritten Card', '🚚 Pan-India Delivery']
   },
   { 
     id: 'corporate-gifting', 
@@ -113,7 +113,7 @@ export const FILTER_ITEMS = [
     image: '/images/recipient_clients.jpg',
     handwrittenNote: 'Celebrate Your Team',
     tagline: 'End-to-end corporate gifting solutions, client appreciation gifts, and custom branded merchandise',
-    features: ['🏢 Pan-India Multi-Address Shipping', '📦 Minimum Order as low as 10 pcs', '⚡ Dedicated Account Manager', '💰 GST Invoice with ITC'],
+    features: ['🏢 Pan-India Shipping', '📦 Low 10 Pcs MOQ', '⚡ Dedicated Manager', '💰 GST Invoice ITC'],
     isNavAction: true,
     target: 'corporate-gifting'
   },
@@ -126,7 +126,7 @@ export const FILTER_ITEMS = [
     image: '/images/recipient_employees.jpg',
     handwrittenNote: 'Fast Wholesale Pricing',
     tagline: 'Instant quotation generator for bulk orders (50+ to 10,000+ units) with wholesale pricing',
-    features: ['⚡ 30-Minute Quotation Turnaround', '🎨 Free Digital Mockup with Logo', '📉 Up to 40% Tiered Bulk Savings', '🏭 Factory Direct Supply'],
+    features: ['⚡ 30-Min Fast Quotes', '🎨 Free Digital Mockup', '📉 Up to 40% Savings', '🏭 Factory Direct Supply'],
     isNavAction: true,
     target: 'corporate-gifting'
   },
@@ -317,251 +317,252 @@ export const ShopPage = () => {
             boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
             padding: 0,
             width: '100%',
-            minHeight: '235px'
+            minHeight: '275px'
           }} className="category-hero-container">
 
+            {/* SVG Clip Path definition for organic showcase curve */}
+            <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
+              <defs>
+                <clipPath id="heroOrganicMask" clipPathUnits="objectBoundingBox">
+                  <path d="M 0.22 0 C 0.42 0.04, 0.68 0.34, 1 0.36 L 1 1 L 0.16 1 C -0.05 0.62, -0.03 0.32, 0.22 0 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            {/* Radiant sunshine rays in center transition zone */}
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(340px, 1.22fr) minmax(280px, 1fr)',
-              alignItems: 'stretch',
-              gap: 0,
-              minHeight: '235px'
-            }} className="category-hero-grid">
+              position: 'absolute',
+              left: '49%',
+              top: '16%',
+              zIndex: 4,
+              pointerEvents: 'none'
+            }} className="category-hero-rays">
+              <svg width="46" height="42" viewBox="0 0 46 42" fill="none">
+                <line x1="30" y1="2" x2="36" y2="15" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
+                <line x1="14" y1="14" x2="26" y2="23" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
+                <line x1="2" y1="33" x2="17" y2="33" stroke="#F5A800" strokeWidth="4.5" strokeLinecap="round" opacity="0.9" />
+              </svg>
+            </div>
+
+            {/* Floating Cursive Note in Top-Right Cream Scoop */}
+            <div style={{
+              position: 'absolute',
+              top: '16px',
+              right: '26px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 5,
+              pointerEvents: 'none'
+            }} className="category-hero-cursive">
+              <span style={{
+                fontFamily: "'Caveat', cursive",
+                fontSize: '1.45rem',
+                fontWeight: 700,
+                color: '#171717',
+                transform: 'rotate(-4deg)',
+                letterSpacing: '0.02em',
+                whiteSpace: 'nowrap',
+                textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)'
+              }}>
+                {currentFilterInfo.handwrittenNote || 'Make Every Moment Special'}
+              </span>
+              <svg width="84" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
+                <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            {/* Sparkle icon at top-right */}
+            <div style={{
+              position: 'absolute',
+              top: '22px',
+              right: '12px',
+              color: '#F5A800',
+              opacity: 0.55,
+              fontSize: '1.3rem',
+              zIndex: 5,
+              pointerEvents: 'none',
+              userSelect: 'none'
+            }} className="category-hero-sparkle">✦</div>
+
+            {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, PILLS, CTA */}
+            <div style={{
+              width: '56%',
+              padding: '1.8rem 1rem 1.8rem 2.4rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              position: 'relative',
+              zIndex: 3
+            }} className="category-hero-left">
               
-              {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, PILLS, CTA */}
+              {/* Category Collection Badge */}
               <div style={{
-                padding: '1.4rem 1.25rem 1.4rem 2rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 7,
+                background: '#FFF2D6',
+                border: '1px solid rgba(245, 168, 0, 0.45)',
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                marginBottom: '0.45rem',
+                alignSelf: 'flex-start',
+                boxShadow: '0 1px 3px rgba(245, 168, 0, 0.1)'
+              }}>
+                <span style={{ fontSize: '0.95rem' }}>{currentFilterInfo.icon || '🎁'}</span>
+                <span style={{
+                  fontSize: '0.74rem',
+                  fontWeight: 800,
+                  color: '#171717',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase'
+                }}>
+                  {selectedCategory === 'all' ? 'ALL GIFTS COLLECTION' : `${(currentFilterInfo.label || '').toUpperCase()} COLLECTION`}
+                </span>
+              </div>
+
+              {/* Two-Tone Headline */}
+              <h1 style={{
+                fontSize: 'clamp(2rem, 3.2vw, 2.75rem)',
+                fontWeight: 900,
+                letterSpacing: '-0.025em',
+                lineHeight: 1.1,
+                margin: '0 0 0.4rem 0'
+              }}>
+                <span style={{ color: '#171717' }}>{currentFilterInfo.titlePart1 || 'Personalized'} </span>
+                <span style={{ color: '#F5A800' }}>{currentFilterInfo.titlePart2 || 'Gifts'}</span>
+              </h1>
+
+              {/* Subtitle */}
+              <p style={{
+                fontSize: '0.86rem',
+                color: '#4B5563',
+                lineHeight: 1.45,
+                marginBottom: '0.85rem',
+                maxWidth: '480px'
+              }}>
+                {currentFilterInfo.tagline}
+              </p>
+
+              {/* Feature Pills - Single Clean Row */}
+              <div style={{
                 display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-              }} className="category-hero-left">
-                
-                {/* Category Collection Badge */}
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 7,
-                  background: '#FFF2D6',
-                  border: '1px solid rgba(245, 168, 0, 0.45)',
-                  padding: '4px 12px',
-                  borderRadius: '9999px',
-                  marginBottom: '0.45rem',
-                  alignSelf: 'flex-start',
-                  boxShadow: '0 1px 3px rgba(245, 168, 0, 0.1)'
-                }}>
-                  <span style={{ fontSize: '0.95rem' }}>{currentFilterInfo.icon || '🎁'}</span>
-                  <span style={{
-                    fontSize: '0.74rem',
-                    fontWeight: 800,
-                    color: '#171717',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase'
-                  }}>
-                    {selectedCategory === 'all' ? 'ALL GIFTS COLLECTION' : `${(currentFilterInfo.label || '').toUpperCase()} COLLECTION`}
-                  </span>
-                </div>
-
-                {/* Two-Tone Headline with Decorative Sunburst Rays */}
-                <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.35rem' }}>
-                  <h1 style={{
-                    fontSize: 'clamp(2rem, 3.2vw, 2.6rem)',
-                    fontWeight: 900,
-                    letterSpacing: '-0.025em',
-                    lineHeight: 1.1,
-                    margin: 0
-                  }}>
-                    <span style={{ color: '#171717' }}>{currentFilterInfo.titlePart1 || 'Personalized'} </span>
-                    <span style={{ color: '#F5A800' }}>{currentFilterInfo.titlePart2 || 'Gifts'}</span>
-                  </h1>
-                  
-                  {/* Radiating Sunshine Accent Marks */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '-6px',
-                    right: '-32px',
-                    pointerEvents: 'none'
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Subtitle */}
-                <p style={{
-                  fontSize: '0.88rem',
-                  color: '#4B5563',
-                  lineHeight: 1.48,
-                  marginBottom: '0.8rem',
-                  maxWidth: '500px'
-                }}>
-                  {currentFilterInfo.tagline}
-                </p>
-
-                {/* Feature Pills - Single Clean Row */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  marginBottom: '0.95rem',
-                  flexWrap: 'nowrap',
-                  overflowX: 'auto',
-                  scrollbarWidth: 'none',
-                  WebkitOverflowScrolling: 'touch'
-                }} className="category-feature-pills">
-                  {currentFilterInfo.features?.map((feat, idx) => {
-                    const parts = feat.trim().split(' ');
-                    const icon = parts[0];
-                    const text = parts.slice(1).join(' ');
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 6,
-                          background: '#ffffff',
-                          border: '1px solid #EFE4D2',
-                          borderRadius: '11px',
-                          padding: '0.24rem 0.6rem 0.24rem 0.35rem',
-                          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.025)',
-                          flexShrink: 0
-                        }}
-                      >
-                        <div style={{
-                          width: 22,
-                          height: 22,
-                          borderRadius: '50%',
-                          backgroundColor: '#FFF0D0',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: '0.72rem',
-                          flexShrink: 0
-                        }}>
-                          {icon}
-                        </div>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>
-                          {text || feat}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Counter and CTA Row */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ width: 3, height: 16, backgroundColor: '#F5A800', borderRadius: 2 }} />
-                    <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#171717' }}>
-                      Showing {filteredProducts.length} curated items
-                    </span>
-                  </div>
-
-                  {selectedCategory !== 'all' && (
-                    <button
-                      onClick={() => setSelectedCategory('all')}
+                alignItems: 'center',
+                gap: '0.45rem',
+                marginBottom: '1rem',
+                flexWrap: 'nowrap',
+                overflowX: 'visible'
+              }} className="category-feature-pills">
+                {currentFilterInfo.features?.map((feat, idx) => {
+                  const parts = feat.trim().split(' ');
+                  const icon = parts[0];
+                  const text = parts.slice(1).join(' ');
+                  return (
+                    <div
+                      key={idx}
                       style={{
-                        background: '#171717',
-                        color: '#ffffff',
-                        border: 'none',
-                        borderRadius: 'var(--radius-full)',
-                        padding: '0.44rem 1.15rem',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        cursor: 'pointer',
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 6,
-                        boxShadow: '0 3px 10px rgba(23, 23, 23, 0.18)',
-                        transition: 'all 160ms ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#F5A800';
-                        e.currentTarget.style.color = '#171717';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#171717';
-                        e.currentTarget.style.color = '#ffffff';
+                        background: '#ffffff',
+                        border: '1.2px solid #EFE4D2',
+                        borderRadius: '12px',
+                        padding: '0.28rem 0.65rem 0.28rem 0.35rem',
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.025)',
+                        flexShrink: 0
                       }}
                     >
-                      <span>View All Collections</span>
-                      <ArrowRight size={13} />
-                    </button>
-                  )}
-                </div>
+                      <div style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        backgroundColor: '#FFF0D0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '0.75rem',
+                        flexShrink: 0
+                      }}>
+                        {icon}
+                      </div>
+                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>
+                        {text || feat}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* RIGHT COLUMN: CRISP HD IMAGE & HANDWRITTEN ANNOTATION (NO BG BOX) */}
-              <div style={{
-                position: 'relative',
-                height: '100%',
-                minHeight: '235px',
-                display: 'flex',
-                alignItems: 'stretch',
-                overflow: 'hidden'
-              }} className="category-hero-right">
-                
-                {/* Handwritten Note at Top Right */}
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  right: '22px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  zIndex: 3,
-                  pointerEvents: 'none'
-                }}>
-                  <span style={{
-                    fontFamily: "'Caveat', cursive",
-                    fontSize: '1.35rem',
-                    fontWeight: 700,
-                    color: '#171717',
-                    transform: 'rotate(-4deg)',
-                    letterSpacing: '0.02em',
-                    whiteSpace: 'nowrap',
-                    textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)'
-                  }}>
-                    {currentFilterInfo.handwrittenNote || 'Make Every Moment Special'}
+              {/* Counter and CTA Row */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 3.5, height: 16, backgroundColor: '#F5A800', borderRadius: 2 }} />
+                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#171717' }}>
+                    Showing {filteredProducts.length} curated items
                   </span>
-                  <svg width="75" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
-                    <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
-                  </svg>
                 </div>
 
-                {/* Sparkle icon at top-right corner */}
-                <div style={{
-                  position: 'absolute',
-                  top: 10,
-                  right: 14,
-                  color: '#F5A800',
-                  opacity: 0.45,
-                  fontSize: '1.2rem',
-                  zIndex: 3,
-                  pointerEvents: 'none',
-                  userSelect: 'none'
-                }}>✦</div>
-
-                {/* Crisp HD Image - Integrated with smooth curved left edge, NO background box */}
-                <img
-                  src={currentFilterInfo.image || '/images/corporate_welcome_box.jpg'}
-                  alt={currentFilterInfo.label}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    minHeight: '235px',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    borderRadius: '44px 0 0 44px',
-                    display: 'block'
-                  }}
-                  className="category-hero-img"
-                />
-
+                {selectedCategory !== 'all' && (
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    style={{
+                      background: '#171717',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '9999px',
+                      padding: '0.42rem 1.15rem',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      boxShadow: '0 3px 10px rgba(23, 23, 23, 0.16)',
+                      transition: 'all 160ms ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#F5A800';
+                      e.currentTarget.style.color = '#171717';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#171717';
+                      e.currentTarget.style.color = '#ffffff';
+                    }}
+                  >
+                    <span>View All Collections</span>
+                    <ArrowRight size={13} />
+                  </button>
+                )}
               </div>
-
             </div>
+
+            {/* RIGHT COLUMN: SHOWCASE IMAGE WITH ORGANIC WAVE MASK */}
+            <div style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '50%',
+              height: '100%',
+              overflow: 'hidden',
+              zIndex: 1
+            }} className="category-hero-right">
+              <img
+                src={currentFilterInfo.image || '/images/corporate_welcome_box.jpg'}
+                alt={currentFilterInfo.label}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  clipPath: 'url(#heroOrganicMask)',
+                  WebkitClipPath: 'url(#heroOrganicMask)',
+                  display: 'block'
+                }}
+                className="category-hero-img"
+              />
+            </div>
+
           </div>
         )}
 
@@ -921,18 +922,30 @@ export const ShopPage = () => {
 
       <style>{`
         @media (max-width: 960px) {
-          .category-hero-grid {
-            grid-template-columns: 1fr !important;
+          .category-hero-container {
+            min-height: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
           }
           .category-hero-left {
+            width: 100% !important;
             padding: 1.25rem 1.25rem 1rem 1.25rem !important;
           }
+          .category-hero-rays,
+          .category-hero-cursive,
+          .category-hero-sparkle {
+            display: none !important;
+          }
           .category-hero-right {
-            min-height: 200px !important;
+            position: relative !important;
+            width: 100% !important;
+            height: 200px !important;
           }
           .category-hero-img {
+            clip-path: none !important;
+            -webkit-clip-path: none !important;
             border-radius: 0 0 24px 24px !important;
-            max-height: 220px !important;
+            height: 200px !important;
           }
           .category-feature-pills {
             flex-wrap: wrap !important;
