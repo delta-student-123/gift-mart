@@ -8,80 +8,110 @@ export const FILTER_ITEMS = [
   { 
     id: 'all', 
     label: 'All Gifts', 
+    titlePart1: 'All Curated',
+    titlePart2: 'Gifts',
     icon: '🎁', 
     image: '/images/luxury_hamper.jpg',
+    handwrittenNote: 'Gifts That Speak Love',
     tagline: 'Explore our complete collection of personalized gifts, corporate hampers & luxury keepsakes',
     features: ['⚡ Free Laser Engraving', '🚚 Express Delivery', '⭐ 4.9/5 Rating', '🛡️ Quality Guaranteed']
   },
   { 
     id: 'welcome-kits', 
     label: 'Welcome Kits', 
+    titlePart1: 'Welcome',
+    titlePart2: 'Kits',
     icon: '🎁', 
     image: '/images/corporate_welcome_box.jpg',
-    tagline: 'Premium onboarding boxes, employee joiner packs & VIP executive combos with company branding',
-    features: ['🏢 Custom Company Logo', '📦 Curated 4-in-1 & 6-in-1 Sets', '⚡ Bulk Discounts', '🚚 Direct Desk Delivery']
+    handwrittenNote: 'Make Every Welcome Special',
+    tagline: 'Premium onboarding boxes, employee joiner packs & VIP executive combos with company branding.',
+    features: ['🏢 Custom Company Logo', '📦 Curated 4-in-1 & 6-in-1 Sets', '🏷️ Bulk Discounts', '🚚 Direct Desk Delivery']
   },
   { 
     id: 'bottles', 
     label: 'Drinkware & Flasks', 
+    titlePart1: 'Drinkware',
+    titlePart2: '& Flasks',
     icon: '🍶', 
     image: '/images/drinkware_flask.jpg',
+    handwrittenNote: 'Hydrate in Pure Style',
     tagline: 'Smart LED digital temperature flasks, insulated stainless steel tumblers & matte coffee mugs',
     features: ['⚡ Real-time LED Temp Display', '❄️ 24h Hot & Cold Insulation', '🖋️ Laser Engraved Name', '💧 100% BPA Free']
   },
   { 
     id: 'wallets', 
     label: 'Wallets & Leather', 
+    titlePart1: 'Wallets &',
+    titlePart2: 'Leather',
     icon: '💼', 
     image: '/images/executive_wallet.jpg',
+    handwrittenNote: 'Everyday Elegance',
     tagline: 'Laser-personalized vegan leather men’s & women’s wallets, passport holders, and executive sets',
     features: ['🪪 Custom Name & Metal Charm', '💳 RFID Anti-theft Protection', '🎁 Luxe Gift Box Packing', '✨ Handcrafted Leather']
   },
   { 
     id: 'pens', 
     label: 'Executive Pens', 
+    titlePart1: 'Executive',
+    titlePart2: 'Pens',
     icon: '✍️', 
     image: '/images/executive_pen.jpg',
+    handwrittenNote: 'Write Your Legacy',
     tagline: 'Heavyweight metallic rollerball, ballpoint and fountain pens precision-engraved with your name',
-    features: ['🖋️ Permanent Laser Name Engraving', '💼 Velvet / Leatherette Case', '🇩🇪 German Smooth Ink Refill', '⚡ Ships in 24 Hours']
+    features: ['🖋️ Permanent Laser Name Engraving', '💼 Velvet / Wooden Gift Case', '🇩🇪 German Smooth Ink Refill', '⚡ Ships in 24 Hours']
   },
   { 
     id: 'diaries', 
     label: 'Diaries & Planners', 
+    titlePart1: 'Diaries &',
+    titlePart2: 'Planners',
     icon: '📖', 
     image: '/images/executive_diary.jpg',
+    handwrittenNote: 'Plan Your Success',
     tagline: 'Hardbound magnetic organizer diaries, undated daily planners & matching executive pen combos',
     features: ['📖 192 Acid-Free 80GSM Pages', '🧲 Magnetic Lock & Card Slots', '🖋️ Name Engraved on Plate', '💼 Corporate Ready']
   },
   { 
     id: 'lamps', 
     label: '3D Lamps', 
+    titlePart1: '3D Illusion',
+    titlePart2: 'Lamps',
     icon: '✨', 
     image: '/images/acrylic_lamp.jpg',
+    handwrittenNote: 'Illuminate Memories',
     tagline: 'Optical illusion 3D acrylic LED portrait lamps, warm bedside nightlights & custom photo memorials',
     features: ['💡 Warm Ambient LED Glow', '🪵 Premium Solid Wooden Base', '🖼️ High-Res Laser Photo Etching', '🔌 USB Powered']
   },
   { 
     id: 'mugs', 
     label: 'Customized Mugs', 
+    titlePart1: 'Customized',
+    titlePart2: 'Mugs',
     icon: '☕', 
     image: '/images/custom_mug.jpg',
+    handwrittenNote: 'Warm Sips, Warm Smiles',
     tagline: 'Heat-activated color change magic mugs, ceramic coffee cups & personalized photo prints',
     features: ['☕ Microwave & Dishwasher Safe', '✨ Magic Color Reveal on Hot Pour', '📸 Ultra-HD Vivid Photo Print', '🎁 Break-proof Packaging']
   },
   { 
     id: 'hampers', 
     label: 'Hampers', 
+    titlePart1: 'Luxury Gift',
+    titlePart2: 'Hampers',
     icon: '🧺', 
     image: '/images/luxury_hamper.jpg',
+    handwrittenNote: 'Unbox Celebrations',
     tagline: 'Grand celebratory velvet trunks, festive gift hampers, artisanal treats & personalized goodies',
     features: ['🎀 Hand-tied Satin Ribbon Finish', '🍫 Gourmet Chocolates & Dry Fruits', '💌 Handwritten Greeting Card', '🚚 All-India Delivery']
   },
   { 
     id: 'corporate-gifting', 
     label: 'Corporate Gifting', 
+    titlePart1: 'Corporate',
+    titlePart2: 'Gifting',
     icon: '🏢', 
     image: '/images/recipient_clients.jpg',
+    handwrittenNote: 'Celebrate Your Team',
     tagline: 'End-to-end corporate gifting solutions, client appreciation gifts, and custom branded merchandise',
     features: ['🏢 Pan-India Multi-Address Shipping', '📦 Minimum Order as low as 10 pcs', '⚡ Dedicated Account Manager', '💰 GST Invoice with ITC'],
     isNavAction: true,
@@ -90,8 +120,11 @@ export const FILTER_ITEMS = [
   { 
     id: 'bulk-rfq', 
     label: 'Bulk RFQ Quote', 
+    titlePart1: 'Bulk RFQ',
+    titlePart2: 'Quote',
     icon: '⚡', 
     image: '/images/recipient_employees.jpg',
+    handwrittenNote: 'Fast Wholesale Pricing',
     tagline: 'Instant quotation generator for bulk orders (50+ to 10,000+ units) with wholesale pricing',
     features: ['⚡ 30-Minute Quotation Turnaround', '🎨 Free Digital Mockup with Logo', '📉 Up to 40% Tiered Bulk Savings', '🏭 Factory Direct Supply'],
     isNavAction: true,
@@ -100,8 +133,11 @@ export const FILTER_ITEMS = [
   { 
     id: 'gift-finder', 
     label: 'Gift Finder', 
+    titlePart1: 'AI Gift',
+    titlePart2: 'Finder',
     icon: '🎁', 
     image: '/images/celebration_couple.jpg',
+    handwrittenNote: 'Find the Perfect Gift',
     tagline: 'Interactive 3-step AI Gift Finder: Pick recipient, occasion & budget to get curated recommendations',
     features: ['🎯 30-Second Smart Recommendations', '🎁 Tailored to Exact Budget & Vibe', '⚡ Instant Add to Cart', '⭐ 100% Delight Guaranteed'],
     isNavAction: true,
@@ -227,122 +263,245 @@ export const ShopPage = () => {
 
 
 
-        {/* 2. DYNAMIC CATEGORY HERO BANNER ACCORDING TO SELECTED FILTER */}
+        {/* 2. DYNAMIC CATEGORY HERO BANNER (Pixel-Perfect Match to Screenshot) */}
         <div style={{
           position: 'relative',
-          borderRadius: 'var(--radius-xl)',
+          borderRadius: '26px',
           overflow: 'hidden',
-          marginBottom: '2rem',
-          border: '1.5px solid var(--border-subtle)',
-          background: 'linear-gradient(135deg, #FFF9F0 0%, #F4EBDD 100%)',
-          boxShadow: 'var(--shadow-sm)'
-        }}>
+          marginBottom: '2.5rem',
+          border: '1.5px solid rgba(245, 168, 0, 0.22)',
+          background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
+          boxShadow: '0 4px 24px rgba(245, 168, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.02)',
+          padding: '2.4rem 2.75rem'
+        }} className="category-hero-container">
+          
+          {/* Subtle Decorative Background Accents */}
+          <div style={{
+            position: 'absolute',
+            top: 18,
+            right: 32,
+            color: '#F5A800',
+            opacity: 0.4,
+            fontSize: '1.8rem',
+            pointerEvents: 'none',
+            userSelect: 'none'
+          }}>✦</div>
+
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(280px, 1.4fr) minmax(200px, 1fr)',
+            gridTemplateColumns: 'minmax(320px, 1.22fr) minmax(280px, 1fr)',
             alignItems: 'center',
-            gap: '1.5rem',
-            padding: '1.75rem 2rem'
+            gap: '2.5rem'
           }} className="category-hero-grid">
+            
+            {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, PILLS, CTA */}
             <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ffffff', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(245, 168, 0, 0.4)', marginBottom: '0.75rem' }}>
-                <span style={{ fontSize: '1rem' }}>{currentFilterInfo.icon || '🎁'}</span>
-                <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-gold-dark)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                  {selectedCategory === 'all' ? 'All Gifts Collection' : `${currentFilterInfo.label} Collection`}
+              {/* Category Collection Badge */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: '#FFF2D6',
+                border: '1px solid rgba(245, 168, 0, 0.45)',
+                padding: '5px 14px',
+                borderRadius: '9999px',
+                marginBottom: '1rem',
+                boxShadow: '0 1px 3px rgba(245, 168, 0, 0.12)'
+              }}>
+                <span style={{ fontSize: '1.1rem' }}>{currentFilterInfo.icon || '🎁'}</span>
+                <span style={{
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  color: '#171717',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase'
+                }}>
+                  {selectedCategory === 'all' ? 'ALL GIFTS COLLECTION' : `${(currentFilterInfo.label || '').toUpperCase()} COLLECTION`}
                 </span>
-              </div>
-              <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--charcoal-dark)', lineHeight: 1.2, marginBottom: '0.5rem' }}>
-                {getCategoryTitle()}
-              </h1>
-              <p style={{ fontSize: '0.94rem', color: 'var(--charcoal-muted)', lineHeight: 1.5, marginBottom: '1rem', maxWidth: '580px' }}>
-                {currentFilterInfo.tagline}
-              </p>
-              
-              {/* Feature Pills */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.25rem' }}>
-                {currentFilterInfo.features?.map((feat, idx) => (
-                  <span
-                    key={idx}
-                    style={{
-                      background: '#ffffff',
-                      color: 'var(--charcoal-dark)',
-                      fontSize: '0.78rem',
-                      fontWeight: 700,
-                      padding: '4px 10px',
-                      borderRadius: '8px',
-                      border: '1px solid var(--border-subtle)',
-                      boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
-                    }}
-                  >
-                    {feat}
-                  </span>
-                ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--charcoal-dark)' }}>
-                  Showing <span style={{ color: 'var(--accent-gold-dark)' }}>{filteredProducts.length}</span> curated items
-                </span>
+              {/* Big Two-Tone Headline with Decorative Sunburst Rays */}
+              <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.85rem' }}>
+                <h1 style={{
+                  fontSize: 'clamp(2.3rem, 4.2vw, 3.4rem)',
+                  fontWeight: 900,
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1.08,
+                  margin: 0
+                }}>
+                  <span style={{ color: '#171717' }}>{currentFilterInfo.titlePart1 || 'Welcome'} </span>
+                  <span style={{ color: '#F5A800' }}>{currentFilterInfo.titlePart2 || 'Kits'}</span>
+                </h1>
+                
+                {/* Radiating Sunshine Accent Marks */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-36px',
+                  pointerEvents: 'none'
+                }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.6" strokeLinecap="round" opacity="0.9"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Tagline / Subtitle */}
+              <p style={{
+                fontSize: '1.02rem',
+                color: '#4B5563',
+                lineHeight: 1.55,
+                marginBottom: '1.5rem',
+                maxWidth: '540px'
+              }}>
+                {currentFilterInfo.tagline}
+              </p>
+
+              {/* Feature Pills with Circular Golden Badges */}
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.65rem',
+                marginBottom: '1.75rem'
+              }}>
+                {currentFilterInfo.features?.map((feat, idx) => {
+                  const parts = feat.trim().split(' ');
+                  const icon = parts[0];
+                  const text = parts.slice(1).join(' ');
+                  return (
+                    <div
+                      key={idx}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        background: '#ffffff',
+                        border: '1px solid #EFE4D2',
+                        borderRadius: '14px',
+                        padding: '0.38rem 0.85rem 0.38rem 0.45rem',
+                        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.025)'
+                      }}
+                    >
+                      <div style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: '50%',
+                        backgroundColor: '#FFF0D0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '0.88rem',
+                        flexShrink: 0
+                      }}>
+                        {icon}
+                      </div>
+                      <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>
+                        {text || feat}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Counter and CTA Row */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                  <span style={{ width: 3, height: 18, backgroundColor: '#F5A800', borderRadius: 2 }} />
+                  <span style={{ fontSize: '0.86rem', fontWeight: 700, color: '#171717' }}>
+                    Showing {filteredProducts.length} curated items
+                  </span>
+                </div>
+
                 {selectedCategory !== 'all' && (
                   <button
                     onClick={() => setSelectedCategory('all')}
                     style={{
-                      background: 'var(--charcoal-dark)',
+                      background: '#171717',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: 'var(--radius-full)',
-                      padding: '0.4rem 1rem',
-                      fontSize: '0.8rem',
+                      padding: '0.55rem 1.35rem',
+                      fontSize: '0.84rem',
                       fontWeight: 700,
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: 6
+                      gap: 8,
+                      boxShadow: '0 4px 12px rgba(23, 23, 23, 0.22)',
+                      transition: 'all 160ms ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.backgroundColor = '#F5A800';
+                      e.currentTarget.style.color = '#171717';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'none';
+                      e.currentTarget.style.backgroundColor = '#171717';
+                      e.currentTarget.style.color = '#ffffff';
                     }}
                   >
                     <span>View All Collections</span>
-                    <ArrowRight size={13} />
+                    <ArrowRight size={14} />
                   </button>
                 )}
               </div>
             </div>
 
-            {/* Category Image Spotlight Preview */}
-            <div style={{
-              position: 'relative',
-              borderRadius: 'var(--radius-lg)',
-              overflow: 'hidden',
-              boxShadow: 'var(--shadow-md)',
-              border: '3px solid #ffffff',
-              height: '200px'
-            }}>
-              <img
-                src={currentFilterInfo.image}
-                alt={currentFilterInfo.label}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
+            {/* RIGHT COLUMN: SPOTLIGHT IMAGE & HANDWRITTEN ANNOTATION */}
+            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+              
+              {/* Handwritten Note at Top Right ("Make Every Welcome Special") */}
               <div style={{
                 position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to top, rgba(23,23,23,0.65) 0%, rgba(23,23,23,0) 60%)',
+                top: '-26px',
+                right: '18px',
                 display: 'flex',
-                alignItems: 'flex-end',
-                padding: '1rem'
+                flexDirection: 'column',
+                alignItems: 'center',
+                zIndex: 2,
+                pointerEvents: 'none'
               }}>
-                <div>
-                  <div style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    Step In Official Selection
-                  </div>
-                  <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '1.05rem' }}>
-                    {currentFilterInfo.label}
-                  </div>
-                </div>
+                <span style={{
+                  fontFamily: "'Caveat', cursive",
+                  fontSize: '1.5rem',
+                  fontWeight: 700,
+                  color: '#171717',
+                  transform: 'rotate(-4deg)',
+                  letterSpacing: '0.02em',
+                  whiteSpace: 'nowrap'
+                }}>
+                  {currentFilterInfo.handwrittenNote || 'Make Every Welcome Special'}
+                </span>
+                <svg width="85" height="10" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
+                  <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
               </div>
+
+              {/* Seamless Showcase Image Container */}
+              <div style={{
+                borderRadius: '22px',
+                overflow: 'hidden',
+                boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '4px solid #ffffff',
+                width: '100%',
+                maxHeight: '300px',
+                aspectRatio: '16/10'
+              }}>
+                <img
+                  src={currentFilterInfo.image || '/images/corporate_welcome_box.jpg'}
+                  alt={currentFilterInfo.label}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
+                />
+              </div>
+
             </div>
+
           </div>
         </div>
 
@@ -701,6 +860,15 @@ export const ShopPage = () => {
       </div>
 
       <style>{`
+        @media (max-width: 960px) {
+          .category-hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .category-hero-container {
+            padding: 1.75rem 1.5rem !important;
+          }
+        }
         @media (max-width: 860px) {
           .shop-layout-grid { grid-template-columns: 1fr !important; }
           .mobile-filter-btn { display: inline-flex !important; }
