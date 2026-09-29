@@ -136,13 +136,13 @@ export const ProductDetailPage = ({ product }) => {
                   position: 'absolute',
                   top: 16,
                   left: 16,
-                  background: 'var(--primary)',
+                  background: '#dc2626',
                   color: '#ffffff',
-                  padding: '4px 12px',
+                  padding: '3px 9px',
                   borderRadius: 'var(--radius-full)',
-                  fontSize: '0.82rem',
+                  fontSize: '0.74rem',
                   fontWeight: 800,
-                  boxShadow: '0 2px 8px rgba(194, 24, 91, 0.35)'
+                  boxShadow: '0 2px 6px rgba(220, 38, 38, 0.25)'
                 }}>
                   {discountPercent}% OFF
                 </span>

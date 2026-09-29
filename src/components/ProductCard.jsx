@@ -83,16 +83,19 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         />
 
         {/* Badges Over Image (Giftana Style) */}
-        <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', gap: 5, zIndex: 2 }}>
+        <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5, zIndex: 2 }}>
           {discountPercent > 0 && (
             <span style={{
-              background: '#f42b23',
+              background: '#dc2626',
               color: '#ffffff',
-              padding: '2px 8px',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.72rem',
+              padding: '2px 7px',
+              borderRadius: '9999px',
+              fontSize: '0.64rem',
               fontWeight: 800,
-              boxShadow: '0 2px 6px rgba(244, 43, 35, 0.35)'
+              letterSpacing: '0.02em',
+              boxShadow: '0 2px 4px rgba(220, 38, 38, 0.25)',
+              alignSelf: 'flex-start',
+              whiteSpace: 'nowrap'
             }}>
               {discountPercent}% OFF
             </span>
@@ -103,13 +106,15 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
               background: 'rgba(23, 23, 23, 0.92)',
               backdropFilter: 'blur(4px)',
               color: '#F5A800',
-              padding: '2px 8px',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.68rem',
+              padding: '2px 7px',
+              borderRadius: '9999px',
+              fontSize: '0.65rem',
               fontWeight: 700,
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 3
+              gap: 3,
+              alignSelf: 'flex-start',
+              whiteSpace: 'nowrap'
             }}>
               ✨ {product.tag}
             </span>
