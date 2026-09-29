@@ -267,12 +267,14 @@ export const ShopPage = () => {
         {selectedCategory === 'welcome-kits' ? (
           <div style={{
             position: 'relative',
-            borderRadius: '24px',
+            borderRadius: '20px',
             overflow: 'hidden',
-            marginBottom: '2rem',
-            boxShadow: '0 4px 20px rgba(245, 168, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.02)',
+            marginBottom: '1.75rem',
+            boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
             border: '1.5px solid rgba(245, 168, 0, 0.22)',
-            backgroundColor: '#FFFBF3'
+            backgroundColor: '#FFFBF3',
+            maxWidth: '980px',
+            margin: '0 auto 1.75rem auto'
           }} className="welcome-kits-exact-banner">
             <img
               src="/images/welcome_kits_banner.png"
@@ -280,7 +282,10 @@ export const ShopPage = () => {
               style={{
                 width: '100%',
                 height: 'auto',
-                display: 'block'
+                maxHeight: '260px',
+                objectFit: 'contain',
+                display: 'block',
+                imageRendering: '-webkit-optimize-contrast'
               }}
             />
             {/* Interactive button over "View All Collections" */}
@@ -307,40 +312,48 @@ export const ShopPage = () => {
         ) : (
           <div style={{
             position: 'relative',
-            borderRadius: '24px',
+            borderRadius: '20px',
             overflow: 'hidden',
-            marginBottom: '2rem',
+            marginBottom: '1.75rem',
             border: '1.5px solid rgba(245, 168, 0, 0.22)',
             background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
-            boxShadow: '0 4px 20px rgba(245, 168, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.02)',
-            padding: 0
+            boxShadow: '0 4px 18px rgba(245, 168, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.02)',
+            padding: 0,
+            minHeight: '215px'
           }} className="category-hero-container">
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'minmax(340px, 1.22fr) minmax(280px, 1fr)',
+              gridTemplateColumns: 'minmax(330px, 1.25fr) minmax(280px, 1fr)',
               alignItems: 'stretch',
-              gap: 0
+              gap: 0,
+              minHeight: '215px'
             }} className="category-hero-grid">
               
               {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, PILLS, CTA */}
-              <div style={{ padding: '1.4rem 1.25rem 1.4rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} className="category-hero-left">
+              <div style={{
+                padding: '1.15rem 1rem 1.15rem 1.75rem',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }} className="category-hero-left">
+                
                 {/* Category Collection Badge */}
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: 7,
+                  gap: 6,
                   background: '#FFF2D6',
                   border: '1px solid rgba(245, 168, 0, 0.45)',
-                  padding: '3px 11px',
+                  padding: '3px 10px',
                   borderRadius: '9999px',
-                  marginBottom: '0.45rem',
+                  marginBottom: '0.4rem',
                   alignSelf: 'flex-start',
-                  boxShadow: '0 1px 3px rgba(245, 168, 0, 0.1)'
+                  boxShadow: '0 1px 2px rgba(245, 168, 0, 0.08)'
                 }}>
-                  <span style={{ fontSize: '0.95rem' }}>{currentFilterInfo.icon || '🎁'}</span>
+                  <span style={{ fontSize: '0.9rem' }}>{currentFilterInfo.icon || '🎁'}</span>
                   <span style={{
-                    fontSize: '0.72rem',
+                    fontSize: '0.70rem',
                     fontWeight: 800,
                     color: '#171717',
                     letterSpacing: '0.06em',
@@ -350,10 +363,10 @@ export const ShopPage = () => {
                   </span>
                 </div>
 
-                {/* Big Two-Tone Headline with Decorative Sunburst Rays */}
-                <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.35rem' }}>
+                {/* Two-Tone Headline with Decorative Sunburst Rays */}
+                <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.3rem' }}>
                   <h1 style={{
-                    fontSize: 'clamp(1.85rem, 2.9vw, 2.35rem)',
+                    fontSize: 'clamp(1.75rem, 2.6vw, 2.2rem)',
                     fontWeight: 900,
                     letterSpacing: '-0.025em',
                     lineHeight: 1.1,
@@ -367,32 +380,32 @@ export const ShopPage = () => {
                   <div style={{
                     position: 'absolute',
                     top: '-6px',
-                    right: '-32px',
+                    right: '-28px',
                     pointerEvents: 'none'
                   }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                       <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
                     </svg>
                   </div>
                 </div>
 
-                {/* Tagline / Subtitle */}
+                {/* Subtitle */}
                 <p style={{
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   color: '#4B5563',
-                  lineHeight: 1.45,
-                  marginBottom: '0.75rem',
-                  maxWidth: '480px'
+                  lineHeight: 1.4,
+                  marginBottom: '0.65rem',
+                  maxWidth: '470px'
                 }}>
                   {currentFilterInfo.tagline}
                 </p>
 
-                {/* Feature Pills with Circular Golden Badges - Single Neat Row */}
+                {/* Feature Pills - Single Clean Row */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  marginBottom: '0.9rem',
+                  gap: '0.4rem',
+                  marginBottom: '0.8rem',
                   flexWrap: 'nowrap',
                   overflowX: 'auto',
                   scrollbarWidth: 'none',
@@ -408,29 +421,29 @@ export const ShopPage = () => {
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: 6,
+                          gap: 5,
                           background: '#ffffff',
                           border: '1px solid #EFE4D2',
-                          borderRadius: '10px',
-                          padding: '0.22rem 0.55rem 0.22rem 0.32rem',
-                          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.025)',
+                          borderRadius: '9px',
+                          padding: '0.2rem 0.5rem 0.2rem 0.3rem',
+                          boxShadow: '0 1px 2px rgba(0, 0, 0, 0.02)',
                           flexShrink: 0
                         }}
                       >
                         <div style={{
-                          width: 22,
-                          height: 22,
+                          width: 20,
+                          height: 20,
                           borderRadius: '50%',
                           backgroundColor: '#FFF0D0',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '0.72rem',
+                          fontSize: '0.68rem',
                           flexShrink: 0
                         }}>
                           {icon}
                         </div>
-                        <span style={{ fontSize: '0.70rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#171717', whiteSpace: 'nowrap' }}>
                           {text || feat}
                         </span>
                       </div>
@@ -439,10 +452,10 @@ export const ShopPage = () => {
                 </div>
 
                 {/* Counter and CTA Row */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ width: 3, height: 16, backgroundColor: '#F5A800', borderRadius: 2 }} />
-                    <span style={{ fontSize: '0.80rem', fontWeight: 700, color: '#171717' }}>
+                    <span style={{ width: 3, height: 15, backgroundColor: '#F5A800', borderRadius: 2 }} />
+                    <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#171717' }}>
                       Showing {filteredProducts.length} curated items
                     </span>
                   </div>
@@ -455,49 +468,47 @@ export const ShopPage = () => {
                         color: '#ffffff',
                         border: 'none',
                         borderRadius: 'var(--radius-full)',
-                        padding: '0.42rem 1.1rem',
-                        fontSize: '0.76rem',
+                        padding: '0.38rem 1rem',
+                        fontSize: '0.74rem',
                         fontWeight: 700,
                         cursor: 'pointer',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: 6,
-                        boxShadow: '0 3px 10px rgba(23, 23, 23, 0.18)',
+                        gap: 5,
+                        boxShadow: '0 2px 8px rgba(23, 23, 23, 0.16)',
                         transition: 'all 160ms ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-1px)';
                         e.currentTarget.style.backgroundColor = '#F5A800';
                         e.currentTarget.style.color = '#171717';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'none';
                         e.currentTarget.style.backgroundColor = '#171717';
                         e.currentTarget.style.color = '#ffffff';
                       }}
                     >
                       <span>View All Collections</span>
-                      <ArrowRight size={13} />
+                      <ArrowRight size={12} />
                     </button>
                   )}
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: SPOTLIGHT IMAGE & HANDWRITTEN ANNOTATION (NO BG BOX) */}
+              {/* RIGHT COLUMN: CRISP HD IMAGE & HANDWRITTEN ANNOTATION (NO BG BOX) */}
               <div style={{
                 position: 'relative',
                 height: '100%',
-                minHeight: '230px',
+                minHeight: '215px',
                 display: 'flex',
                 alignItems: 'stretch',
                 overflow: 'hidden'
               }} className="category-hero-right">
                 
-                {/* Handwritten Note at Top Right */}
+                {/* Handwritten Note at Top Right ("Make Every Welcome Special") */}
                 <div style={{
                   position: 'absolute',
-                  top: '12px',
-                  right: '22px',
+                  top: '10px',
+                  right: '20px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -506,17 +517,17 @@ export const ShopPage = () => {
                 }}>
                   <span style={{
                     fontFamily: "'Caveat', cursive",
-                    fontSize: '1.35rem',
+                    fontSize: '1.25rem',
                     fontWeight: 700,
                     color: '#171717',
                     transform: 'rotate(-4deg)',
                     letterSpacing: '0.02em',
                     whiteSpace: 'nowrap',
-                    textShadow: '0 1px 4px rgba(255, 255, 255, 0.9)'
+                    textShadow: '0 1px 4px rgba(255, 255, 255, 0.95)'
                   }}>
                     {currentFilterInfo.handwrittenNote || 'Make Every Welcome Special'}
                   </span>
-                  <svg width="75" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
+                  <svg width="70" height="8" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
                     <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
                   </svg>
                 </div>
@@ -524,27 +535,27 @@ export const ShopPage = () => {
                 {/* Sparkle icon at top-right corner */}
                 <div style={{
                   position: 'absolute',
-                  top: 10,
-                  right: 14,
+                  top: 8,
+                  right: 12,
                   color: '#F5A800',
                   opacity: 0.45,
-                  fontSize: '1.2rem',
+                  fontSize: '1.1rem',
                   zIndex: 3,
                   pointerEvents: 'none',
                   userSelect: 'none'
                 }}>✦</div>
 
-                {/* Showcase Image */}
+                {/* Crisp HD Image - Integrated with smooth curved left edge, NO background box */}
                 <img
                   src={currentFilterInfo.image || '/images/corporate_welcome_box.jpg'}
                   alt={currentFilterInfo.label}
                   style={{
                     width: '100%',
                     height: '100%',
-                    minHeight: '230px',
+                    minHeight: '215px',
                     objectFit: 'cover',
-                    objectPosition: 'center left',
-                    borderRadius: '44px 0 0 44px',
+                    objectPosition: 'center',
+                    borderRadius: '38px 0 0 38px',
                     display: 'block'
                   }}
                   className="category-hero-img"
