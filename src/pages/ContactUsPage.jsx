@@ -89,7 +89,7 @@ export const ContactUsPage = () => {
                   { icon: '📦', text: 'Live Order Tracking' },
                   { icon: '⭐', text: '100% Delight Guarantee' }
                 ].map((pill, idx) => (
-                  <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap 6, background: '#ffffff', border: '1px solid #EFE4D2', borderRadius: '11px', padding: '0.24rem 0.6rem 0.24rem 0.35rem' }}>
+                  <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ffffff', border: '1px solid #EFE4D2', borderRadius: '11px', padding: '0.24rem 0.6rem 0.24rem 0.35rem' }}>
                     <div style={{ width: 22, height: 22, borderRadius: '50%', backgroundColor: '#FFF0D0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem' }}>
                       {pill.icon}
                     </div>
