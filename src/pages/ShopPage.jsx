@@ -280,8 +280,8 @@ export const ShopPage = () => {
             borderRadius: '24px',
             overflow: 'hidden',
             marginBottom: '2rem',
-            boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
-            border: '1.5px solid rgba(245, 168, 0, 0.22)',
+            boxShadow: '0 4px 18px rgba(217, 119, 6, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
+            border: '1.5px solid rgba(217, 119, 6, 0.22)',
             backgroundColor: '#FFFBF3',
             width: '100%'
           }} className="welcome-kits-exact-banner">
@@ -322,13 +322,13 @@ export const ShopPage = () => {
             borderRadius: '24px',
             overflow: 'hidden',
             marginBottom: '2rem',
-            border: '1.5px solid rgba(245, 168, 0, 0.22)',
+            border: '1.5px solid rgba(217, 119, 6, 0.22)',
             backgroundColor: '#FFFDF8',
             backgroundImage: `linear-gradient(90deg, #FFFDF8 0%, #FFFDF8 42%, rgba(255, 253, 248, 0.96) 54%, rgba(255, 253, 248, 0.3) 72%, rgba(255, 253, 248, 0) 86%), url(${currentFilterInfo.bannerBg || currentFilterInfo.image || '/images/all_gifts_banner_bg.png'})`,
             backgroundPosition: 'center right',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
+            boxShadow: '0 4px 18px rgba(217, 119, 6, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
             padding: 0,
             width: '100%',
             minHeight: '275px',
@@ -354,12 +354,12 @@ export const ShopPage = () => {
                 alignItems: 'center',
                 gap: 7,
                 background: '#FFF2D6',
-                border: '1px solid rgba(245, 168, 0, 0.45)',
+                border: '1px solid rgba(217, 119, 6, 0.45)',
                 padding: '4px 12px',
                 borderRadius: '9999px',
                 marginBottom: '0.45rem',
                 alignSelf: 'flex-start',
-                boxShadow: '0 1px 3px rgba(245, 168, 0, 0.1)'
+                boxShadow: '0 1px 3px rgba(217, 119, 6, 0.1)'
               }}>
                 <span style={{ fontSize: '0.95rem' }}>{currentFilterInfo.icon || '🎁'}</span>
                 <span style={{
@@ -382,7 +382,7 @@ export const ShopPage = () => {
                 margin: '0 0 0.45rem 0'
               }}>
                 <span style={{ color: '#171717' }}>{currentFilterInfo.titlePart1 || 'Personalized'} </span>
-                <span style={{ color: '#F5A800' }}>{currentFilterInfo.titlePart2 || 'Gifts'}</span>
+                <span style={{ color: 'rgb(217, 119, 6)' }}>{currentFilterInfo.titlePart2 || 'Gifts'}</span>
               </h1>
 
               {/* Subtitle / Tagline - High Contrast & High Legibility */}
@@ -449,7 +449,7 @@ export const ShopPage = () => {
               {/* Counter and CTA Row */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ width: 3.5, height: 16, backgroundColor: '#F5A800', borderRadius: 2 }} />
+                  <span style={{ width: 3.5, height: 16, backgroundColor: 'rgb(217, 119, 6)', borderRadius: 2 }} />
                   <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#171717' }}>
                     Showing {filteredProducts.length} curated items
                   </span>
@@ -474,7 +474,7 @@ export const ShopPage = () => {
                       transition: 'all 160ms ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#F5A800';
+                      e.currentTarget.style.backgroundColor = 'rgb(217, 119, 6)';
                       e.currentTarget.style.color = '#171717';
                     }}
                     onMouseLeave={(e) => {

@@ -194,6 +194,7 @@ export const AppProvider = ({ children }) => {
 
   // Clean URL Routing synchronization
   const navigateTo = (view, params = {}) => {
+    if (view === 'custom') view = 'custom-gifts';
     setCurrentView(view);
     setViewParams(params);
     window.scrollTo({ top: 0, behavior: 'smooth' });

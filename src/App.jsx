@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { CartDrawer } from './components/CartDrawer';
-import { CheckoutModal } from './components/CheckoutModal';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { PersonalizerModal } from './components/PersonalizerModal';
 import { Toast } from './components/Toast';
@@ -13,13 +12,14 @@ import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AdminPanel } from './pages/AdminPanel';
-import { OrderSuccessPage } from './pages/OrderSuccessPage';
-import { TrackOrderPage } from './pages/TrackOrderPage';
 import { AccountPage } from './pages/AccountPage';
 import { CorporatePage } from './pages/CorporatePage';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { ContactUsPage } from './pages/ContactUsPage';
 import { BlogPage } from './pages/BlogPage';
+import { OccasionsPage } from './pages/OccasionsPage';
+import { CustomGiftsPage } from './pages/CustomGiftsPage';
+import { FaqDeliveryPage } from './pages/FaqDeliveryPage';
 
 const AppContent = () => {
   const { currentView, selectedProduct, viewParams, navigateTo } = useApp();
@@ -43,9 +43,15 @@ const AppContent = () => {
         {(currentView === 'home' || currentView === 'gift-finder') && <HomePage />}
 
         {/* SHOP & CATEGORIES */}
-        {(currentView === 'shop' || currentView === 'occasions' || currentView === 'gifts' || currentView === 'offers') && (
+        {(currentView === 'shop' || currentView === 'gifts' || currentView === 'offers') && (
           <ShopPage />
         )}
+
+        {/* OCCASIONS & CURATED COLLECTIONS */}
+        {currentView === 'occasions' && <OccasionsPage />}
+
+        {/* CUSTOM & PERSONALIZED GIFTS */}
+        {(currentView === 'custom-gifts' || currentView === 'custom') && <CustomGiftsPage />}
 
         {/* PRE-FILTERED CATEGORIES */}
         {currentView === 'personalized-gifts' && (
@@ -64,22 +70,19 @@ const AppContent = () => {
         )}
 
         {/* CORPORATE GIFTING */}
-        {currentView === 'corporate-gifting' && <CorporatePage />}
+        {(currentView === 'corporate-gifting' || currentView === 'corporate') && <CorporatePage />}
 
-        {/* ORDER CONFIRMATION */}
-        {currentView === 'order-confirmation' && <OrderSuccessPage />}
-
-        {/* TRACK ORDER / MY ORDERS */}
-        {(currentView === 'track-order' || currentView === 'my-orders') && <TrackOrderPage />}
+        {/* FAQ & DELIVERY INFORMATION */}
+        {(currentView === 'faq-delivery' || currentView === 'faq') && <FaqDeliveryPage />}
 
         {/* CUSTOMER ACCOUNT */}
         {currentView === 'account' && <AccountPage />}
 
         {/* ABOUT US */}
-        {currentView === 'about-us' && <AboutUsPage />}
+        {(currentView === 'about-us' || currentView === 'about') && <AboutUsPage />}
 
         {/* CONTACT US */}
-        {currentView === 'contact-us' && <ContactUsPage />}
+        {(currentView === 'contact-us' || currentView === 'contact') && <ContactUsPage />}
 
         {/* BLOG / INSPIRATION */}
         {currentView === 'blog' && <BlogPage />}
@@ -90,9 +93,10 @@ const AppContent = () => {
 
       <Footer />
 
-      {/* Global Modals & Drawers */}
-      <CartDrawer />
-      <CheckoutModal />
+      {/* Floating WhatsApp Action Button on Every Page */}
+      <FloatingWhatsApp />
+
+      {/* Modals & Toast */}
       <ProductDetailModal />
       <PersonalizerModal />
       <Toast />
@@ -117,42 +121,30 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2rem',
-          backgroundColor: '#faf7f2',
-          textAlign: 'center',
-          fontFamily: 'DM Sans, sans-serif'
-        }}>
-          <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🎁</div>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#1c1917', marginBottom: '0.75rem' }}>
-            Oops! Something went wrong
-          </h1>
-          <p style={{ maxWidth: '480px', color: '#666', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-            We encountered a hiccup while preparing your gifting experience. Don't worry, your cart and session are safe.
-          </p>
-          <button
-            onClick={() => {
-              window.location.href = '/';
-            }}
-            style={{
-              padding: '0.85rem 1.75rem',
-              backgroundColor: '#c2185b',
-              color: '#ffffff',
-              border: 'none',
-              borderRadius: '9999px',
-              fontWeight: 700,
-              fontSize: '0.95rem',
-              cursor: 'pointer',
-              boxShadow: '0 4px 14px rgba(194, 24, 91, 0.35)'
-            }}
-          >
-            Return to Homepage
-          </button>
+        <div style={{ padding: '3rem 1.5rem', textAlign: 'center', background: '#FCFBF9', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ maxWidth: 500, background: '#ffffff', padding: '2.5rem', borderRadius: 24, boxShadow: '0 8px 30px rgba(0,0,0,0.06)', border: '1px solid #EFEAE2' }}>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#171717', marginBottom: '0.75rem' }}>Something went wrong</h2>
+            <p style={{ color: '#525252', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+              We encountered an issue loading this view. You can reload the page or return to the catalog homepage.
+            </p>
+            <button
+              onClick={() => {
+                this.setState({ hasError: false, error: null });
+                window.location.href = '/';
+              }}
+              style={{
+                background: '#171717',
+                color: '#ffffff',
+                border: 'none',
+                padding: '0.65rem 1.4rem',
+                borderRadius: '9999px',
+                fontWeight: 700,
+                cursor: 'pointer'
+              }}
+            >
+              Return to Catalog Home
+            </button>
+          </div>
         </div>
       );
     }

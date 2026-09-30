@@ -1,53 +1,58 @@
 import React, { useState } from 'react';
 import { 
   Star, 
-  Zap, 
   Sparkles, 
   MapPin, 
   ShieldCheck, 
   Truck, 
   Heart, 
-  Plus, 
-  Minus, 
-  ShoppingBag,
-  Clock,
-  CheckCircle2,
-  Share2,
-  Calendar,
-  ArrowLeft,
-  ChevronRight,
+  Clock, 
+  CheckCircle2, 
+  Share2, 
+  ChevronRight, 
+  MessageCircle,
   Package,
-  RotateCcw
+  RotateCcw,
+  Check
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/ProductCard';
+import { siteConfig, generateWhatsAppOrderUrl } from '../config/siteConfig';
 
 export const ProductDetailPage = ({ product }) => {
   const { 
     productsList, 
-    addToCart, 
     toggleWishlist, 
     isInWishlist, 
     pincode, 
     pincodeInfo, 
     checkPincode, 
-    openPersonalizer, 
-    setIsCheckoutOpen,
-    navigateTo 
+    navigateTo,
+    showToast
   } = useApp();
 
-  const [activeImage, setActiveImage] = useState(product?.image);
-  const [qty, setQty] = useState(1);
+  const [activeImage, setActiveImage] = useState(
+    product?.image || (product?.images && product?.images[0])
+  );
   const [pinInput, setPinInput] = useState(pincode || '');
-  const [selectedAddons, setSelectedAddons] = useState([]);
-  const [activeTab, setActiveTab] = useState('description'); // 'description', 'included', 'specs', 'delivery', 'reviews'
+  const [selectedOptions, setSelectedOptions] = useState(() => {
+    const defaults = {};
+    if (product?.options) {
+      Object.entries(product.options).forEach(([k, vals]) => {
+        if (Array.isArray(vals) && vals.length > 0) defaults[k] = vals[0];
+      });
+    }
+    return defaults;
+  });
+  const [personalizationNote, setPersonalizationNote] = useState('');
+  const [activeTab, setActiveTab] = useState('description');
 
   if (!product) {
     return (
       <div style={{ textAlign: 'center', padding: '5rem 1rem' }}>
         <h2>Product not found</h2>
         <button className="btn btn-primary" onClick={() => navigateTo('shop')} style={{ marginTop: '1rem' }}>
-          Back to Shop
+          Back to Catalog
         </button>
       </div>
     );
@@ -58,64 +63,65 @@ export const ProductDetailPage = ({ product }) => {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
-  const addonsList = [
-    { id: 'addon-1', name: 'Printed Celebration Greeting Card', price: 99, icon: '💌' },
-    { id: 'addon-2', name: 'Scented Soy Wax Celebration Candle', price: 149, icon: '🕯️' },
-    { id: 'addon-3', name: 'Fluffy 8-Inch Cuddle Bear', price: 299, icon: '🧸' }
-  ];
-
-  const toggleAddon = (addon) => {
-    setSelectedAddons(prev => 
-      prev.some(a => a.id === addon.id) 
-        ? prev.filter(a => a.id !== addon.id) 
-        : [...prev, addon]
-    );
+  const handleOrderWhatsApp = () => {
+    const url = generateWhatsAppOrderUrl({
+      product,
+      selectedOptions,
+      personalizationNote,
+      currentUrl: typeof window !== 'undefined' ? window.location.href : ''
+    });
+    window.open(url, '_blank', 'noopener,noreferrer');
+    showToast('Opening WhatsApp with your order brief...');
   };
 
-  const handleAdd = () => {
-    if (product.isPersonalizable) {
-      openPersonalizer(product);
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: `Check out ${product.name} on Step IN Gift Mart!`,
+        url: window.location.href
+      }).catch(() => {});
     } else {
-      addToCart(product, qty);
+      navigator.clipboard.writeText(window.location.href);
+      showToast('Product link copied to clipboard!');
     }
   };
 
-  const handleBuyNow = () => {
-    addToCart(product, qty);
-    setIsCheckoutOpen(true);
-  };
+  const galleryImages = product.images && product.images.length > 0 
+    ? product.images 
+    : [product.image];
 
   const relatedProducts = productsList.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '2rem 0 6rem' }}>
-      <div className="container">
+    <div style={{ backgroundColor: '#FCFBF9', minHeight: '85vh', padding: '1.5rem 0 5rem' }}>
+      <div className="container" style={{ maxWidth: 1140 }}>
         
         {/* Breadcrumb Navigation */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--charcoal-muted)', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--charcoal-muted)', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
           <span onClick={() => navigateTo('home')} style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600 }}>Home</span>
           <ChevronRight size={14} />
-          <span onClick={() => navigateTo('shop')} style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600 }}>Shop</span>
+          <span onClick={() => navigateTo('shop')} style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600 }}>Catalog</span>
           <ChevronRight size={14} />
           <span onClick={() => navigateTo('shop', { category: product.category })} style={{ cursor: 'pointer', textTransform: 'capitalize' }}>{product.category}</span>
           <ChevronRight size={14} />
-          <span style={{ color: 'var(--primary)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '280px' }}>{product.name}</span>
+          <span style={{ color: 'var(--primary)', fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '300px' }}>{product.name}</span>
         </div>
 
-        {/* Main Product Layout: Gallery (Left) + Purchase Controls (Right) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '3.5rem', alignItems: 'flex-start', marginBottom: '4rem' }} className="product-detail-grid">
+        {/* Main Product Layout: Gallery (Left) + Order Controls (Right) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', gap: '3rem', alignItems: 'flex-start', marginBottom: '4rem' }} className="product-detail-grid">
           
           {/* LEFT: Image Gallery with Thumbnail Strip */}
           <div>
             <div style={{
-              borderRadius: 'var(--radius-2xl)',
+              borderRadius: '24px',
               overflow: 'hidden',
               position: 'relative',
               width: '100%',
               paddingTop: '95%',
-              background: 'var(--secondary-warm)',
-              border: '1px solid var(--secondary-border)',
-              boxShadow: 'var(--shadow-md)'
+              background: '#ffffff',
+              border: '1px solid #EFEAE2',
+              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)'
             }}>
               <img 
                 src={activeImage || product.image} 
@@ -126,8 +132,7 @@ export const ProductDetailPage = ({ product }) => {
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 300ms ease'
+                  objectFit: 'cover'
                 }}
               />
 
@@ -138,8 +143,8 @@ export const ProductDetailPage = ({ product }) => {
                   left: 16,
                   background: '#dc2626',
                   color: '#ffffff',
-                  padding: '3px 9px',
-                  borderRadius: 'var(--radius-full)',
+                  padding: '4px 10px',
+                  borderRadius: '9999px',
                   fontSize: '0.74rem',
                   fontWeight: 800,
                   boxShadow: '0 2px 6px rgba(220, 38, 38, 0.25)'
@@ -164,36 +169,34 @@ export const ProductDetailPage = ({ product }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  boxShadow: 'var(--shadow-sm)'
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}
               >
-                <Heart size={20} color={isFavorited ? 'var(--primary)' : 'var(--charcoal-dark)'} fill={isFavorited ? 'var(--primary)' : 'transparent'} />
+                <Heart size={20} color={isFavorited ? '#DC2626' : '#171717'} fill={isFavorited ? '#DC2626' : 'none'} />
               </button>
             </div>
 
             {/* Thumbnail Gallery */}
-            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
-              {[
-                product.image,
-                'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=400&q=80',
-                'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80'
-              ].map((imgUrl, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setActiveImage(imgUrl)}
-                  style={{
-                    width: 76,
-                    height: 76,
-                    borderRadius: 'var(--radius-md)',
-                    overflow: 'hidden',
-                    border: activeImage === imgUrl ? '2px solid var(--primary)' : '1px solid var(--border-subtle)',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <img src={imgUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-              ))}
-            </div>
+            {galleryImages.length > 1 && (
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
+                {galleryImages.map((imgUrl, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setActiveImage(imgUrl)}
+                    style={{
+                      width: 76,
+                      height: 76,
+                      borderRadius: '14px',
+                      overflow: 'hidden',
+                      border: activeImage === imgUrl ? '2px solid rgb(217, 119, 6)' : '1px solid #E5E7EB',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <img src={imgUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Quality & Trust Badges */}
             <div style={{
@@ -202,84 +205,145 @@ export const ProductDetailPage = ({ product }) => {
               gap: '1rem',
               marginTop: '2rem',
               padding: '1.25rem',
-              background: 'var(--secondary-warm)',
-              borderRadius: 'var(--radius-xl)',
-              border: '1px solid var(--secondary-border)'
+              background: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #EFEAE2',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
             }}>
               <div style={{ textAlign: 'center' }}>
-                <ShieldCheck size={22} color="var(--primary)" style={{ margin: '0 auto 4px' }} />
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--charcoal-dark)' }}>100% Quality</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--charcoal-muted)' }}>Handcrafted fresh</div>
+                <ShieldCheck size={22} color="#16A34A" style={{ margin: '0 auto 4px' }} />
+                <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#171717' }}>100% Quality</div>
+                <div style={{ fontSize: '0.72rem', color: '#737373' }}>Artisanal finish</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <Clock size={22} color="var(--primary)" style={{ margin: '0 auto 4px' }} />
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--charcoal-dark)' }}>On-Time Slot</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--charcoal-muted)' }}>Guaranteed dispatch</div>
+                <Clock size={22} color="#D97706" style={{ margin: '0 auto 4px' }} />
+                <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#171717' }}>On-Time Slot</div>
+                <div style={{ fontSize: '0.72rem', color: '#737373' }}>Guaranteed dispatch</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <Truck size={22} color="var(--primary)" style={{ margin: '0 auto 4px' }} />
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--charcoal-dark)' }}>Safe Courier</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--charcoal-muted)' }}>Tamper-proof box</div>
+                <Truck size={22} color="#2563EB" style={{ margin: '0 auto 4px' }} />
+                <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#171717' }}>Safe Courier</div>
+                <div style={{ fontSize: '0.72rem', color: '#737373' }}>Zero breakage</div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Product Info & Actions */}
+          {/* RIGHT: Product Info & Order Controls */}
           <div>
             {/* Category tag & ratings */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
-              <span className="section-tag" style={{ background: 'var(--primary-light)', color: 'var(--primary-dark)', marginBottom: 0 }}>
-                {product.category.toUpperCase()}
+              <span style={{
+                background: '#FFF2D6',
+                color: '#92400E',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                padding: '4px 10px',
+                borderRadius: '9999px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em'
+              }}>
+                {product.category}
               </span>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#fef3c7', padding: '3px 8px', borderRadius: 'var(--radius-full)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#fef3c7', padding: '3px 8px', borderRadius: '9999px' }}>
                   <Star size={13} fill="#d97706" color="#d97706" />
-                  <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#92400e' }}>{product.rating}</span>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#92400e' }}>{product.rating || '4.9'}</span>
                 </div>
-                <span style={{ fontSize: '0.82rem', color: 'var(--charcoal-muted)' }}>({product.reviewCount} customer reviews)</span>
+                <span style={{ fontSize: '0.82rem', color: '#737373' }}>({product.reviewCount || 120} reviews)</span>
               </div>
             </div>
 
             {/* Title */}
-            <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--charcoal-dark)', lineHeight: 1.25, marginBottom: '1rem' }}>
+            <h1 style={{ fontSize: '1.9rem', fontWeight: 900, color: '#171717', lineHeight: 1.25, marginBottom: '0.85rem' }}>
               {product.name}
             </h1>
 
             {/* Price section */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: '1.25rem', paddingBottom: '1.25rem', borderBottom: '1px solid var(--border-light)' }}>
-              <span style={{ fontSize: '2.1rem', fontWeight: 900, color: 'var(--charcoal-dark)' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: '1.25rem', paddingBottom: '1.25rem', borderBottom: '1px solid #EFEAE2' }}>
+              <span style={{ fontSize: '2.1rem', fontWeight: 900, color: '#171717' }}>
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
               {product.originalPrice && (
-                <span style={{ fontSize: '1.15rem', color: 'var(--charcoal-muted)', textDecoration: 'line-through' }}>
+                <span style={{ fontSize: '1.15rem', color: '#9CA3AF', textDecoration: 'line-through' }}>
                   ₹{product.originalPrice.toLocaleString('en-IN')}
                 </span>
               )}
-              <span style={{ fontSize: '0.84rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+              <span style={{ fontSize: '0.84rem', color: '#16A34A', fontWeight: 700 }}>
                 Inclusive of all taxes
               </span>
             </div>
 
             {/* Brief Description */}
-            <p style={{ fontSize: '0.94rem', color: 'var(--charcoal-body)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.94rem', color: '#525252', lineHeight: 1.6, marginBottom: '1.5rem' }}>
               {product.description}
             </p>
 
-            {/* Pincode & Delivery Date Availability Checker */}
+            {/* Dynamic Option Selectors (Size/Flavour/Colour) */}
+            {product.options && Object.entries(product.options).map(([optKey, optValues]) => (
+              <div key={optKey} style={{ marginBottom: '1.25rem' }}>
+                <label style={{ fontSize: '0.82rem', fontWeight: 800, color: '#171717', display: 'block', marginBottom: '0.45rem', textTransform: 'capitalize' }}>
+                  Choose {optKey}:
+                </label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {optValues.map(val => {
+                    const isSel = selectedOptions[optKey] === val;
+                    return (
+                      <button
+                        key={val}
+                        type="button"
+                        onClick={() => setSelectedOptions(prev => ({ ...prev, [optKey]: val }))}
+                        style={{
+                          padding: '0.45rem 0.95rem',
+                          borderRadius: '9999px',
+                          border: isSel ? '2px solid rgb(217, 119, 6)' : '1px solid #E5E7EB',
+                          background: isSel ? '#FFF8E7' : '#ffffff',
+                          color: isSel ? '#171717' : '#525252',
+                          fontWeight: isSel ? 800 : 500,
+                          fontSize: '0.82rem',
+                          cursor: 'pointer',
+                          transition: 'all 150ms ease'
+                        }}
+                      >
+                        {val}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            {/* Personalization Note Field */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ fontSize: '0.82rem', fontWeight: 800, color: '#171717', display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.45rem' }}>
+                <Sparkles size={14} color="#D97706" />
+                <span>Personalization Note / Custom Name / Card Message:</span>
+              </label>
+              <textarea
+                rows={2}
+                className="form-textarea"
+                placeholder="e.g. Laser engrave 'Amit & Pooja' / Card message: 'Happy 25th Anniversary!'"
+                value={personalizationNote}
+                onChange={(e) => setPersonalizationNote(e.target.value)}
+                style={{ borderRadius: '12px', padding: '0.65rem 0.95rem', fontSize: '0.88rem' }}
+              />
+            </div>
+
+            {/* Pincode & Delivery Availability Checker */}
             <div style={{
-              background: 'var(--secondary-warm)',
+              background: '#ffffff',
               padding: '1.15rem',
-              borderRadius: 'var(--radius-xl)',
-              border: '1px solid var(--secondary-border)',
-              marginBottom: '1.75rem'
+              borderRadius: '16px',
+              border: '1px solid #EFEAE2',
+              marginBottom: '1.75rem',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--charcoal-dark)', display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <MapPin size={15} color="var(--primary)" />
-                  <span>Delivery Availability & Slots:</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#171717', display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <MapPin size={15} color="#D97706" />
+                  <span>Delivery Availability:</span>
                 </span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--charcoal-muted)' }}>
+                <span style={{ fontSize: '0.78rem', color: '#737373' }}>
                   Current PIN: <strong>{pincode}</strong>
                 </span>
               </div>
@@ -292,153 +356,97 @@ export const ProductDetailPage = ({ product }) => {
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value.replace(/\D/g, ''))}
                   className="form-input"
-                  style={{ padding: '0.55rem 0.85rem', fontSize: '0.88rem' }}
+                  style={{ padding: '0.55rem 0.85rem', fontSize: '0.88rem', borderRadius: '10px' }}
                 />
                 <button
                   type="button"
                   className="btn btn-primary btn-sm"
                   onClick={() => checkPincode(pinInput)}
+                  style={{ padding: '0.55rem 1.15rem' }}
                 >
                   Verify
                 </button>
               </div>
 
               {pincodeInfo && (
-                <div style={{ fontSize: '0.82rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}>
-                  <CheckCircle2 size={15} color="var(--accent-emerald)" />
-                  <span>
-                    Serviceable for <strong>{pincodeInfo.city}</strong>! {product.deliverySpeed === 'same-day' ? '⚡ Earliest delivery: Today within 3 hours.' : 'Dispatch in 24 hours via Delhivery.'}
-                  </span>
+                <div style={{ fontSize: '0.82rem', color: '#16A34A', display: 'flex', alignItems: 'center', gap: 6, fontWeight: 700 }}>
+                  <CheckCircle2 size={15} color="#16A34A" />
+                  <span>Serviceable for {pincodeInfo.city}! Express doorstep delivery ready.</span>
                 </div>
               )}
             </div>
 
-            {/* Optional Celebration Add-ons */}
-            <div style={{ marginBottom: '1.75rem' }}>
-              <div style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--charcoal-dark)', marginBottom: '0.65rem' }}>
-                Make it extra special (Add-on treats):
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {addonsList.map(addon => {
-                  const isAdded = selectedAddons.some(a => a.id === addon.id);
-                  return (
-                    <div
-                      key={addon.id}
-                      onClick={() => toggleAddon(addon)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        padding: '0.55rem 0.85rem',
-                        borderRadius: 'var(--radius-md)',
-                        border: isAdded ? '1.5px solid var(--primary)' : '1px solid var(--border-subtle)',
-                        background: isAdded ? 'var(--primary-subtle)' : '#ffffff',
-                        cursor: 'pointer',
-                        fontSize: '0.85rem'
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span>{addon.icon}</span>
-                        <span style={{ fontWeight: 600, color: 'var(--charcoal-dark)' }}>{addon.name}</span>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <span style={{ fontWeight: 800, color: 'var(--primary)' }}>+₹{addon.price}</span>
-                        <span style={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                          background: isAdded ? 'var(--primary)' : '#e5e7eb',
-                          color: '#ffffff',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: '0.72rem'
-                        }}>
-                          {isAdded ? '✓' : '+'}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Quantity & Action Buttons */}
-            <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', marginBottom: '1.5rem' }}>
-              {!product.isPersonalizable && (
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 10,
-                  background: 'var(--secondary-warm)',
-                  borderRadius: 'var(--radius-full)',
-                  padding: '0.45rem 0.9rem',
-                  border: '1px solid var(--secondary-border)'
-                }}>
-                  <button 
-                    onClick={() => setQty(Math.max(1, qty - 1))}
-                    style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--charcoal-dark)' }}
-                  >
-                    <Minus size={15} />
-                  </button>
-                  <span style={{ fontWeight: 800, minWidth: 20, textAlign: 'center', fontSize: '0.92rem' }}>{qty}</span>
-                  <button 
-                    onClick={() => setQty(qty + 1)}
-                    style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--charcoal-dark)' }}
-                  >
-                    <Plus size={15} />
-                  </button>
-                </div>
-              )}
-
+            {/* PROMINENT ORDER ON WHATSAPP BUTTON */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '1.5rem' }}>
               <button
                 type="button"
-                className="btn btn-primary btn-lg"
-                onClick={handleAdd}
-                style={{ flex: 1, gap: 8 }}
+                onClick={handleOrderWhatsApp}
+                style={{
+                  width: '100%',
+                  background: '#25D366',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '16px',
+                  padding: '1rem 1.5rem',
+                  fontSize: '1.05rem',
+                  fontWeight: 900,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 10,
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 20px rgba(37, 211, 102, 0.4)',
+                  transition: 'all 160ms ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}
               >
-                {product.isPersonalizable ? (
-                  <>
-                    <Sparkles size={18} />
-                    <span>Personalize & Add to Cart</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingBag size={18} />
-                    <span>Add to Cart</span>
-                  </>
-                )}
+                <MessageCircle size={22} />
+                <span>Order on WhatsApp (Instant Response)</span>
               </button>
 
-              {!product.isPersonalizable && (
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <button
                   type="button"
-                  className="btn btn-gold btn-lg"
-                  onClick={handleBuyNow}
+                  onClick={handleShare}
+                  style={{
+                    flex: 1,
+                    background: '#ffffff',
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '12px',
+                    padding: '0.65rem 1rem',
+                    fontSize: '0.84rem',
+                    fontWeight: 700,
+                    color: '#374151',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    cursor: 'pointer'
+                  }}
                 >
-                  Buy Now
+                  <Share2 size={15} />
+                  <span>Share Product</span>
                 </button>
-              )}
+              </div>
             </div>
 
             {/* Stock indicator */}
-            <div style={{ fontSize: '0.82rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent-emerald)' }} />
-              <span>In Stock • Ready for hand-packaging in temperature-controlled vans</span>
+            <div style={{ fontSize: '0.82rem', color: '#16A34A', display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#16A34A' }} />
+              <span>In Stock • Direct 1-on-1 WhatsApp confirmation & live photo proof</span>
             </div>
 
           </div>
         </div>
 
-        {/* Detailed Product Specifications & Tabs */}
-        <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '2.5rem', marginBottom: '4rem' }}>
-          <div style={{ display: 'flex', gap: '1rem', borderBottom: '2px solid var(--border-light)', marginBottom: '1.5rem', overflowX: 'auto' }}>
+        {/* Detailed Tabs: Description, Care, Delivery */}
+        <div style={{ borderTop: '1px solid #EFEAE2', paddingTop: '2.5rem', marginBottom: '4rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', borderBottom: '2px solid #EFEAE2', marginBottom: '1.5rem', overflowX: 'auto' }}>
             {[
               { id: 'description', label: 'Product Description' },
-              { id: 'included', label: "What's Included" },
               { id: 'specs', label: 'Specifications & Care' },
-              { id: 'delivery', label: 'Delivery & Returns' },
-              { id: 'reviews', label: `Customer Reviews (${product.reviewCount})` }
+              { id: 'delivery', label: 'Delivery & Ordering on WhatsApp' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -448,10 +456,9 @@ export const ProductDetailPage = ({ product }) => {
                   border: 'none',
                   padding: '0.75rem 1rem',
                   fontSize: '0.94rem',
-                  fontWeight: 700,
-                  color: activeTab === tab.id ? 'var(--primary)' : 'var(--charcoal-muted)',
-                  borderBottom: activeTab === tab.id ? '3px solid var(--primary)' : '3px solid transparent',
-                  marginBottom: -2,
+                  fontWeight: 800,
+                  color: activeTab === tab.id ? 'rgb(217, 119, 6)' : '#737373',
+                  borderBottom: activeTab === tab.id ? '3px solid rgb(217, 119, 6)' : '3px solid transparent',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap'
                 }}
@@ -461,106 +468,67 @@ export const ProductDetailPage = ({ product }) => {
             ))}
           </div>
 
-          <div style={{ fontSize: '0.92rem', color: 'var(--charcoal-body)', lineHeight: 1.7, maxWidth: 880 }}>
+          <div style={{ background: '#ffffff', borderRadius: '20px', border: '1px solid #EFEAE2', padding: '2rem' }}>
             {activeTab === 'description' && (
               <div>
-                <p style={{ marginBottom: '1rem' }}>{product.description}</p>
-                <p>Every gift from <strong>Step IN Gift Mart</strong> is meticulously handcrafted by experienced artisan florists and master bakers. Hand-tied bouquets arrive in fresh flower nutrition water bags, and all designer cakes are baked fresh on the day of delivery using vegetarian premium ingredients.</p>
-              </div>
-            )}
-
-            {activeTab === 'included' && (
-              <ul style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li>1x {product.name}</li>
-                <li>1x Complimentary Hand-printed Celebration Message Card</li>
-                <li>1x Step IN Gift Mart Signature Gold-Embossed Gift Wrap</li>
-                <li>Flower care guide / Cake slicing knife & celebration candle</li>
-              </ul>
-            )}
-
-            {activeTab === 'specs' && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-                <div style={{ background: 'var(--secondary-warm)', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
-                  <strong>Origin / Craftsmanship:</strong> Hand-curated in Delhi NCR
-                </div>
-                <div style={{ background: 'var(--secondary-warm)', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
-                  <strong>Care Instructions:</strong> Keep in cool ambient area away from direct sunlight
-                </div>
-                <div style={{ background: 'var(--secondary-warm)', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
-                  <strong>Shelf Life / Freshness:</strong> Best consumed/enjoyed within 3-4 days
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'delivery' && (
-              <div>
-                <p style={{ marginBottom: '0.75rem' }}>
-                  <strong>Delivery Slots:</strong> We offer Standard Delivery (9 AM - 9 PM), Morning Delivery (8 AM - 12 PM), Fixed Time 2-Hour windows, and Midnight Delivery (11 PM - 12 AM).
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#171717', marginBottom: '0.75rem' }}>
+                  About {product.name}
+                </h3>
+                <p style={{ fontSize: '0.92rem', color: '#525252', lineHeight: 1.65, margin: '0 0 1rem' }}>
+                  {product.description}
                 </p>
-                <p>
-                  <strong>Return Policy:</strong> Since cakes and flowers are perishable, we offer a 100% replacement or full refund if any damage occurs during transit. Customer delight is guaranteed.
-                </p>
-              </div>
-            )}
-
-            {activeTab === 'reviews' && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', background: 'var(--secondary-warm)', padding: '1.25rem', borderRadius: 'var(--radius-xl)' }}>
-                  <div style={{ textAlign: 'center', borderRight: '1px solid var(--secondary-border)', paddingRight: '1.5rem' }}>
-                    <div style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--charcoal-dark)' }}>{product.rating}</div>
-                    <div style={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={14} fill="#d97706" color="#d97706" />
-                      ))}
-                    </div>
-                    <div style={{ fontSize: '0.74rem', color: 'var(--charcoal-muted)', marginTop: 4 }}>Based on {product.reviewCount} reviews</div>
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '0.98rem', fontWeight: 700, marginBottom: 4 }}>100% Real Customer Feedback</h4>
-                    <p style={{ fontSize: '0.84rem', color: 'var(--charcoal-muted)' }}>All reviews are from verified purchasers who received celebration delivery.</p>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {[
-                    { name: 'Kavita M.', date: '3 days ago', comment: 'Ordered for midnight delivery on my husband’s birthday. The roses were so fresh and fragrant, and cake was super moist! Will definitely order again.', rating: 5 },
-                    { name: 'Sameer V.', date: '1 week ago', comment: 'Packaging was 10/10. Looked like a luxury trunk right out of a boutique gift shop. On-time delivery made my mom tear up with joy.', rating: 5 }
-                  ].map((rev, idx) => (
-                    <div key={idx} style={{ padding: '1rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-light)' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                        <strong style={{ fontSize: '0.88rem' }}>{rev.name}</strong>
-                        <span style={{ fontSize: '0.76rem', color: 'var(--charcoal-muted)' }}>{rev.date}</span>
-                      </div>
-                      <div style={{ display: 'flex', gap: 2, marginBottom: 6 }}>
-                        {[...Array(rev.rating)].map((_, i) => (
-                          <Star key={i} size={12} fill="#d97706" color="#d97706" />
-                        ))}
-                      </div>
-                      <p style={{ fontSize: '0.86rem', color: 'var(--charcoal-body)' }}>{rev.comment}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem', marginTop: '1.25rem' }}>
+                  {['Free customized message greeting card', 'High-grade protective packaging', 'Doorstep delivery with SMS tracking'].map((item, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '0.85rem', color: '#374151' }}>
+                      <Check size={16} color="#16A34A" />
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
+
+            {activeTab === 'specs' && (
+              <div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#171717', marginBottom: '0.75rem' }}>
+                  Care Instructions & Quality Assurance
+                </h3>
+                <p style={{ fontSize: '0.92rem', color: '#525252', lineHeight: 1.65 }}>
+                  Store in cool, dry conditions. For personalized drinkware and acrylic products, clean gently with a soft microfiber cloth. Avoid harsh abrasive scrubbers to keep laser engraving pristine for years.
+                </p>
+              </div>
+            )}
+
+            {activeTab === 'delivery' && (
+              <div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#171717', marginBottom: '0.75rem' }}>
+                  How WhatsApp Ordering Works
+                </h3>
+                <p style={{ fontSize: '0.92rem', color: '#525252', lineHeight: 1.65 }}>
+                  When you tap "Order on WhatsApp", your exact selection, size/flavor choices, and custom engraving note are pre-filled in your chat. Our specialist will confirm your delivery slot and provide payment links (UPI, GPay, Cards, NetBanking).
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Related Products Carousel */}
+        {/* RELATED PRODUCTS */}
         {relatedProducts.length > 0 && (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--charcoal-dark)' }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#171717', margin: 0 }}>
                 You May Also Like
-              </h3>
-              <button 
-                onClick={() => navigateTo('shop', { category: product.category })}
-                className="btn btn-secondary btn-sm"
-              >
-                View More {product.category}
-              </button>
+              </h2>
+              <span onClick={() => navigateTo('shop', { category: product.category })} style={{ color: 'rgb(217, 119, 6)', fontWeight: 700, fontSize: '0.88rem', cursor: 'pointer' }}>
+                View All in {product.category} →
+              </span>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1.5rem' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '1.5rem'
+            }}>
               {relatedProducts.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -570,44 +538,11 @@ export const ProductDetailPage = ({ product }) => {
 
       </div>
 
-      {/* Sticky Mobile Add to Cart Bar */}
-      <div 
-        className="mobile-sticky-bar"
-        style={{
-          display: 'none',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: '#ffffff',
-          padding: '0.75rem 1rem',
-          boxShadow: '0 -4px 15px rgba(0,0,0,0.1)',
-          zIndex: 90,
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}
-      >
-        <div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>Total:</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--primary)' }}>
-            ₹{product.price.toLocaleString('en-IN')}
-          </div>
-        </div>
-
-        <button 
-          className="btn btn-primary"
-          onClick={handleAdd}
-          style={{ padding: '0.65rem 1.5rem', gap: 6 }}
-        >
-          <ShoppingBag size={16} />
-          <span>{product.isPersonalizable ? 'Personalize' : 'Add to Cart'}</span>
-        </button>
-      </div>
-
       <style>{`
         @media (max-width: 860px) {
-          .product-detail-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .mobile-sticky-bar { display: flex !important; }
+          .product-detail-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </div>

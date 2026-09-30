@@ -7,18 +7,18 @@ import {
   Image as ImageIcon,
   Type,
   Gift,
-  ShoppingBag,
   AlignLeft,
   AlignCenter,
   AlignRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { generateWhatsAppOrderUrl } from '../config/siteConfig';
 
 export const PersonalizerModal = () => {
   const { 
     personalizerProduct, 
-    closePersonalizer, 
-    addToCart 
+    closePersonalizer,
+    showToast
   } = useApp();
 
   const [customText, setCustomText] = useState('Rahul & Sneha');
@@ -32,16 +32,22 @@ export const PersonalizerModal = () => {
   const handleFakePhotoUpload = (e) => {
     // Mock image upload
     setUploadedPhoto('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80');
+    showToast('Photograph attached to your personalization!');
   };
 
   const handleConfirmCustomization = () => {
-    addToCart(personalizerProduct, 1, {
-      text: customText,
-      date: recipientDate,
-      font: selectedFont,
-      alignment: selectedAlignment,
-      photoUrl: uploadedPhoto
+    const url = generateWhatsAppOrderUrl({
+      product: personalizerProduct,
+      selectedOptions: {
+        Font: selectedFont,
+        Alignment: selectedAlignment,
+        ...(recipientDate ? { Date: recipientDate } : {})
+      },
+      personalizationNote: `${customText}${uploadedPhoto ? ' (Photo attached)' : ''}`,
+      currentUrl: typeof window !== 'undefined' ? window.location.href : ''
     });
+    window.open(url, '_blank', 'noopener,noreferrer');
+    showToast('Opening WhatsApp with your personalized design brief...');
     closePersonalizer();
   };
 
@@ -145,10 +151,10 @@ export const PersonalizerModal = () => {
                   flexDirection: 'column',
                   alignItems: selectedAlignment === 'left' ? 'flex-start' : selectedAlignment === 'right' ? 'flex-end' : 'center',
                   justifyContent: 'center',
-                  color: '#F5A800',
+                  color: 'rgb(217, 119, 6)',
                   textAlign: selectedAlignment,
                   padding: '1.5rem',
-                  textShadow: '0 0 12px rgba(245, 168, 0, 0.9), 0 0 20px rgba(245, 168, 0, 0.6)'
+                  textShadow: '0 0 12px rgba(217, 119, 6, 0.9), 0 0 20px rgba(217, 119, 6, 0.6)'
                 }}>
                   <div style={{
                     fontSize: personalizerProduct.category === 'bottles' && (customText?.length > 12) ? '0.92rem' : '1.25rem',
@@ -310,15 +316,29 @@ export const PersonalizerModal = () => {
                 </button>
               </div>
 
-              {/* Confirm Button */}
+              {/* Confirm & Order Button */}
               <button
                 type="button"
                 onClick={handleConfirmCustomization}
-                className="btn btn-primary btn-block btn-lg"
-                style={{ gap: 6, boxShadow: 'var(--shadow-md)' }}
+                style={{
+                  width: '100%',
+                  background: '#25D366',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '14px',
+                  padding: '0.85rem 1.25rem',
+                  fontSize: '0.96rem',
+                  fontWeight: 800,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 16px rgba(37, 211, 102, 0.35)',
+                  transition: 'all 150ms ease'
+                }}
               >
-                <ShoppingBag size={18} />
-                <span>Add Customized Gift to Cart</span>
+                <span>Order Custom Gift on WhatsApp</span>
               </button>
             </div>
 

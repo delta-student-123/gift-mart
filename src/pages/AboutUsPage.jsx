@@ -26,9 +26,9 @@ export const AboutUsPage = () => {
           borderRadius: '24px',
           overflow: 'hidden',
           marginBottom: '3.5rem',
-          border: '1.5px solid rgba(245, 168, 0, 0.22)',
+          border: '1.5px solid rgba(217, 119, 6, 0.22)',
           background: 'linear-gradient(135deg, #FFFDF8 0%, #FFF9EF 45%, #FFF2DB 100%)',
-          boxShadow: '0 4px 18px rgba(245, 168, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
+          boxShadow: '0 4px 18px rgba(217, 119, 6, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
           padding: 0,
           width: '100%',
           minHeight: '235px'
@@ -47,7 +47,7 @@ export const AboutUsPage = () => {
                 alignItems: 'center',
                 gap: 7,
                 background: '#FFF2D6',
-                border: '1px solid rgba(245, 168, 0, 0.45)',
+                border: '1px solid rgba(217, 119, 6, 0.45)',
                 padding: '4px 12px',
                 borderRadius: '9999px',
                 marginBottom: '0.45rem',
@@ -62,11 +62,11 @@ export const AboutUsPage = () => {
               <div style={{ position: 'relative', display: 'inline-block', marginBottom: '0.35rem' }}>
                 <h1 style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.025em', lineHeight: 1.1, margin: 0 }}>
                   <span style={{ color: '#171717' }}>About </span>
-                  <span style={{ color: '#F5A800' }}>Step IN</span>
+                  <span style={{ color: 'rgb(217, 119, 6)' }}>Step IN</span>
                 </h1>
                 <div style={{ position: 'absolute', top: '-6px', right: '-32px', pointerEvents: 'none' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
+                    <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="rgb(217, 119, 6)" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
                   </svg>
                 </div>
               </div>
@@ -122,11 +122,11 @@ export const AboutUsPage = () => {
                   Spreading Pure Happiness
                 </span>
                 <svg width="75" height="9" viewBox="0 0 85 10" fill="none" style={{ marginTop: '-4px' }}>
-                  <path d="M2 7C22 2 62 2 83 6" stroke="#F5A800" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M2 7C22 2 62 2 83 6" stroke="rgb(217, 119, 6)" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
               </div>
 
-              <div style={{ position: 'absolute', top: 10, right: 14, color: '#F5A800', opacity: 0.45, fontSize: '1.2rem', zIndex: 3, pointerEvents: 'none' }}>✦</div>
+              <div style={{ position: 'absolute', top: 10, right: 14, color: 'rgb(217, 119, 6)', opacity: 0.45, fontSize: '1.2rem', zIndex: 3, pointerEvents: 'none' }}>✦</div>
 
               <img
                 src="/images/celebration_couple.jpg"

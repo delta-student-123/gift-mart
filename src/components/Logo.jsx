@@ -4,7 +4,7 @@ import React from 'react';
  * Step In Gift Mart Logo Component
  * Uses the exact logo artwork provided by the user with the brand color palette:
  * - Charcoal #171717
- * - Premium Gold #F5A800
+ * - Premium Gold rgb(217, 119, 6)
  * - Warm Ivory #FFF9F0
  */
 export const Logo = ({
@@ -118,17 +118,17 @@ export const Logo = ({
             gap: '0.35rem',
             marginTop: '0.2rem'
           }}>
-            <span style={{ width: 12, height: 2, background: 'var(--primary)', borderRadius: 2 }} />
+            <span style={{ width: 12, height: 2, background: 'rgb(217, 119, 6)', borderRadius: 2 }} />
             <span style={{
               fontSize: '0.74rem',
               fontWeight: 700,
-              color: 'var(--primary)',
+              color: 'rgb(217, 119, 6)',
               letterSpacing: '0.14em',
               textTransform: 'uppercase'
             }}>
               Gift Mart
             </span>
-            <span style={{ width: 12, height: 2, background: 'var(--primary)', borderRadius: 2 }} />
+            <span style={{ width: 12, height: 2, background: 'rgb(217, 119, 6)', borderRadius: 2 }} />
           </div>
         </div>
       </div>

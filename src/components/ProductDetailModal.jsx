@@ -2,37 +2,41 @@ import React, { useState } from 'react';
 import { 
   X, 
   Star, 
-  Zap, 
   Sparkles, 
   MapPin, 
   ShieldCheck, 
   Truck, 
   Heart, 
-  Plus, 
-  Minus, 
-  ShoppingBag,
+  CheckCircle2,
   Clock,
-  CheckCircle2
+  MessageCircle
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { siteConfig, generateWhatsAppOrderUrl } from '../config/siteConfig';
 
 export const ProductDetailModal = () => {
   const { 
     selectedProduct, 
     closeProductDetail, 
-    addToCart, 
     toggleWishlist, 
     isInWishlist,
     pincode,
     pincodeInfo,
     checkPincode,
-    openPersonalizer,
-    setIsCheckoutOpen
+    showToast
   } = useApp();
 
-  const [qty, setQty] = useState(1);
   const [pinInput, setPinInput] = useState(pincode || '');
-  const [selectedAddons, setSelectedAddons] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState(() => {
+    const defaults = {};
+    if (selectedProduct?.options) {
+      Object.entries(selectedProduct.options).forEach(([k, vals]) => {
+        if (Array.isArray(vals) && vals.length > 0) defaults[k] = vals[0];
+      });
+    }
+    return defaults;
+  });
+  const [personalizationNote, setPersonalizationNote] = useState('');
 
   if (!selectedProduct) return null;
 
@@ -41,34 +45,15 @@ export const ProductDetailModal = () => {
     ? Math.round(((selectedProduct.originalPrice - selectedProduct.price) / selectedProduct.originalPrice) * 100) 
     : 0;
 
-  const addonsList = [
-    { id: 'addon-1', name: 'Artisan Greeting Card', price: 99, icon: '💌' },
-    { id: 'addon-2', name: 'Mini Golden Diya / Candle', price: 149, icon: '🕯️' },
-    { id: 'addon-3', name: 'Small Plush Huggy Bear', price: 299, icon: '🧸' }
-  ];
-
-  const toggleAddon = (addon) => {
-    setSelectedAddons(prev => 
-      prev.some(a => a.id === addon.id) 
-        ? prev.filter(a => a.id !== addon.id) 
-        : [...prev, addon]
-    );
-  };
-
-  const handleAddProduct = () => {
-    if (selectedProduct.isPersonalizable) {
-      closeProductDetail();
-      openPersonalizer(selectedProduct);
-    } else {
-      addToCart(selectedProduct, qty);
-      closeProductDetail();
-    }
-  };
-
-  const handleBuyNow = () => {
-    addToCart(selectedProduct, qty);
-    closeProductDetail();
-    setIsCheckoutOpen(true);
+  const handleOrderWhatsApp = () => {
+    const url = generateWhatsAppOrderUrl({
+      product: selectedProduct,
+      selectedOptions,
+      personalizationNote,
+      currentUrl: typeof window !== 'undefined' ? window.location.href : ''
+    });
+    window.open(url, '_blank', 'noopener,noreferrer');
+    showToast('Opening WhatsApp with your selected product details...');
   };
 
   return (
@@ -123,13 +108,13 @@ export const ProductDetailModal = () => {
 
         {/* Modal Scrollable Container */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.15fr', gap: '2.5rem', alignItems: 'flex-start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.15fr', gap: '2.5rem', alignItems: 'flex-start' }} className="product-modal-grid">
             
             {/* Left Image Area */}
             <div>
               <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', position: 'relative', width: '100%', paddingTop: '100%', boxShadow: 'var(--shadow-md)' }}>
                 <img 
-                  src={selectedProduct.image} 
+                  src={selectedProduct.image || (selectedProduct.images && selectedProduct.images[0])} 
                   alt={selectedProduct.name}
                   style={{
                     position: 'absolute',
@@ -160,202 +145,168 @@ export const ProductDetailModal = () => {
               </div>
 
               {/* Trust highlights */}
-              <div style={{ marginTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.82rem', color: 'var(--charcoal-body)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <ShieldCheck size={16} color="var(--accent-emerald)" />
-                  <span>100% Freshness & Quality Assurance</span>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
+                <div style={{ background: '#F9FAFB', padding: '0.65rem', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem', color: '#4B5563' }}>
+                  <ShieldCheck size={16} color="#16A34A" />
+                  <span>100% Quality Assured</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Clock size={16} color="var(--primary)" />
-                  <span>On-time Delivery Guaranteed or 100% Refund</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Truck size={16} color="#2563eb" />
-                  <span>Sanitized, Temperature-Controlled Van Delivery</span>
+                <div style={{ background: '#F9FAFB', padding: '0.65rem', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem', color: '#4B5563' }}>
+                  <Truck size={16} color="#2563EB" />
+                  <span>Pan-India Delivery</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Product Information */}
+            {/* Right Details Area */}
             <div>
               {/* Category & Rating */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <span className="section-tag" style={{ background: 'var(--primary-light)', color: 'var(--primary-dark)', marginBottom: 0 }}>
-                  {selectedProduct.category.toUpperCase()}
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  {selectedProduct.category}
                 </span>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 3, background: '#fef3c7', padding: '3px 8px', borderRadius: 'var(--radius-full)' }}>
-                    <Star size={13} fill="#d97706" color="#d97706" />
-                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#92400e' }}>{selectedProduct.rating}</span>
-                  </div>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--charcoal-muted)' }}>({selectedProduct.reviewCount} customer reviews)</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#FFF9F0', border: '1px solid #F4EBDD', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
+                  <Star size={12} fill="rgb(217, 119, 6)" color="rgb(217, 119, 6)" />
+                  <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#171717' }}>{selectedProduct.rating || '4.9'}</span>
                 </div>
               </div>
 
               {/* Title */}
-              <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--charcoal-dark)', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#171717', lineHeight: 1.25, marginBottom: '0.65rem' }}>
                 {selectedProduct.name}
               </h2>
 
               {/* Price */}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: '1.25rem' }}>
-                <span style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--charcoal-dark)' }}>
-                  ₹{selectedProduct.price.toLocaleString('en-IN')}
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1.65rem', fontWeight: 900, color: '#171717' }}>
+                  ₹{selectedProduct.price?.toLocaleString('en-IN')}
                 </span>
                 {selectedProduct.originalPrice && (
-                  <span style={{ fontSize: '1.05rem', color: 'var(--charcoal-muted)', textDecoration: 'line-through' }}>
+                  <span style={{ fontSize: '0.95rem', color: '#9CA3AF', textDecoration: 'line-through' }}>
                     ₹{selectedProduct.originalPrice.toLocaleString('en-IN')}
                   </span>
                 )}
-                <span style={{ fontSize: '0.82rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.76rem', color: '#16A34A', fontWeight: 700 }}>
                   Inclusive of all taxes
                 </span>
               </div>
 
               {/* Description */}
-              <p style={{ fontSize: '0.92rem', color: 'var(--charcoal-body)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '0.86rem', color: '#525252', lineHeight: 1.55, marginBottom: '1.25rem' }}>
                 {selectedProduct.description}
               </p>
 
-              {/* Pincode Availability check */}
-              <div style={{ background: 'var(--secondary-warm)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)', marginBottom: '1.5rem', border: '1px solid var(--secondary-border)' }}>
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--charcoal-muted)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <MapPin size={13} color="var(--primary)" />
-                  <span>Check Delivery Availability</span>
-                </div>
-                <div style={{ display: 'flex', gap: 6 }}>
-                  <input
-                    type="text"
-                    maxLength={6}
-                    value={pinInput}
-                    onChange={(e) => setPinInput(e.target.value.replace(/\D/g, ''))}
-                    placeholder="Enter pincode"
-                    className="form-input"
-                    style={{ padding: '0.45rem 0.75rem', fontSize: '0.85rem' }}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => checkPincode(pinInput)}
-                  >
-                    Check
-                  </button>
-                </div>
-                {pincodeInfo && (
-                  <div style={{ fontSize: '0.78rem', color: 'var(--accent-emerald)', fontWeight: 600, marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
-                    <CheckCircle2 size={13} />
-                    <span>Deliverable to {pincodeInfo.city} ({pincode}). {selectedProduct.deliverySpeed === 'same-day' ? '⚡ Same-Day delivery available!' : 'Courier dispatch in 24 hours.'}</span>
+              {/* Dynamic Option Selectors (Size, Flavour, Colour, etc.) */}
+              {selectedProduct.options && Object.entries(selectedProduct.options).map(([optKey, optValues]) => (
+                <div key={optKey} style={{ marginBottom: '1rem' }}>
+                  <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#171717', display: 'block', marginBottom: '0.4rem', textTransform: 'capitalize' }}>
+                    Select {optKey}:
+                  </label>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
+                    {optValues.map(val => {
+                      const isSel = selectedOptions[optKey] === val;
+                      return (
+                        <button
+                          key={val}
+                          type="button"
+                          onClick={() => setSelectedOptions(prev => ({ ...prev, [optKey]: val }))}
+                          style={{
+                            padding: '0.35rem 0.8rem',
+                            borderRadius: '9999px',
+                            border: isSel ? '1.5px solid rgb(217, 119, 6)' : '1px solid #E5E7EB',
+                            background: isSel ? '#FFF8E7' : '#ffffff',
+                            color: isSel ? '#171717' : '#525252',
+                            fontWeight: isSel ? 800 : 500,
+                            fontSize: '0.78rem',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {val}
+                        </button>
+                      );
+                    })}
                   </div>
-                )}
+                </div>
+              ))}
+
+              {/* Personalization Note Field */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#171717', display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.35rem' }}>
+                  <Sparkles size={14} color="#D97706" />
+                  <span>Personalization Note / Custom Name / Message:</span>
+                </label>
+                <textarea
+                  rows={2}
+                  className="form-textarea"
+                  placeholder="e.g. Laser engrave 'Amit & Pooja' / Card message: 'Happy 25th Anniversary!'"
+                  value={personalizationNote}
+                  onChange={(e) => setPersonalizationNote(e.target.value)}
+                  style={{ borderRadius: '10px', padding: '0.55rem 0.85rem', fontSize: '0.84rem' }}
+                />
               </div>
 
-              {/* Celebration Add-ons */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--charcoal-dark)', marginBottom: '0.5rem' }}>
-                  Make It Extra Special (Optional Add-ons):
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                  {addonsList.map(addon => {
-                    const isAdded = selectedAddons.some(a => a.id === addon.id);
-                    return (
-                      <div
-                        key={addon.id}
-                        onClick={() => toggleAddon(addon)}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          padding: '0.45rem 0.75rem',
-                          borderRadius: 'var(--radius-md)',
-                          border: isAdded ? '1.5px solid var(--primary)' : '1px solid var(--border-subtle)',
-                          background: isAdded ? 'var(--primary-subtle)' : '#ffffff',
-                          cursor: 'pointer',
-                          fontSize: '0.82rem'
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span>{addon.icon}</span>
-                          <span style={{ fontWeight: 600 }}>{addon.name}</span>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <span style={{ fontWeight: 700, color: 'var(--primary)' }}>+₹{addon.price}</span>
-                          <span style={{ width: 18, height: 18, borderRadius: '50%', background: isAdded ? 'var(--primary)' : '#e5e7eb', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem' }}>
-                            {isAdded ? '✓' : '+'}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+              {/* Delivery info */}
+              <div style={{
+                background: '#FFFDF9',
+                border: '1px solid #F3ECE1',
+                borderRadius: '12px',
+                padding: '0.75rem 0.95rem',
+                marginBottom: '1.5rem',
+                fontSize: '0.8rem',
+                color: '#525252',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8
+              }}>
+                <Clock size={16} color="#D97706" style={{ flexShrink: 0 }} />
+                <span>
+                  Same-day express in metro hubs • 24–48 hours pan-India delivery with live tracking.
+                </span>
               </div>
 
-              {/* Actions & Quantity */}
+              {/* Actions: Prominent Order on WhatsApp */}
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                {!selectedProduct.isPersonalizable && (
-                  <div style={{
+                <button
+                  type="button"
+                  onClick={() => toggleWishlist(selectedProduct)}
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '14px',
+                    padding: '0.85rem',
+                    cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 8,
-                    background: 'var(--secondary-warm)',
-                    borderRadius: 'var(--radius-full)',
-                    padding: '0.4rem 0.8rem',
-                    border: '1px solid var(--border-subtle)'
-                  }}>
-                    <button 
-                      onClick={() => setQty(Math.max(1, qty - 1))}
-                      style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
-                    >
-                      <Minus size={14} />
-                    </button>
-                    <span style={{ fontWeight: 700, minWidth: 20, textAlign: 'center' }}>{qty}</span>
-                    <button 
-                      onClick={() => setQty(qty + 1)}
-                      style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
-                    >
-                      <Plus size={14} />
-                    </button>
-                  </div>
-                )}
-
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => toggleWishlist(selectedProduct)}
-                  style={{ padding: '0.75rem' }}
+                    justifyContent: 'center'
+                  }}
                   title="Wishlist"
                 >
-                  <Heart size={18} color={isFavorited ? 'var(--primary)' : 'currentColor'} fill={isFavorited ? 'var(--primary)' : 'none'} />
+                  <Heart size={20} color={isFavorited ? '#DC2626' : '#6B7280'} fill={isFavorited ? '#DC2626' : 'none'} />
                 </button>
 
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  onClick={handleAddProduct}
-                  style={{ flex: 1, gap: 6 }}
+                  onClick={handleOrderWhatsApp}
+                  style={{
+                    flex: 1,
+                    background: '#25D366',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '14px',
+                    padding: '0.85rem 1.25rem',
+                    fontSize: '0.95rem',
+                    fontWeight: 800,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 8,
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 16px rgba(37, 211, 102, 0.35)',
+                    transition: 'all 150ms ease'
+                  }}
                 >
-                  {selectedProduct.isPersonalizable ? (
-                    <>
-                      <Sparkles size={16} />
-                      <span>Customize & Add</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag size={16} />
-                      <span>Add to Cart</span>
-                    </>
-                  )}
+                  <MessageCircle size={18} />
+                  <span>Order on WhatsApp</span>
                 </button>
-
-                {!selectedProduct.isPersonalizable && (
-                  <button
-                    type="button"
-                    className="btn btn-gold"
-                    onClick={handleBuyNow}
-                  >
-                    Buy Now
-                  </button>
-                )}
               </div>
 
             </div>
@@ -363,6 +314,14 @@ export const ProductDetailModal = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .product-modal-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

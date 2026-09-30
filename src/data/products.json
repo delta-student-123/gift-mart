@@ -1,0 +1,249 @@
+[
+  {
+    "id": "prod-cake-01",
+    "name": "Belgian Chocolate Truffle Celebration Cake",
+    "category": "Cakes",
+    "occasion": "Birthday",
+    "price": 899,
+    "description": "Rich Belgian dark chocolate ganache layered between moist chocolate sponge, topped with handcrafted golden cocoa curls. 100% eggless available on request.",
+    "images": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "weight": ["500g (Serves 4-6)", "1 Kg (Serves 8-10)", "1.5 Kg (Serves 12-15)"],
+      "type": ["Eggless", "With Egg"]
+    },
+    "tags": ["Bestseller", "Freshly Baked", "Midnight Delivery"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-cake-02",
+    "name": "Red Velvet Heart Anniversary Romance Cake",
+    "category": "Cakes",
+    "occasion": "Anniversary",
+    "price": 1099,
+    "description": "Signature heart-shaped velvety sponge layered with smooth Philadelphia cream cheese frosting, dusted with artisan red crumb velvet. Perfect for romantic celebrations.",
+    "images": [
+      "https://images.unsplash.com/photo-1616031037011-0872614e5775?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "weight": ["500g (Serves 4-6)", "1 Kg (Serves 8-10)"],
+      "type": ["Eggless", "With Egg"]
+    },
+    "tags": ["Romantic", "Freshly Baked", "Anniversary Special"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-flower-01",
+    "name": "Royal Scarlet Red Rose Hand-Tied Bouquet (25 Stems)",
+    "category": "Flowers",
+    "occasion": "Anniversary",
+    "price": 1299,
+    "description": "25 hand-selected long-stem Dutch red roses wrapped in eco-friendly matte black paper with gold satin ribbon trimming. Includes flower food and keepsake message card.",
+    "images": [
+      "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "stemCount": ["Standard (25 Roses)", "Grand Luxe (50 Roses)", "Majestic (100 Roses)"],
+      "wrapping": ["Matte Black & Gold", "Blush Pink Tissue", "Rustic Jute"]
+    },
+    "tags": ["Same-Day Delivery", "Farm Fresh", "Anniversary"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-flower-02",
+    "name": "Pastel Grace Orchid & Asiatic Lily Glass Vase Arrangement",
+    "category": "Flowers",
+    "occasion": "Wedding",
+    "price": 1899,
+    "description": "Exquisite arrangement of purple dendrobium orchids, fragrant white lilies, and eucalyptus foliage presented in a heavy crystal glass vase.",
+    "images": [
+      "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "vaseType": ["Fluted Crystal Glass", "Ceramic Nordic White Vase"],
+      "card": ["Wedding Blessings Card", "Congratulations Card", "Plain Envelope"]
+    },
+    "tags": ["Luxury Floral", "Long Lasting", "Wedding Special"],
+    "isFeatured": false
+  },
+  {
+    "id": "prod-hamper-01",
+    "name": "Celebration Sweet Indulgence Festive Hamper with Pure Brass Diya",
+    "category": "Gift Hampers",
+    "occasion": "Festivals",
+    "price": 2199,
+    "description": "Festive keepsake trunk filled with authentic pistachio baklava, roasted cashew dragees, organic wildflower honey, and handcrafted pure brass flower diya.",
+    "images": [
+      "https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=800&auto=format&fit=crop&q=80",
+      "/images/luxury_hamper.jpg"
+    ],
+    "options": {
+      "boxColor": ["Royal Emerald Green", "Imperial Navy Blue", "Burgundy Velvet"],
+      "diyaFinish": ["Antique Pure Brass", "Mirror Gold Polish"]
+    },
+    "tags": ["Diwali Favorite", "Festive", "Free Brass Diya"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-hamper-02",
+    "name": "Grand Emperor Velvet Keepsake Trunk with Gourmet Delicacies",
+    "category": "Gift Hampers",
+    "occasion": "Wedding",
+    "price": 2999,
+    "description": "Opulent suede velvet trunk with metal latch, featuring jumbo Iranian pistachios, Belgian dark almond rocks, Kashmiri saffron honey, and fragrant botanical candle.",
+    "images": [
+      "/images/luxury_hamper.jpg",
+      "/images/recipient_clients.jpg"
+    ],
+    "options": {
+      "trunkColor": ["Imperial Maroon Velvet", "Midnight Blue Velvet"],
+      "engraving": ["Custom Gold Brass Plaque", "Standard Satin Ribbon"]
+    },
+    "tags": ["Luxury Trunk", "Wedding Gift", "VIP Hamper"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-pers-01",
+    "name": "Sacred Ganesha & Om Auspicious Blessing 3D LED Desk Lamp",
+    "category": "Personalized Gifts",
+    "occasion": "Festivals",
+    "price": 1199,
+    "description": "Warm glowing 3D optical acrylic lamp with Lord Ganesha and sacred Om motifs. Laser-etched with family name or personalized blessings on real wooden beech base.",
+    "images": [
+      "/images/ganesha_lamp.jpg",
+      "/images/acrylic_lamp.jpg"
+    ],
+    "options": {
+      "lightMode": ["Warm Golden Glow", "7-Color Smart Touch RGB"],
+      "base": ["Natural Beech Wood", "Dark Walnut Finish"]
+    },
+    "tags": ["Laser Engraved", "Housewarming", "Spiritual"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-pers-02",
+    "name": "Personalized Couples Spotify Acrylic Music Plaque with Stand",
+    "category": "Personalized Gifts",
+    "occasion": "Anniversary",
+    "price": 849,
+    "description": "High-clarity optical acrylic plaque custom UV printed with your favorite couple photograph, song title, artist name, and scannable Spotify playback barcode.",
+    "images": [
+      "/images/acrylic_lamp.jpg",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "size": ["A5 (6x8 inches)", "A4 (8x12 inches)"],
+      "base": ["Wood Stand with Warm LED", "Clear Acrylic Stand (Non-lit)"]
+    },
+    "tags": ["Personalized Photo", "Scannable Code", "Anniversary"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-drink-01",
+    "name": "Smart LED Digital Temperature Insulated Stainless Steel Flask (500ml)",
+    "category": "Drinkware & Flasks",
+    "occasion": "Birthday",
+    "price": 799,
+    "description": "Touch-sensitive LED lid showing exact liquid temperature. Double-wall vacuum insulation maintains drinks hot for 12 hours or cold for 24 hours. Custom laser name engraving.",
+    "images": [
+      "/images/drinkware_flask.jpg",
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "color": ["Matte Stealth Black", "Rose Gold Luxe", "Emerald Green", "Royal Navy Blue"]
+    },
+    "tags": ["Smart LED", "Laser Name Included", "Everyday Essential"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-drink-02",
+    "name": "Executive Vacuum Tumbler & Ceramic Mug Travel Gift Set",
+    "category": "Drinkware & Flasks",
+    "occasion": "Corporate",
+    "price": 1399,
+    "description": "Premium travel combo containing a spill-proof stainless tumbler with leak-tight sipping lid and a matte ceramic mug, laser engraved with initials or company logo.",
+    "images": [
+      "/images/recipient_employees.jpg",
+      "/images/custom_mug.jpg"
+    ],
+    "options": {
+      "color": ["Matte Charcoal Black", "Arctic White", "Classic Navy"]
+    },
+    "tags": ["Corporate", "Work Gift", "Double Wall"],
+    "isFeatured": false
+  },
+  {
+    "id": "prod-wallet-01",
+    "name": "Personalized Italian Vegan Leather Bi-Fold Wallet & Keychain Set",
+    "category": "Leather Wallets",
+    "occasion": "Birthday",
+    "price": 949,
+    "description": "Crafted from cruelty-free vegetable tanned leather with RFID blocking protection, 8 card slots, and dual currency compartments. Personalized with name or monogram.",
+    "images": [
+      "/images/executive_wallet.jpg",
+      "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&auto=format&fit=crop&q=80"
+    ],
+    "options": {
+      "leatherColor": ["Vintage Tan Brown", "Obsidian Black", "Cognac Brown"],
+      "fontStyle": ["Classic Roman Serif", "Modern Clean Sans", "Cursive Signature"]
+    },
+    "tags": ["RFID Protected", "Laser Monogram", "Gifts for Him"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-wallet-02",
+    "name": "Executive Trio: Leather Wallet, Metallic Pen & Cardholder Gift Box",
+    "category": "Leather Wallets",
+    "occasion": "Anniversary",
+    "price": 1499,
+    "description": "Luxury matte magnetic presentation box containing a slim pocket wallet, weighted laser-engraved rollerball pen, and stainless steel business card holder.",
+    "images": [
+      "/images/executive_pen.jpg",
+      "/images/executive_wallet.jpg"
+    ],
+    "options": {
+      "color": ["Midnight Black with Gold Trim", "Espresso Tan with Gunmetal Trim"]
+    },
+    "tags": ["Executive Trio", "Magnetic Box", "Anniversary Gift"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-corp-01",
+    "name": "The Spark VIP Executive Induction & Tumbler Onboarding Hamper",
+    "category": "Gift Hampers",
+    "occasion": "Corporate",
+    "price": 2499,
+    "description": "Curated onboarding kit with custom branded stainless steel temperature flask, executive diary with card organizer, metallic pen, and roasted California almonds.",
+    "images": [
+      "/images/recipient_employees.jpg",
+      "/images/corporate_welcome_box.jpg"
+    ],
+    "options": {
+      "kitTheme": ["Stealth Black Executive", "Minimalist White & Bamboo"]
+    },
+    "tags": ["Onboarding", "Corporate Bulk", "GST Invoiced"],
+    "isFeatured": false
+  },
+  {
+    "id": "prod-pers-03",
+    "name": "Handcrafted Solid Teakwood Photo Engraved Memory Plaque",
+    "category": "Personalized Gifts",
+    "occasion": "Anniversary",
+    "price": 1249,
+    "description": "Real imported solid wood carved with permanent high-definition laser burn of your photograph and anniversary vows. Includes brass desk peg and wall-mount hook.",
+    "images": [
+      "/images/celebration_couple.jpg",
+      "/images/acrylic_lamp.jpg"
+    ],
+    "options": {
+      "size": ["Medium (7x5 inches)", "Large (9x7 inches)", "Grand Royal (12x9 inches)"]
+    },
+    "tags": ["Real Solid Wood", "Permanent Engraving", "Couples"],
+    "isFeatured": false
+  }
+]

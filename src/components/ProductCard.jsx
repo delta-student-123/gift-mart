@@ -1,14 +1,13 @@
 import React from 'react';
-import { Heart, Star, Zap, Sparkles, ShoppingBag, Eye } from 'lucide-react';
+import { Heart, Star, Sparkles, MessageCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { generateWhatsAppOrderUrl } from '../config/siteConfig';
 
 export const ProductCard = ({ product, compact = false, imageHeight }) => {
   const { 
-    addToCart, 
     toggleWishlist, 
     isInWishlist, 
-    openProductDetail, 
-    openPersonalizer 
+    openProductDetail 
   } = useApp();
 
   const isFavorited = isInWishlist(product.id);
@@ -16,12 +15,14 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
-  const handleActionClick = (e) => {
+  const handleWhatsAppClick = (e) => {
     e.stopPropagation();
-    if (product.isPersonalizable) {
-      openPersonalizer(product);
+    if (product.options || product.isPersonalizable) {
+      // Open detail view so user can choose size/flavour/color and add custom name
+      openProductDetail(product);
     } else {
-      addToCart(product);
+      const url = generateWhatsAppOrderUrl({ product });
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -61,7 +62,7 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         backgroundColor: '#f9f9f8' 
       }}>
         <img 
-          src={product.image} 
+          src={product.image || (product.images && product.images[0])} 
           alt={product.name}
           loading="lazy"
           style={{
@@ -82,7 +83,7 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
           }}
         />
 
-        {/* Badges Over Image (Giftana Style) */}
+        {/* Badges Over Image */}
         <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5, zIndex: 2 }}>
           {discountPercent > 0 && (
             <span style={{
@@ -101,11 +102,11 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
             </span>
           )}
 
-          {product.tag && (
+          {product.tags && product.tags[0] && (
             <span style={{
               background: 'rgba(23, 23, 23, 0.92)',
               backdropFilter: 'blur(4px)',
-              color: '#F5A800',
+              color: 'rgb(217, 119, 6)',
               padding: '2px 7px',
               borderRadius: '9999px',
               fontSize: '0.65rem',
@@ -116,7 +117,7 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
               alignSelf: 'flex-start',
               whiteSpace: 'nowrap'
             }}>
-              ✨ {product.tag}
+              ✨ {product.tags[0]}
             </span>
           )}
         </div>
@@ -152,8 +153,8 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         >
           <Heart 
             size={16} 
-            color={isFavorited ? 'var(--primary)' : 'var(--charcoal-muted)'} 
-            fill={isFavorited ? 'var(--primary)' : 'transparent'} 
+            color={isFavorited ? '#DC2626' : 'var(--charcoal-muted)'} 
+            fill={isFavorited ? '#DC2626' : 'transparent'} 
           />
         </button>
       </div>
@@ -163,13 +164,13 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         {/* Rating and Reviews */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#FFF9F0', border: '1px solid #F4EBDD', padding: '2px 7px', borderRadius: 'var(--radius-full)' }}>
-            <Star size={12} fill="#F5A800" color="#F5A800" />
+            <Star size={12} fill="rgb(217, 119, 6)" color="rgb(217, 119, 6)" />
             <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#171717' }}>
-              {product.rating}
+              {product.rating || '4.9'}
             </span>
           </div>
           <span style={{ fontSize: '0.73rem', color: 'var(--charcoal-muted)' }}>
-            ({product.reviewCount} reviews)
+            ({product.reviewCount || 120} reviews)
           </span>
         </div>
 
@@ -206,25 +207,27 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
 
           <button 
             type="button"
-            className={`btn btn-sm ${product.isPersonalizable ? 'btn-gold' : 'btn-primary'}`}
-            onClick={handleActionClick}
+            onClick={handleWhatsAppClick}
             style={{
-              padding: '0.45rem 0.85rem',
-              fontSize: '0.82rem',
-              gap: 4
+              background: '#25D366',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '9999px',
+              padding: '0.42rem 0.85rem',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 5,
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(37, 211, 102, 0.25)',
+              transition: 'all 150ms ease'
             }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.04)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            {product.isPersonalizable ? (
-              <>
-                <Sparkles size={13} />
-                <span>Personalize</span>
-              </>
-            ) : (
-              <>
-                <ShoppingBag size={13} />
-                <span>Add</span>
-              </>
-            )}
+            <MessageCircle size={14} />
+            <span>Order</span>
           </button>
         </div>
       </div>

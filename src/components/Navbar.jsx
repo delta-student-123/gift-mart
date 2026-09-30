@@ -4,30 +4,27 @@ import {
   MapPin, 
   Search, 
   Heart, 
-  ShoppingBag, 
   User, 
-  Clock, 
-  Truck,
   X,
   ChevronDown,
   Menu,
-  Zap,
-  Tag,
   Building,
   Sparkles,
-  Calendar
+  Calendar,
+  MessageCircle,
+  HelpCircle,
+  Package
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Logo } from './Logo';
+import { siteConfig } from '../config/siteConfig';
 
 export const Navbar = () => {
   const { 
     currentView, 
     viewParams,
     navigateTo, 
-    cart, 
     wishlist, 
-    setIsCartOpen, 
     pincode, 
     pincodeInfo, 
     checkPincode,
@@ -38,11 +35,10 @@ export const Navbar = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const [showShopDropdown, setShowShopDropdown] = useState(false);
   const [showPincodeModal, setShowPincodeModal] = useState(false);
   const [tempPincode, setTempPincode] = useState(pincode);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   // Live Search filter
   const searchResults = searchQuery.trim().length > 1
@@ -60,10 +56,23 @@ export const Navbar = () => {
     }
   };
 
+  const SHOP_CATEGORIES = [
+    { id: 'all', name: 'All Gifts & Hampers', icon: '🎁' },
+    { id: 'cakes', name: 'Designer Cakes', icon: '🎂' },
+    { id: 'flowers', name: 'Fresh Flower Bouquets', icon: '💐' },
+    { id: 'hampers', name: 'Luxury Gift Hampers', icon: '🧺' },
+    { id: 'personalized', name: 'Personalized & Laser Gifts', icon: '✨' },
+    { id: 'bottles', name: 'Drinkware & Insulated Flasks', icon: '🍶' },
+    { id: 'wallets', name: 'Leather Wallets & Sets', icon: '💼' },
+    { id: 'lamps', name: '3D Optical LED Lamps', icon: '💡' },
+    { id: 'mugs', name: 'Customized Photo Mugs', icon: '☕' },
+    { id: 'corporate', name: 'Corporate Welcome Kits', icon: '🏢' }
+  ];
+
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', boxShadow: '0 2px 12px rgba(0,0,0,0.05)' }}>
       
-      {/* 1. TOP ANNOUNCEMENT / UTILITY BAR (Giftana Style) */}
+      {/* 1. TOP ANNOUNCEMENT / UTILITY BAR */}
       <div style={{ backgroundColor: 'var(--charcoal-dark)', fontSize: '0.78rem', color: '#ffffff', padding: '0.45rem 0' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
           
@@ -90,46 +99,13 @@ export const Navbar = () => {
               </strong>
             </div>
 
-            {/* Highlighted Track Order Button */}
-            <button 
-              type="button"
-              onClick={() => navigateTo('track-order')}
-              style={{
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 5,
-                background: 'linear-gradient(135deg, #F5A800 0%, #df9900 100%)',
-                color: '#171717',
-                border: 'none',
-                padding: '0.22rem 0.75rem',
-                borderRadius: '20px',
-                fontWeight: 800,
-                fontSize: '0.74rem',
-                boxShadow: '0 0 10px rgba(245, 168, 0, 0.45)',
-                letterSpacing: '0.02em',
-                transition: 'all 150ms ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 0 14px rgba(245, 168, 0, 0.7)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(245, 168, 0, 0.45)';
-              }}
+            <span 
+              onClick={() => navigateTo('faq-delivery')}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4, color: '#e5e7eb' }}
             >
-              <Truck size={13} color="#171717" />
-              <span>Track Order</span>
-              <span style={{
-                display: 'inline-block',
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                backgroundColor: '#15803d',
-                boxShadow: '0 0 4px #22c55e'
-              }} />
-            </button>
+              <HelpCircle size={12} color="var(--primary)" />
+              <span>Delivery Info</span>
+            </span>
 
             <span 
               onClick={() => navigateTo('corporate-gifting')}
@@ -143,8 +119,8 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* 2. MAIN HEADER ROW */}
-      <div style={{ padding: '0.9rem 0', borderBottom: '1px solid var(--border-light)' }}>
+      {/* 2. MAIN HEADER ROW: Logo, Search Bar, Account, Wishlist, WhatsApp Button */}
+      <div style={{ padding: '0.85rem 0', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
           
           {/* Mobile Hamburger Button */}
@@ -180,7 +156,7 @@ export const Navbar = () => {
               <Search size={17} color="var(--charcoal-muted)" style={{ marginRight: '0.5rem', flexShrink: 0 }} />
               <input 
                 type="text"
-                placeholder="Search customized bottles, welcome kits, diary sets, wallets, lamps..."
+                placeholder="Search cakes, flowers, hampers, bottles, wallets, lamps..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -243,7 +219,7 @@ export const Navbar = () => {
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--secondary-warm)'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
                   >
-                    <img src={p.image} alt={p.name} style={{ width: 40, height: 40, borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                    <img src={p.image || (p.images && p.images[0])} alt={p.name} style={{ width: 40, height: 40, borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--charcoal-dark)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {p.name}
@@ -258,9 +234,9 @@ export const Navbar = () => {
             )}
           </div>
 
-          {/* Right Action Icons: Wishlist, Account, Cart */}
+          {/* Right Action Icons: Account, Wishlist, WhatsApp Button */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.15rem' }}>
-            {/* Account / Dashboard */}
+            {/* Account */}
             <button
               type="button"
               onClick={() => navigateTo('account')}
@@ -320,170 +296,262 @@ export const Navbar = () => {
               )}
             </button>
 
-            {/* Cart Drawer Trigger */}
-            <button
-              type="button"
-              onClick={() => setIsCartOpen(true)}
+            {/* Direct WhatsApp Ordering Button (Replaces Cart) */}
+            <a
+              href={`https://wa.me/${siteConfig.whatsAppNumber}?text=${encodeURIComponent(siteConfig.whatsAppGreeting)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                background: 'linear-gradient(135deg, #F5A800 0%, #E89A00 100%)',
-                color: '#171717',
-                border: 'none',
+                gap: '0.45rem',
+                background: '#25D366',
+                color: '#ffffff',
+                textDecoration: 'none',
                 borderRadius: 'var(--radius-full)',
-                padding: '0.5rem 1.15rem',
-                cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(245, 168, 0, 0.35)',
+                padding: '0.52rem 1.2rem',
+                boxShadow: '0 4px 14px rgba(37, 211, 102, 0.35)',
                 fontWeight: 800,
-                fontSize: '0.88rem',
+                fontSize: '0.86rem',
                 transition: 'all 180ms ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 6px 18px rgba(245, 168, 0, 0.45)';
+                e.currentTarget.style.boxShadow = '0 6px 18px rgba(37, 211, 102, 0.45)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.boxShadow = '0 4px 14px rgba(245, 168, 0, 0.35)';
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(37, 211, 102, 0.35)';
               }}
             >
-              <div style={{ position: 'relative' }}>
-                <ShoppingBag size={18} strokeWidth={2.4} />
-                {totalCartCount > 0 && (
-                  <span style={{
-                    position: 'absolute',
-                    top: -7,
-                    right: -9,
-                    background: '#171717',
-                    color: '#ffffff',
-                    fontSize: '0.68rem',
-                    fontWeight: 900,
-                    width: 18,
-                    height: 18,
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.3)'
-                  }}>
-                    {totalCartCount}
-                  </span>
-                )}
-              </div>
-              <span>Cart</span>
-            </button>
+              <MessageCircle size={18} />
+              <span>Order on WhatsApp</span>
+            </a>
 
           </div>
 
         </div>
       </div>
 
-      {/* 3. MAIN NAVIGATION BAR */}
+      {/* 3. MAIN NAVIGATION BAR: Home | Shop (dropdown) | Occasions | Custom Gifts | Corporate | About | Contact */}
       <div style={{ backgroundColor: '#ffffff', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
-          <div style={{ 
+          <nav style={{ 
             display: 'flex', 
             alignItems: 'center', 
-            gap: '0.6rem', 
+            gap: '1.25rem', 
             overflowX: 'auto', 
-            padding: '0.65rem 0', 
+            padding: '0.55rem 0', 
             scrollbarWidth: 'none',
             WebkitOverflowScrolling: 'touch'
           }}>
-            {[
-              { id: 'all', label: 'All Gifts', icon: '', action: () => navigateTo('shop', { category: 'all' }) },
-              { id: 'welcome-kits', label: 'Welcome Kits', icon: '🎁', action: () => navigateTo('shop', { category: 'welcome-kits' }) },
-              { id: 'bottles', label: 'Drinkware & Flasks', icon: '🍶', action: () => navigateTo('shop', { category: 'bottles' }) },
-              { id: 'wallets', label: 'Wallets & Leather', icon: '💼', action: () => navigateTo('shop', { category: 'wallets' }) },
-              { id: 'pens', label: 'Executive Pens', icon: '✍️', action: () => navigateTo('shop', { category: 'pens' }) },
-              { id: 'diaries', label: 'Diaries & Planners', icon: '📖', action: () => navigateTo('shop', { category: 'diaries' }) },
-              { id: 'lamps', label: '3D Lamps', icon: '✨', action: () => navigateTo('shop', { category: 'lamps' }) },
-              { id: 'mugs', label: 'Customized Mugs', icon: '☕', action: () => navigateTo('shop', { category: 'mugs' }) },
-              { id: 'hampers', label: 'Hampers', icon: '🧺', action: () => navigateTo('shop', { category: 'hampers' }) },
-              { id: 'corporate-gifting', label: 'Corporate Gifting', icon: '', action: () => navigateTo('corporate-gifting') },
-              { id: 'gift-finder', label: 'Gift Finder', icon: '🎁', action: () => navigateTo('gift-finder') }
-            ].map(cat => {
-              const isActive = (currentView === 'shop' && (viewParams?.category || 'all') === cat.id) || currentView === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={cat.action}
-                  style={{
-                    flexShrink: 0,
-                    background: isActive ? '#171717' : '#FFFFFF',
-                    border: isActive ? '1px solid #171717' : '1px solid #E5E7EB',
-                    borderRadius: 'var(--radius-full)',
-                    padding: '0.4rem 0.95rem',
-                    fontWeight: isActive ? 700 : 500,
-                    fontSize: '0.84rem',
-                    color: isActive ? '#FFFFFF' : 'var(--charcoal-dark)',
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    boxShadow: isActive ? '0 3px 10px rgba(23, 23, 23, 0.22)' : '0 1px 2px rgba(0, 0, 0, 0.03)',
-                    transform: isActive ? 'translateY(-1px)' : 'none',
-                    transition: 'all 160ms cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.borderColor = 'var(--primary)';
-                      e.currentTarget.style.background = '#FFF9ED';
-                      e.currentTarget.style.color = '#171717';
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 2px 6px rgba(245, 168, 0, 0.15)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.borderColor = '#E5E7EB';
-                      e.currentTarget.style.background = '#FFFFFF';
-                      e.currentTarget.style.color = 'var(--charcoal-dark)';
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.03)';
-                    }
-                  }}
-                >
-                  {cat.icon && <span style={{ fontSize: '0.92rem' }}>{cat.icon}</span>}
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-
+            {/* Home */}
             <button
-              onClick={() => navigateTo('corporate-gifting')}
+              type="button"
+              onClick={() => navigateTo('home')}
               style={{
-                flexShrink: 0,
-                background: 'linear-gradient(135deg, #F5A800 0%, #E89A00 100%)',
-                border: '1px solid #D98500',
-                borderRadius: 'var(--radius-full)',
-                padding: '0.4rem 1rem',
-                fontWeight: 700,
-                fontSize: '0.84rem',
-                color: '#171717',
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'home' ? 800 : 600,
+                color: currentView === 'home' ? 'var(--primary)' : 'var(--charcoal-dark)',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 5,
-                boxShadow: '0 2px 8px rgba(245, 168, 0, 0.35)',
-                transition: 'all 160ms ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(245, 168, 0, 0.45)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(245, 168, 0, 0.35)';
+                padding: '0.35rem 0.5rem'
               }}
             >
-              <span style={{ fontSize: '0.92rem' }}>⚡</span>
-              <span>Bulk RFQ Quote</span>
+              Home
             </button>
-          </div>
+
+            {/* Shop with Category Dropdown */}
+            <div 
+              style={{ position: 'relative' }}
+              onMouseEnter={() => setShowShopDropdown(true)}
+              onMouseLeave={() => setShowShopDropdown(false)}
+            >
+              <button
+                type="button"
+                onClick={() => navigateTo('shop')}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  fontSize: '0.88rem',
+                  fontWeight: currentView === 'shop' ? 800 : 600,
+                  color: currentView === 'shop' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  whiteSpace: 'nowrap',
+                  padding: '0.35rem 0.5rem'
+                }}
+              >
+                <span>Shop Catalog</span>
+                <ChevronDown size={14} />
+              </button>
+
+              {/* Shop Categories Mega Dropdown */}
+              {showShopDropdown && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  width: '280px',
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)',
+                  border: '1px solid #EFEAE2',
+                  padding: '0.65rem',
+                  zIndex: 200
+                }}>
+                  {SHOP_CATEGORIES.map(cat => (
+                    <div
+                      key={cat.id}
+                      onClick={() => {
+                        navigateTo('shop', { category: cat.id });
+                        setShowShopDropdown(false);
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 10,
+                        padding: '0.55rem 0.85rem',
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        fontSize: '0.84rem',
+                        fontWeight: 600,
+                        color: '#171717',
+                        transition: 'background 150ms'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#FFF8E7';
+                        e.currentTarget.style.color = '#B45309';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#171717';
+                      }}
+                    >
+                      <span style={{ fontSize: '1rem' }}>{cat.icon}</span>
+                      <span>{cat.name}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Occasions */}
+            <button
+              type="button"
+              onClick={() => navigateTo('occasions')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'occasions' ? 800 : 600,
+                color: currentView === 'occasions' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
+            >
+              Occasions
+            </button>
+
+            {/* Custom Gifts */}
+            <button
+              type="button"
+              onClick={() => navigateTo('custom-gifts')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'custom-gifts' ? 800 : 600,
+                color: currentView === 'custom-gifts' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5
+              }}
+            >
+              <Sparkles size={14} color="rgb(217, 119, 6)" />
+              <span>Custom Gifts</span>
+            </button>
+
+            {/* Corporate */}
+            <button
+              type="button"
+              onClick={() => navigateTo('corporate-gifting')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'corporate-gifting' ? 800 : 600,
+                color: currentView === 'corporate-gifting' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
+            >
+              Corporate
+            </button>
+
+            {/* About */}
+            <button
+              type="button"
+              onClick={() => navigateTo('about-us')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'about-us' ? 800 : 600,
+                color: currentView === 'about-us' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
+            >
+              About
+            </button>
+
+            {/* Contact */}
+            <button
+              type="button"
+              onClick={() => navigateTo('contact-us')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'contact-us' ? 800 : 600,
+                color: currentView === 'contact-us' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
+            >
+              Contact
+            </button>
+
+            {/* FAQ / Delivery Info */}
+            <button
+              type="button"
+              onClick={() => navigateTo('faq-delivery')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'faq-delivery' ? 800 : 600,
+                color: currentView === 'faq-delivery' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
+            >
+              FAQ / Delivery
+            </button>
+          </nav>
         </div>
       </div>
 
@@ -492,90 +560,160 @@ export const Navbar = () => {
         <div style={{
           position: 'fixed',
           inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          backdropFilter: 'blur(3px)',
+          background: 'rgba(0,0,0,0.5)',
+          zIndex: 300,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 200,
           padding: '1rem'
         }}>
           <div style={{
             background: '#ffffff',
             borderRadius: 'var(--radius-xl)',
-            maxWidth: 440,
+            padding: '2rem',
+            maxWidth: 420,
             width: '100%',
-            padding: '1.75rem',
-            boxShadow: 'var(--shadow-xl)',
-            position: 'relative'
+            boxShadow: 'var(--shadow-xl)'
           }}>
-            <button 
-              onClick={() => setShowPincodeModal(false)}
-              style={{ position: 'absolute', top: 16, right: 16, border: 'none', background: 'transparent', cursor: 'pointer' }}
-            >
-              <X size={20} color="var(--charcoal-muted)" />
-            </button>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--primary)' }}>
-              <MapPin size={22} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Select Delivery Location</h3>
-            </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--charcoal-muted)', marginBottom: '1.25rem' }}>
-              Enter your Indian delivery pincode to see available delivery slots, express delivery timings & serviceability.
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>Select Delivery Location</h3>
+            <p style={{ fontSize: '0.86rem', color: 'var(--charcoal-muted)', marginBottom: '1.5rem' }}>
+              Enter your 6-digit delivery pincode to see availability for flowers, cakes, and personalized gifts.
             </p>
 
             <form onSubmit={handlePincodeSave}>
               <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-                <input 
+                <input
                   type="text"
                   maxLength={6}
                   value={tempPincode}
                   onChange={(e) => setTempPincode(e.target.value.replace(/\D/g, ''))}
-                  placeholder="e.g. 110001, 400001, 560001"
                   className="form-input"
-                  style={{ fontWeight: 700, letterSpacing: '0.1em' }}
-                  required
+                  placeholder="Enter 6-digit Pincode"
+                  style={{ fontSize: '1rem' }}
                 />
-                <button type="submit" className="btn btn-primary">
-                  Check
-                </button>
+                <button type="submit" className="btn btn-primary">Save</button>
               </div>
             </form>
 
-            <div style={{ fontSize: '0.78rem', color: 'var(--charcoal-muted)' }}>
-              Popular Indian Cities: 
-              {['110001 (Delhi)', '400001 (Mumbai)', '560001 (Bengaluru)', '700001 (Kolkata)', '500001 (Hyderabad)'].map(pop => (
-                <button
-                  key={pop}
-                  type="button"
-                  onClick={() => {
-                    const pin = pop.slice(0, 6);
-                    setTempPincode(pin);
-                    checkPincode(pin);
-                    setShowPincodeModal(false);
-                  }}
-                  style={{
-                    border: 'none',
-                    background: 'var(--secondary-warm)',
-                    padding: '3px 8px',
-                    borderRadius: 'var(--radius-full)',
-                    margin: '3px',
-                    fontSize: '0.74rem',
-                    cursor: 'pointer',
-                    color: 'var(--charcoal-dark)'
-                  }}
-                >
-                  {pop}
-                </button>
-              ))}
+            <button
+              type="button"
+              onClick={() => setShowPincodeModal(false)}
+              className="btn btn-secondary btn-block"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Drawer Menu */}
+      {isMobileMenuOpen && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          zIndex: 250,
+          display: 'flex',
+          justifyContent: 'flex-start'
+        }}>
+          <div style={{
+            width: '80%',
+            maxWidth: 320,
+            background: '#ffffff',
+            height: '100%',
+            padding: '1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            overflowY: 'auto'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Logo size={36} />
+              <button onClick={() => setIsMobileMenuOpen(false)} style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
+              <button 
+                onClick={() => { navigateTo('home'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => { navigateTo('shop'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Shop Catalog
+              </button>
+              <button 
+                onClick={() => { navigateTo('occasions'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Occasions
+              </button>
+              <button 
+                onClick={() => { navigateTo('custom-gifts'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Custom Gifts
+              </button>
+              <button 
+                onClick={() => { navigateTo('corporate-gifting'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Corporate Gifting
+              </button>
+              <button 
+                onClick={() => { navigateTo('about-us'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                About Us
+              </button>
+              <button 
+                onClick={() => { navigateTo('contact-us'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                Contact Us
+              </button>
+              <button 
+                onClick={() => { navigateTo('faq-delivery'); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
+              >
+                FAQ & Delivery
+              </button>
+            </div>
+
+            <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #E5E7EB' }}>
+              <a
+                href={`https://wa.me/${siteConfig.whatsAppNumber}?text=${encodeURIComponent(siteConfig.whatsAppGreeting)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  background: '#25D366',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  borderRadius: '12px',
+                  padding: '0.75rem',
+                  fontWeight: 800,
+                  fontSize: '0.9rem'
+                }}
+              >
+                <MessageCircle size={18} />
+                <span>Chat on WhatsApp</span>
+              </a>
             </div>
           </div>
         </div>
       )}
 
-      {/* Style for responsive layout */}
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .desktop-search { display: none !important; }
           .mobile-hamburger { display: block !important; }
         }
