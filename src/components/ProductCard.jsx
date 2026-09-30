@@ -54,14 +54,20 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
       }}
     >
       {/* Top Image Container */}
-      <div style={{ 
-        position: 'relative', 
-        width: '100%', 
-        height: imageHeight || (compact ? 165 : 210), 
-        overflow: 'hidden', 
-        backgroundColor: '#f9f9f8' 
-      }}>
+      <div 
+        className="product-card-image-container"
+        style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: imageHeight || (compact ? 175 : 220), 
+          overflow: 'hidden', 
+          backgroundColor: '#f9f9f8',
+          margin: 0,
+          padding: 0
+        }}
+      >
         <img 
+          className="product-card-image"
           src={product.image || (product.images && product.images[0])} 
           alt={product.name}
           loading="lazy"
@@ -70,10 +76,13 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
             height: '100%',
             objectFit: 'cover',
             objectPosition: product.imagePosition || 'center center',
+            display: 'block',
+            margin: 0,
+            padding: 0,
             transition: 'transform 400ms ease'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.06)';
+            e.currentTarget.style.transform = 'scale(1.05)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
@@ -84,7 +93,10 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         />
 
         {/* Badges Over Image */}
-        <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5, zIndex: 2 }}>
+        <div 
+          className="product-card-overlay-badge"
+          style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5, zIndex: 2 }}
+        >
           {discountPercent > 0 && (
             <span style={{
               background: '#dc2626',
@@ -125,6 +137,7 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         {/* Wishlist Heart Button */}
         <button 
           type="button"
+          className="product-card-overlay-wishlist"
           onClick={(e) => {
             e.stopPropagation();
             toggleWishlist(product);

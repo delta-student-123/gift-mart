@@ -44,13 +44,13 @@ export const HomePage = () => {
   // 1. Categories for "Shop by Category" (Round Circular Items)
   const CATEGORY_ITEMS = [
     { id: 'chocolates', name: 'Chocolates', image: '/images/chocolate_balloons_combo.jpg' },
-    { id: 'flowers', name: 'Flowers', image: '/images/red_roses_bouquet.jpg' },
+    { id: 'flowers', name: 'Flowers', image: '/images/gold_rose.jpg' },
     { id: 'hampers', name: 'Hampers', image: '/images/luxury_hamper.jpg' },
     { id: 'bottles', name: 'Bottles', image: '/images/drinkware_flask.jpg' },
     { id: 'wallets', name: 'Wallets', image: '/images/executive_wallet.jpg' },
     { id: 'lamps', name: 'Lamps', image: '/images/modern_table_lamp.jpg' },
     { id: 'all', name: 'Teddy Bears', image: '/images/category_teddy_bear.jpg' },
-    { id: 'personalized', name: 'Personalized', image: '/images/custom_studio_showcase.jpg' },
+    { id: 'religious-idols', name: 'Religious Idol', image: '/images/religious_idol.jpg' },
     { id: 'more', name: 'More', isMore: true }
   ];
 
@@ -67,14 +67,14 @@ export const HomePage = () => {
       tabCategory: ['popular', 'bestsellers']
     },
     {
-      id: 'prod-flower-1',
-      name: 'Red Roses Bouquet',
-      price: 599,
-      rating: 4.7,
-      reviews: 98,
-      image: '/images/red_roses_bouquet.jpg',
-      category: 'flowers',
-      tabCategory: ['popular', 'new']
+      id: 'prod-1',
+      name: 'Divine White Ganesha Murti',
+      price: 899,
+      rating: 4.9,
+      reviews: 142,
+      image: '/images/ganesha_murti.png',
+      category: 'religious-idols',
+      tabCategory: ['popular', 'new', 'bestsellers']
     },
     {
       id: 'prod-hamper-1',
@@ -113,41 +113,7 @@ export const HomePage = () => {
     activeTab === 'popular' || p.tabCategory.includes(activeTab)
   );
 
-  // 3. 6 Occasions for "Explore Gifts by Occasion"
-  const OCCASION_TILES = [
-    {
-      id: 'birthday',
-      name: 'Birthday',
-      image: '/images/chocolate_truffle_cake.jpg'
-    },
-    {
-      id: 'anniversary',
-      name: 'Anniversary',
-      image: '/images/red_roses_bouquet.jpg'
-    },
-    {
-      id: 'corporate',
-      name: 'Corporate',
-      image: '/images/corporate_welcome_box.jpg'
-    },
-    {
-      id: 'festive',
-      name: 'Festive',
-      image: '/images/cta_festive_gifts.jpg'
-    },
-    {
-      id: 'rakhi',
-      name: 'Raksha Bandhan',
-      image: '/images/occasion_rakhi.jpg'
-    },
-    {
-      id: 'wedding',
-      name: 'Wedding',
-      image: '/images/why_choose_hamper.jpg'
-    }
-  ];
-
-  // 4. Testimonials for "What Our Customers Say"
+  // 3. Testimonials for "What Our Customers Say"
   const TESTIMONIAL_CARDS = [
     {
       id: 1,
@@ -429,7 +395,6 @@ export const HomePage = () => {
                 key={idx}
                 onClick={() => {
                   if (cat.id === 'more') navigateTo('shop');
-                  else if (cat.id === 'personalized') navigateTo('custom-gifts');
                   else navigateTo('shop', { category: cat.id });
                 }}
                 style={{
@@ -580,17 +545,26 @@ export const HomePage = () => {
                   }}
                 >
                   {/* Image with Heart Icon on top right */}
-                  <div style={{ position: 'relative', width: '100%', paddingTop: '100%', overflow: 'hidden', backgroundColor: '#F9FAFB' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', backgroundColor: '#F9FAFB', margin: 0, padding: 0 }}>
                     <img 
                       src={prod.image} 
                       alt={prod.name}
+                      loading="lazy"
                       style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
                         width: '100%',
                         height: '100%',
-                        objectFit: 'cover'
+                        objectFit: 'cover',
+                        objectPosition: 'center center',
+                        display: 'block',
+                        margin: 0,
+                        padding: 0,
+                        transition: 'transform 400ms ease'
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.transform = 'scale(1)';
                       }}
                     />
 
@@ -613,7 +587,8 @@ export const HomePage = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.06)'
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+                        zIndex: 2
                       }}
                       title={isFav ? "Remove from wishlist" : "Add to wishlist"}
                     >
@@ -720,12 +695,12 @@ export const HomePage = () => {
 
 
       {/* ========================================================
-          4. CUSTOM GIFTS & PERSONALIZATION STUDIO
+          4. DIVINE & FESTIVE GIFTS SHOWCASE
       ======================================================== */}
       <section style={{ padding: '3.5rem 0', backgroundColor: '#FFFFFF' }}>
         <div className="container">
           <div style={{
-            background: 'linear-gradient(135deg, #FFFDF8 0%, #FAF5EB 100%)',
+            background: 'linear-gradient(135deg, #FFFDF8 0%, #FAF4E8 100%)',
             borderRadius: '24px',
             border: '1px solid #EFE6D8',
             padding: '2.5rem',
@@ -737,12 +712,12 @@ export const HomePage = () => {
             {/* Left Column: Visual Showcase */}
             <div style={{ borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
               <img 
-                src="/images/custom_studio_showcase.jpg" 
-                alt="Engraved Wooden Box with Your Name Here, Pen and Keychain"
+                src="/images/religious_idol.jpg" 
+                alt="Divine Handcrafted Brass Lord Ganesha Idol Statue"
                 style={{
                   width: '100%',
                   height: '100%',
-                  maxHeight: '340px',
+                  maxHeight: '360px',
                   objectFit: 'cover',
                   display: 'block'
                 }}
@@ -767,22 +742,22 @@ export const HomePage = () => {
                   marginBottom: '0.85rem' 
                 }}
               >
-                <span>✨ MAKE IT SPECIAL</span>
+                <span>🪔 SACRED BLESSINGS & PUJA GIFTS</span>
               </div>
 
               <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', lineHeight: 1.2, margin: 0, marginBottom: '0.75rem' }}>
-                Custom Gifts & <br />
-                Personalization Studio
+                Divine Idols & <br />
+                Auspicious Festive Gifts
               </h2>
 
               <p style={{ fontSize: '0.94rem', color: '#4B5563', lineHeight: 1.6, margin: 0, marginBottom: '1.65rem' }}>
-                Add a personal touch with name engraving, custom messages and unique designs.
+                Handcrafted pure brass deities, pristine marble murtis, auspicious housewarming hampers and sacred festive keepsakes to bless every new beginning.
               </p>
 
               {/* Two Action Buttons */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', marginBottom: '2rem' }}>
                 <button
-                  onClick={() => navigateTo('custom-gifts')}
+                  onClick={() => navigateTo('shop', { category: 'religious-idols' })}
                   style={{
                     background: 'rgb(217, 119, 6)',
                     color: '#111827',
@@ -798,12 +773,12 @@ export const HomePage = () => {
                     boxShadow: '0 4px 14px rgba(217, 119, 6, 0.3)'
                   }}
                 >
-                  <span>Create Custom Gift</span>
+                  <span>Explore Divine Collection</span>
                   <ArrowRight size={15} />
                 </button>
 
                 <button
-                  onClick={() => navigateTo('about')}
+                  onClick={() => navigateTo('shop')}
                   style={{
                     background: '#FFFFFF',
                     color: '#1F2937',
@@ -815,11 +790,11 @@ export const HomePage = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <span>How It Works</span>
+                  <span>View All Categories</span>
                 </button>
               </div>
 
-              {/* 3 Step Workflow */}
+              {/* 3 Value Pillars */}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
@@ -840,7 +815,7 @@ export const HomePage = () => {
                     fontSize: '1.1rem',
                     flexShrink: 0
                   }}>
-                    📦
+                    🪔
                   </div>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ 
@@ -851,7 +826,7 @@ export const HomePage = () => {
                       marginBottom: '0.15rem', 
                       whiteSpace: 'nowrap' 
                     }}>
-                      1. Choose Product
+                      100% Solid Brass
                     </div>
                     <div style={{ 
                       fontSize: '0.72rem', 
@@ -859,43 +834,7 @@ export const HomePage = () => {
                       lineHeight: 1.25, 
                       whiteSpace: 'nowrap' 
                     }}>
-                      Select your favorite gift
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <div style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: '10px',
-                    background: '#FEF3C7',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.1rem',
-                    flexShrink: 0
-                  }}>
-                    ✏️
-                  </div>
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ 
-                      fontSize: '0.82rem', 
-                      fontWeight: 700, 
-                      color: '#111827', 
-                      lineHeight: 1.25, 
-                      marginBottom: '0.15rem', 
-                      whiteSpace: 'nowrap' 
-                    }}>
-                      2. Add Personalization
-                    </div>
-                    <div style={{ 
-                      fontSize: '0.72rem', 
-                      color: '#6B7280', 
-                      lineHeight: 1.25, 
-                      whiteSpace: 'nowrap' 
-                    }}>
-                      Name, message or logo
+                      Artisanal antique finish
                     </div>
                   </div>
                 </div>
@@ -923,7 +862,7 @@ export const HomePage = () => {
                       marginBottom: '0.15rem', 
                       whiteSpace: 'nowrap' 
                     }}>
-                      3. We Create & Deliver
+                      Luxe Gift Box
                     </div>
                     <div style={{ 
                       fontSize: '0.72rem', 
@@ -931,7 +870,43 @@ export const HomePage = () => {
                       lineHeight: 1.25, 
                       whiteSpace: 'nowrap' 
                     }}>
-                      Made with love
+                      Festive ready packaging
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <div style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: '10px',
+                    background: '#FEF3C7',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.1rem',
+                    flexShrink: 0
+                  }}>
+                    🛡️
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ 
+                      fontSize: '0.82rem', 
+                      fontWeight: 700, 
+                      color: '#111827', 
+                      lineHeight: 1.25, 
+                      marginBottom: '0.15rem', 
+                      whiteSpace: 'nowrap' 
+                    }}>
+                      Safe Transit
+                    </div>
+                    <div style={{ 
+                      fontSize: '0.72rem', 
+                      color: '#6B7280', 
+                      lineHeight: 1.25, 
+                      whiteSpace: 'nowrap' 
+                    }}>
+                      Zero-breakage guarantee
                     </div>
                   </div>
                 </div>
@@ -944,113 +919,7 @@ export const HomePage = () => {
 
 
       {/* ========================================================
-          5. EXPLORE GIFTS BY OCCASION
-      ======================================================== */}
-      <section style={{ padding: '3.5rem 0', backgroundColor: '#FAFAFA', borderTop: '1px solid #F3F4F6' }}>
-        <div className="container">
-          
-          {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
-            <div>
-              <div 
-                style={{ 
-                  background: '#FFF2D6', 
-                  color: '#92400E', 
-                  border: '1px solid rgba(217, 119, 6, 0.28)', 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '0.35rem', 
-                  padding: '0.25rem 0.75rem', 
-                  borderRadius: '9999px', 
-                  fontWeight: 800, 
-                  fontSize: '0.7rem', 
-                  letterSpacing: '0.04em',
-                  marginBottom: '0.5rem' 
-                }}
-              >
-                <span>🎉 GIFT FOR EVERY OCCASION</span>
-              </div>
-
-              <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#111827', margin: 0, marginBottom: '0.35rem' }}>
-                Explore Gifts by Occasion
-              </h2>
-              <p style={{ fontSize: '0.9rem', color: '#6B7280', margin: 0 }}>
-                Make every celebration special with our curated gift collections.
-              </p>
-            </div>
-
-            <button
-              onClick={() => navigateTo('occasions')}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#D97706',
-                fontWeight: 700,
-                fontSize: '0.88rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                cursor: 'pointer'
-              }}
-            >
-              <span>View All Occasions</span>
-              <ArrowRight size={14} />
-            </button>
-          </div>
-
-          {/* 6 Occasion Photo Tiles */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '1.25rem'
-          }}>
-            {OCCASION_TILES.map(occ => (
-              <div
-                key={occ.id}
-                onClick={() => navigateTo('occasions', { occasion: occ.id })}
-                style={{
-                  cursor: 'pointer',
-                  textAlign: 'center',
-                  transition: 'transform 0.2s ease'
-                }}
-                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
-                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-              >
-                <div style={{
-                  width: '100%',
-                  paddingTop: '80%',
-                  position: 'relative',
-                  borderRadius: '14px',
-                  overflow: 'hidden',
-                  marginBottom: '0.65rem',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-                }}>
-                  <img 
-                    src={occ.image} 
-                    alt={occ.name}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                </div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#111827' }}>
-                  {occ.name}
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ========================================================
-          6. THE REASON TO SHOP WITH STEP IN (Why Choose Us)
+          5. THE REASON TO SHOP WITH STEP IN (Why Choose Us)
       ======================================================== */}
       <section style={{ padding: '4rem 0', backgroundColor: '#FFFFFF' }}>
         <div className="container">

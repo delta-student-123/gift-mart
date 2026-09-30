@@ -58,15 +58,14 @@ export const Navbar = () => {
 
   const SHOP_CATEGORIES = [
     { id: 'all', name: 'All Gifts & Hampers', icon: '🎁' },
-    { id: 'cakes', name: 'Designer Cakes', icon: '🎂' },
+    { id: 'religious-idols', name: 'Religious Idols & Statues', icon: '🪔' },
     { id: 'flowers', name: 'Fresh Flower Bouquets', icon: '💐' },
     { id: 'hampers', name: 'Luxury Gift Hampers', icon: '🧺' },
     { id: 'personalized', name: 'Personalized & Laser Gifts', icon: '✨' },
     { id: 'bottles', name: 'Drinkware & Insulated Flasks', icon: '🍶' },
     { id: 'wallets', name: 'Leather Wallets & Sets', icon: '💼' },
     { id: 'lamps', name: '3D Optical LED Lamps', icon: '💡' },
-    { id: 'mugs', name: 'Customized Photo Mugs', icon: '☕' },
-    { id: 'corporate', name: 'Corporate Welcome Kits', icon: '🏢' }
+    { id: 'mugs', name: 'Customized Photo Mugs', icon: '☕' }
   ];
 
   return (
@@ -156,7 +155,7 @@ export const Navbar = () => {
               <Search size={17} color="var(--charcoal-muted)" style={{ marginRight: '0.5rem', flexShrink: 0 }} />
               <input 
                 type="text"
-                placeholder="Search cakes, flowers, hampers, bottles, wallets, lamps..."
+                placeholder="Search idols, flowers, hampers, bottles, wallets, lamps..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -480,23 +479,6 @@ export const Navbar = () => {
               <span>Custom Gifts</span>
             </button>
 
-            {/* Corporate */}
-            <button
-              type="button"
-              onClick={() => navigateTo('corporate-gifting')}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                fontSize: '0.88rem',
-                fontWeight: currentView === 'corporate-gifting' ? 800 : 600,
-                color: currentView === 'corporate-gifting' ? 'var(--primary)' : 'var(--charcoal-dark)',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                padding: '0.35rem 0.5rem'
-              }}
-            >
-              Corporate
-            </button>
 
             {/* About */}
             <button
@@ -577,7 +559,7 @@ export const Navbar = () => {
           }}>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>Select Delivery Location</h3>
             <p style={{ fontSize: '0.86rem', color: 'var(--charcoal-muted)', marginBottom: '1.5rem' }}>
-              Enter your 6-digit delivery pincode to see availability for flowers, cakes, and personalized gifts.
+              Enter your 6-digit delivery pincode to see availability for flowers, idols, and personalized gifts.
             </p>
 
             <form onSubmit={handlePincodeSave}>

@@ -16,9 +16,6 @@ export const FloatingWhatsApp = () => {
         bottom: '24px',
         right: '24px',
         zIndex: 9999,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
         cursor: 'pointer'
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -26,38 +23,11 @@ export const FloatingWhatsApp = () => {
       onClick={handleClick}
       role="button"
       tabIndex={0}
-      aria-label="Order or Chat on WhatsApp"
+      title="Order on WhatsApp"
+      aria-label="Order on WhatsApp"
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClick(); }}
     >
-      {/* Pill message label */}
-      <div style={{
-        background: '#ffffff',
-        color: '#171717',
-        padding: '8px 14px',
-        borderRadius: '9999px',
-        fontSize: '0.85rem',
-        fontWeight: 700,
-        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.15)',
-        border: '1px solid #E5E7EB',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        opacity: isHovered ? 1 : 0.95,
-        transform: isHovered ? 'scale(1.03)' : 'scale(1)',
-        transition: 'all 200ms ease',
-        userSelect: 'none'
-      }}>
-        <span style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          backgroundColor: '#25D366',
-          display: 'inline-block'
-        }} />
-        <span>Order on WhatsApp</span>
-      </div>
-
-      {/* Main Circular Green Icon */}
+      {/* Main Circular Green WhatsApp Icon Button */}
       <div style={{
         position: 'relative',
         width: '58px',
@@ -67,23 +37,19 @@ export const FloatingWhatsApp = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 6px 24px rgba(37, 211, 102, 0.45)',
-        transform: isHovered ? 'scale(1.08)' : 'scale(1)',
-        transition: 'transform 200ms ease'
+        boxShadow: '0 6px 20px rgba(37, 211, 102, 0.45)',
+        transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+        transition: 'transform 200ms ease, box-shadow 200ms ease'
       }}>
-        {/* WhatsApp SVG Icon */}
+        {/* Official WhatsApp SVG Icon */}
         <svg 
           width="32" 
           height="32" 
           viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="#ffffff" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
+          fill="#ffffff"
+          style={{ display: 'block' }}
         >
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="#ffffff" stroke="none" />
-          <path d="M16.5 14.5c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.4 5.3 4.8.7.3 1.3.5 1.8.7.8.2 1.5.2 2.1.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.6.2-1.7-.1-.2-.3-.3-.6-.5z" fill="#25D366" />
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67ZM8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.68C7.02 10.88 7.9 12.04 8.02 12.2C8.14 12.37 9.73 14.83 12.16 15.88C12.74 16.13 13.19 16.28 13.54 16.39C14.12 16.57 14.65 16.55 15.07 16.49C15.54 16.42 16.51 15.9 16.71 15.33C16.92 14.76 16.92 14.27 16.86 14.17C16.79 14.07 16.63 14.01 16.39 13.89C16.14 13.77 14.91 13.16 14.68 13.08C14.45 13 14.29 12.96 14.12 13.2C13.96 13.45 13.49 14.01 13.35 14.17C13.21 14.33 13.07 14.35 12.83 14.23C12.58 14.11 11.78 13.85 10.84 13.01C10.11 12.36 9.62 11.55 9.47 11.31C9.33 11.06 9.46 10.93 9.58 10.81C9.69 10.7 9.83 10.52 9.95 10.37C10.07 10.23 10.11 10.13 10.19 9.96C10.27 9.8 10.23 9.66 10.17 9.54C10.11 9.41 9.64 8.27 9.45 7.8C9.26 7.34 9.07 7.4 8.92 7.39L8.53 7.33Z" />
         </svg>
 
         {/* Pulse Ring */}

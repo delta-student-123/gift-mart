@@ -132,7 +132,7 @@ export const ProductDetailPage = ({ product }) => {
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover'
+                  objectFit: 'contain'
                 }}
               />
 
@@ -192,7 +192,7 @@ export const ProductDetailPage = ({ product }) => {
                       cursor: 'pointer'
                     }}
                   >
-                    <img src={imgUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={imgUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                 ))}
               </div>

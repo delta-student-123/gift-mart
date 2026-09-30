@@ -18,17 +18,6 @@ export const FILTER_ITEMS = [
     features: ['⚡ Free Laser Engraving', '🚚 Express Delivery', '⭐ 4.9/5 Rating', '🛡️ Quality Guaranteed']
   },
   { 
-    id: 'welcome-kits', 
-    label: 'Welcome Kits', 
-    titlePart1: 'Welcome',
-    titlePart2: 'Kits',
-    icon: '🎁', 
-    image: '/images/corporate_welcome_box.jpg',
-    handwrittenNote: 'Make Every Welcome Special',
-    tagline: 'Premium onboarding boxes, employee joiner packs & VIP executive combos with company branding.',
-    features: ['🏢 Custom Company Logo', '📦 Curated 4-in-1 & 6-in-1 Sets', '🏷️ Bulk Discounts', '🚚 Direct Desk Delivery']
-  },
-  { 
     id: 'bottles', 
     label: 'Drinkware & Flasks', 
     titlePart1: 'Drinkware',
@@ -94,7 +83,7 @@ export const FILTER_ITEMS = [
     titlePart1: 'Customized',
     titlePart2: 'Mugs',
     icon: '☕', 
-    image: '/images/custom_mug.jpg',
+    image: '/images/handcrafted_floral_mugs.jpg',
     bannerBg: '/images/test_mug_proper.png',
     handwrittenNote: 'Warm Sips, Warm Smiles',
     tagline: 'Heat-activated color change magic mugs, ceramic coffee cups & personalized photo prints',
@@ -113,32 +102,15 @@ export const FILTER_ITEMS = [
     features: ['🎀 Satin Ribbon Finish', '🍫 Gourmet Chocolates', '💌 Handwritten Card', '🚚 Pan-India Delivery']
   },
   { 
-    id: 'corporate-gifting', 
-    label: 'Corporate Gifting', 
-    titlePart1: 'Corporate',
-    titlePart2: 'Gifting',
-    icon: '🏢', 
-    image: '/images/recipient_clients.jpg',
-    bannerBg: '/images/corporate_banner_bg.png',
-    handwrittenNote: 'Celebrate Your Team',
-    tagline: 'End-to-end corporate gifting solutions, client appreciation gifts, and custom branded merchandise',
-    features: ['🏢 Pan-India Shipping', '📦 Low 10 Pcs MOQ', '⚡ Dedicated Manager', '💰 GST Invoice ITC'],
-    isNavAction: true,
-    target: 'corporate-gifting'
-  },
-  { 
-    id: 'bulk-rfq', 
-    label: 'Bulk RFQ Quote', 
-    titlePart1: 'Bulk RFQ',
-    titlePart2: 'Quote',
-    icon: '⚡', 
-    image: '/images/recipient_employees.jpg',
-    bannerBg: '/images/corporate_banner_bg.png',
-    handwrittenNote: 'Fast Wholesale Pricing',
-    tagline: 'Instant quotation generator for bulk orders (50+ to 10,000+ units) with wholesale pricing',
-    features: ['⚡ 30-Min Fast Quotes', '🎨 Free Digital Mockup', '📉 Up to 40% Savings', '🏭 Factory Direct Supply'],
-    isNavAction: true,
-    target: 'corporate-gifting'
+    id: 'religious-idols', 
+    label: 'Religious Idols', 
+    titlePart1: 'Auspicious Religious',
+    titlePart2: 'Idols & Statues',
+    icon: '🪔', 
+    image: '/images/religious_idol.jpg',
+    handwrittenNote: 'Blessings for Every Home',
+    tagline: 'Handcrafted antique brass idols, divine pooja statues & sacred festive blessings for new beginnings',
+    features: ['🪔 100% Pure Brass', '✨ Handcrafted Antique Finish', '🎁 Sacred Luxe Gift Box', '🚚 Safe Fragile Shipping']
   },
   { 
     id: 'gift-finder', 
@@ -274,50 +246,7 @@ export const ShopPage = () => {
 
 
         {/* 2. DYNAMIC CATEGORY HERO BANNER */}
-        {selectedCategory === 'welcome-kits' ? (
-          <div style={{
-            position: 'relative',
-            borderRadius: '24px',
-            overflow: 'hidden',
-            marginBottom: '2rem',
-            boxShadow: '0 4px 18px rgba(217, 119, 6, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02)',
-            border: '1.5px solid rgba(217, 119, 6, 0.22)',
-            backgroundColor: '#FFFBF3',
-            width: '100%'
-          }} className="welcome-kits-exact-banner">
-            <img
-              src="/images/welcome_kits_banner.png"
-              alt="Welcome Kits Collection - Premium onboarding boxes"
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                imageRendering: '-webkit-optimize-contrast'
-              }}
-            />
-            {/* Interactive button over "View All Collections" */}
-            <button
-              onClick={() => setSelectedCategory('all')}
-              title="View All Collections"
-              style={{
-                position: 'absolute',
-                left: '12.7%',
-                top: '80.6%',
-                width: '21.5%',
-                height: '9.3%',
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                borderRadius: '9999px',
-                transition: 'background-color 150ms ease'
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-              aria-label="View All Collections"
-            />
-          </div>
-        ) : (
-          <div style={{
+        <div style={{
             position: 'relative',
             borderRadius: '24px',
             overflow: 'hidden',
@@ -490,7 +419,6 @@ export const ShopPage = () => {
             </div>
 
           </div>
-        )}
 
         {/* Page Title & Sort Row */}
         <div style={{ marginBottom: '1.25rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
