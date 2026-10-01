@@ -30,7 +30,7 @@ export const Footer = () => {
               <Logo onClick={() => navigateTo('home')} lightMode={true} height={44} />
             </div>
             <p style={{ fontSize: '0.88rem', color: '#d4d4d4', lineHeight: 1.65, marginBottom: '1.25rem' }}>
-              “Thoughtful Gifts for Every Special Moment” — India’s premier gifting marketplace crafting memories with artisan flowers, cakes, hampers, and laser-personalized surprises.
+              “Thoughtful Gifts for Every Special Moment” — India’s premier gifting marketplace crafting memories with artisan flowers, hampers, keepsakes, and personalized surprises.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
               {[
@@ -115,13 +115,10 @@ export const Footer = () => {
             <h4 style={{ color: '#ffffff', fontSize: '0.98rem', fontWeight: 700, marginBottom: '1.15rem' }}>Shop Gifts</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.86rem' }}>
               <li><a href="#all" onClick={(e) => { e.preventDefault(); navigateTo('shop'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>All Gifts</a></li>
-              <li><a href="#personalized" onClick={(e) => { e.preventDefault(); navigateTo('personalized-gifts'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Personalized Gifts</a></li>
               <li><a href="#flowers" onClick={(e) => { e.preventDefault(); navigateTo('shop', { category: 'flowers' }); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Fresh Flowers</a></li>
-              <li><a href="#cakes" onClick={(e) => { e.preventDefault(); navigateTo('shop', { category: 'cakes' }); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Designer Cakes</a></li>
               <li><a href="#chocolates" onClick={(e) => { e.preventDefault(); navigateTo('shop', { category: 'chocolates' }); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Chocolates & Truffles</a></li>
               <li><a href="#plants" onClick={(e) => { e.preventDefault(); navigateTo('shop', { category: 'plants' }); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Lush Plants</a></li>
               <li><a href="#hampers" onClick={(e) => { e.preventDefault(); navigateTo('gift-hampers'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Luxury Hampers</a></li>
-              <li><a href="#corporate" onClick={(e) => { e.preventDefault(); navigateTo('corporate-gifting'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Corporate Gifts</a></li>
             </ul>
           </div>
 
@@ -143,8 +140,7 @@ export const Footer = () => {
             <h4 style={{ color: '#ffffff', fontSize: '0.98rem', fontWeight: 700, marginBottom: '1.15rem' }}>Customer Care</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.86rem' }}>
               <li><a href="#contact" onClick={(e) => { e.preventDefault(); navigateTo('contact-us'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Contact Us</a></li>
-              <li><a href="#custom-gifts" onClick={(e) => { e.preventDefault(); navigateTo('custom-gifts'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Custom Gifts & Proofs</a></li>
-              <li><a href="#faq" onClick={(e) => { e.preventDefault(); navigateTo('faq-delivery'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>FAQs & Delivery Slots</a></li>
+              <li><a href="#faq" onClick={(e) => { e.preventDefault(); navigateTo('faq-delivery'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>FAQs & Delivery Information</a></li>
               <li><a href="#shipping" onClick={(e) => { e.preventDefault(); navigateTo('faq-delivery'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Pan-India Pincodes</a></li>
               <li><a href="#policy" onClick={(e) => { e.preventDefault(); navigateTo('faq-delivery'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Returns & Zero-Breakage</a></li>
             </ul>
@@ -156,7 +152,6 @@ export const Footer = () => {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.86rem' }}>
               <li><a href="#about" onClick={(e) => { e.preventDefault(); navigateTo('about-us'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>About Us</a></li>
               <li><a href="#blog" onClick={(e) => { e.preventDefault(); navigateTo('blog'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Gift Inspiration Blog</a></li>
-              <li><a href="#corporate-page" onClick={(e) => { e.preventDefault(); navigateTo('corporate-gifting'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Corporate Gifting</a></li>
               <li><a href="#privacy" onClick={(e) => { e.preventDefault(); navigateTo('about-us'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Privacy Policy</a></li>
               <li><a href="#terms" onClick={(e) => { e.preventDefault(); navigateTo('about-us'); }} style={{ color: '#a8a29e', textDecoration: 'none' }}>Terms & Conditions</a></li>
             </ul>

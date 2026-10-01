@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
     const path = window.location.pathname.replace(/^\//, '');
     if (!path) return 'home';
     if (path.startsWith('product/')) return 'product-detail';
+    if (path === 'custom-gifts' || path === 'custom' || path === 'corporate-gifting' || path === 'corporate') return 'shop';
     return path;
   });
   const [viewParams, setViewParams] = useState(() => {
@@ -59,9 +60,9 @@ export const AppProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState(() => {
     try {
       const saved = localStorage.getItem('stepin_wishlist');
-      return saved ? JSON.parse(saved) : ['prod-1', 'prod-4'];
+      return saved ? JSON.parse(saved) : ['prod-1', 'prod-2'];
     } catch {
-      return ['prod-1', 'prod-4'];
+      return ['prod-1', 'prod-2'];
     }
   });
 
@@ -194,7 +195,7 @@ export const AppProvider = ({ children }) => {
 
   // Clean URL Routing synchronization
   const navigateTo = (view, params = {}) => {
-    if (view === 'custom') view = 'custom-gifts';
+    if (view === 'custom' || view === 'custom-gifts' || view === 'corporate' || view === 'corporate-gifting') view = 'shop';
     setCurrentView(view);
     setViewParams(params);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -226,11 +227,17 @@ export const AppProvider = ({ children }) => {
 
   // Toast Functionality
   const showToast = (message, type = 'success') => {
-    const id = Date.now().toString() + Math.random().toString();
-    setToasts(prev => [...prev, { id, message, type }]);
-    setTimeout(() => {
-      setToasts(prev => prev.filter(t => t.id !== id));
-    }, 3500);
+    setToasts(prev => {
+      // Prevent duplicate notification if the exact same message is already active
+      if (prev.some(t => t.message === message)) {
+        return prev;
+      }
+      const id = Date.now().toString() + Math.random().toString();
+      setTimeout(() => {
+        setToasts(current => current.filter(t => t.id !== id));
+      }, 3500);
+      return [...prev, { id, message, type }];
+    });
   };
 
   const removeToast = (id) => {
@@ -301,16 +308,15 @@ export const AppProvider = ({ children }) => {
 
   // Wishlist Management
   const toggleWishlist = (product) => {
-    setWishlist(prev => {
-      const exists = prev.includes(product.id);
-      if (exists) {
-        showToast(`Removed from your wishlist`, 'info');
-        return prev.filter(id => id !== product.id);
-      } else {
-        showToast(`Saved to your wishlist ❤️`);
-        return [...prev, product.id];
-      }
-    });
+    if (!product || !product.id) return;
+    const exists = wishlist.includes(product.id);
+    if (exists) {
+      setWishlist(prev => prev.filter(id => id !== product.id));
+      showToast(`Removed from your wishlist`, 'info');
+    } else {
+      setWishlist(prev => (prev.includes(product.id) ? prev : [...prev, product.id]));
+      showToast(`Saved to your wishlist ❤️`);
+    }
   };
 
   const isInWishlist = (productId) => wishlist.includes(productId);

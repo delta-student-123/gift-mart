@@ -119,7 +119,7 @@ export const ProductDetailPage = ({ product }) => {
               position: 'relative',
               width: '100%',
               paddingTop: '95%',
-              background: '#ffffff',
+              background: product.cardBg || '#ffffff',
               border: '1px solid #EFEAE2',
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)'
             }}>
@@ -478,7 +478,7 @@ export const ProductDetailPage = ({ product }) => {
                   {product.description}
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem', marginTop: '1.25rem' }}>
-                  {['Free customized message greeting card', 'High-grade protective packaging', 'Doorstep delivery with SMS tracking'].map((item, idx) => (
+                  {['Free customized message greeting card', 'High-grade protective packaging', 'Doorstep delivery with direct WhatsApp support'].map((item, idx) => (
                     <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '0.85rem', color: '#374151' }}>
                       <Check size={16} color="#16A34A" />
                       <span>{item}</span>

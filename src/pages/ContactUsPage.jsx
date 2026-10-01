@@ -12,7 +12,7 @@ import {
   ChevronUp,
   Building,
   ArrowRight,
-  ChevronRight
+  Navigation
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -59,29 +59,8 @@ export const ContactUsPage = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FCFBF9', minHeight: '90vh', padding: '1.5rem 0 5rem' }}>
+    <div style={{ backgroundColor: '#FCFBF9', minHeight: '90vh', padding: '2.5rem 0 5rem' }}>
       <div className="container" style={{ maxWidth: 1120 }}>
-        
-        {/* Breadcrumb Navigation */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '0.45rem', 
-          fontSize: '0.84rem', 
-          color: 'var(--charcoal-muted)', 
-          marginBottom: '1.75rem' 
-        }}>
-          <span 
-            onClick={() => navigateTo('home')} 
-            style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600, transition: 'color 150ms' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal-dark)'}
-          >
-            Home
-          </span>
-          <ChevronRight size={14} />
-          <span style={{ color: 'var(--primary)', fontWeight: 700 }}>Contact Us</span>
-        </div>
 
         {/* HERO HEADER */}
         <div style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto 3rem' }}>
@@ -130,29 +109,50 @@ export const ContactUsPage = () => {
           marginBottom: '3.5rem'
         }}>
           {/* Card 1: Phone Support */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '20px',
-            border: '1px solid #EFEAE2',
-            padding: '1.65rem 1.4rem',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            transition: 'all 200ms ease'
-          }}>
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #EFEAE2',
+              padding: '1.65rem 1.4rem',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(217, 119, 6, 0.45)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(217, 119, 6, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1.08)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = '#EFEAE2';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.03)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1)';
+            }}
+          >
             <div>
-              <div style={{
-                width: 46,
-                height: 46,
-                borderRadius: '14px',
-                background: '#FEF3C7',
-                color: '#D97706',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '1rem'
-              }}>
+              <div 
+                className="channel-icon"
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: '14px',
+                  background: '#FEF3C7',
+                  color: '#D97706',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  transition: 'transform 0.25s ease'
+                }}
+              >
                 <Phone size={22} />
               </div>
               <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#171717', margin: '0 0 0.35rem' }}>
@@ -182,29 +182,50 @@ export const ContactUsPage = () => {
           </div>
 
           {/* Card 2: WhatsApp Chat */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '20px',
-            border: '1px solid #EFEAE2',
-            padding: '1.65rem 1.4rem',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            transition: 'all 200ms ease'
-          }}>
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #EFEAE2',
+              padding: '1.65rem 1.4rem',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(21, 128, 61, 0.45)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(21, 128, 61, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1.08)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = '#EFEAE2';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.03)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1)';
+            }}
+          >
             <div>
-              <div style={{
-                width: 46,
-                height: 46,
-                borderRadius: '14px',
-                background: '#DCFCE7',
-                color: '#15803D',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '1rem'
-              }}>
+              <div 
+                className="channel-icon"
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: '14px',
+                  background: '#DCFCE7',
+                  color: '#15803D',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  transition: 'transform 0.25s ease'
+                }}
+              >
                 <MessageCircle size={22} />
               </div>
               <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#171717', margin: '0 0 0.35rem' }}>
@@ -236,29 +257,50 @@ export const ContactUsPage = () => {
           </div>
 
           {/* Card 3: Email Support */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '20px',
-            border: '1px solid #EFEAE2',
-            padding: '1.65rem 1.4rem',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            transition: 'all 200ms ease'
-          }}>
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #EFEAE2',
+              padding: '1.65rem 1.4rem',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(37, 99, 235, 0.45)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(37, 99, 235, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1.08)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = '#EFEAE2';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.03)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1)';
+            }}
+          >
             <div>
-              <div style={{
-                width: 46,
-                height: 46,
-                borderRadius: '14px',
-                background: '#EFF6FF',
-                color: '#2563EB',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '1rem'
-              }}>
+              <div 
+                className="channel-icon"
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: '14px',
+                  background: '#EFF6FF',
+                  color: '#2563EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  transition: 'transform 0.25s ease'
+                }}
+              >
                 <Mail size={22} />
               </div>
               <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#171717', margin: '0 0 0.35rem' }}>
@@ -288,29 +330,50 @@ export const ContactUsPage = () => {
           </div>
 
           {/* Card 4: Experience Center */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '20px',
-            border: '1px solid #EFEAE2',
-            padding: '1.65rem 1.4rem',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            transition: 'all 200ms ease'
-          }}>
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #EFEAE2',
+              padding: '1.65rem 1.4rem',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(147, 51, 234, 0.45)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(147, 51, 234, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1.08)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = '#EFEAE2';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.03)';
+              const icon = e.currentTarget.querySelector('.channel-icon');
+              if (icon) icon.style.transform = 'scale(1)';
+            }}
+          >
             <div>
-              <div style={{
-                width: 46,
-                height: 46,
-                borderRadius: '14px',
-                background: '#F3E8FF',
-                color: '#9333EA',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '1rem'
-              }}>
+              <div 
+                className="channel-icon"
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: '14px',
+                  background: '#F3E8FF',
+                  color: '#9333EA',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  transition: 'transform 0.25s ease'
+                }}
+              >
                 <MapPin size={22} />
               </div>
               <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#171717', margin: '0 0 0.35rem' }}>
@@ -690,7 +753,7 @@ export const ContactUsPage = () => {
               <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <button
                   type="button"
-                  onClick={() => navigateTo('corporate-gifting')}
+                  onClick={() => window.open('https://wa.me/919971112444?text=' + encodeURIComponent('Hi Step In Gift Mart, I would like to inquire about corporate/bulk order gifting.'), '_blank')}
                   style={{
                     background: '#171717',
                     color: '#ffffff',
@@ -706,15 +769,16 @@ export const ContactUsPage = () => {
                     transition: 'all 150ms ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgb(217, 119, 6)';
-                    e.currentTarget.style.color = '#171717';
+                    e.currentTarget.style.backgroundColor = '#25D366';
+                    e.currentTarget.style.color = '#ffffff';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = '#171717';
                     e.currentTarget.style.color = '#ffffff';
                   }}
                 >
-                  <span>Explore Bulk Gifting Portal</span>
+                  <MessageCircle size={15} />
+                  <span>Enquire on WhatsApp</span>
                   <ArrowRight size={14} />
                 </button>
               </div>
@@ -731,33 +795,200 @@ export const ContactUsPage = () => {
           borderRadius: '24px',
           border: '1px solid #EFEAE2',
           overflow: 'hidden',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
+          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.04)'
         }}>
-          <div style={{ padding: '1.75rem 2rem', borderBottom: '1px solid #F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          {/* Header Strip */}
+          <div style={{
+            padding: '1.75rem 2rem',
+            borderBottom: '1px solid #F3F4F6',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            background: 'linear-gradient(to right, #FFFDF8, #FFFFFF)'
+          }}>
             <div>
-              <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                VISIT OUR EXPERIENCE STUDIO
-              </span>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#171717', margin: '4px 0 0' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#FEF3C7',
+                padding: '0.2rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                color: '#B45309',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                marginBottom: '0.35rem'
+              }}>
+                <MapPin size={12} color="#D97706" />
+                <span>VISIT OUR EXPERIENCE STUDIO</span>
+              </div>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#171717', margin: 0 }}>
                 Connaught Place Gifting Flagship & Workshop
               </h3>
             </div>
-            <div style={{ fontSize: '0.85rem', color: '#525252', fontWeight: 600 }}>
-              Shop 14, Inner Circle, Connaught Place, New Delhi - 110001
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Connaught+Place+New+Delhi"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'rgb(217, 119, 6)',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  padding: '0.6rem 1.25rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  boxShadow: '0 2px 10px rgba(217, 119, 6, 0.25)',
+                  transition: 'background 150ms'
+                }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#b45309'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgb(217, 119, 6)'}
+              >
+                <Navigation size={14} />
+                <span>Get Directions (Google Maps)</span>
+              </a>
+
+              <a
+                href={`tel:${brand?.supportPhone || '+9101149208000'}`}
+                style={{
+                  background: '#171717',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  padding: '0.6rem 1.15rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  transition: 'background 150ms'
+                }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#333333'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#171717'}
+              >
+                <Phone size={14} />
+                <span>Call Studio</span>
+              </a>
             </div>
           </div>
 
-          <div style={{ width: '100%', height: '360px', position: 'relative' }}>
-            <iframe
-              title="Step IN Gift Mart Connaught Place Store Location"
-              src="https://maps.google.com/maps?q=Connaught%20Place,%20New%20Delhi&t=&z=14&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          {/* 2-Column Content: Studio Highlights (Left) + Interactive OpenStreetMap (Right) */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(300px, 1fr) minmax(320px, 1.4fr)',
+            alignItems: 'stretch'
+          }} className="studio-map-grid">
+            
+            {/* Left Column: Studio Perks, Address, Metro Info */}
+            <div style={{
+              padding: '2rem',
+              backgroundColor: '#FFFDF9',
+              borderRight: '1px solid #F3F4F6',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '1.5rem'
+            }}>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#171717', margin: '0 0 0.85rem' }}>
+                  Location & Arrival Info
+                </h4>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.85rem', color: '#525252' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                    <MapPin size={16} color="rgb(217, 119, 6)" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <div>
+                      <strong style={{ color: '#171717' }}>Address:</strong> Shop 14, Inner Circle (Block D), Connaught Place, New Delhi – 110001
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                    <Navigation size={16} color="#2563EB" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <div>
+                      <strong style={{ color: '#171717' }}>Metro:</strong> Rajiv Chowk (Exit Gate 4) — 2 mins walking distance.
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                    <Clock size={16} color="#15803D" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <div>
+                      <strong style={{ color: '#171717' }}>Studio Hours:</strong> Monday – Saturday: 9:00 AM – 9:00 PM | Sunday: 10:00 AM – 7:00 PM
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* In-Store Studio Experience Badges */}
+              <div style={{
+                background: '#FFFFFF',
+                borderRadius: '16px',
+                padding: '1.25rem',
+                border: '1px solid #EFEAE2',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)'
+              }}>
+                <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.65rem' }}>
+                  In-Store Workshop Perks
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem', fontSize: '0.82rem', color: '#374151' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <CheckCircle2 size={15} color="#16A34A" />
+                    <span>⚡ 15-Minute Live Laser Personalization</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <CheckCircle2 size={15} color="#16A34A" />
+                    <span>🎁 Bespoke Ribbon & Velvet Trunk Packaging Bar</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <CheckCircle2 size={15} color="#16A34A" />
+                    <span>📦 Online Order Collection & Urgent Same-Day Pickups</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: OpenStreetMap Interactive Map */}
+            <div style={{ position: 'relative', minHeight: '360px', backgroundColor: '#F3F4F6' }}>
+              <iframe
+                title="Step IN Gift Mart Connaught Place Store Location"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=77.2110%2C28.6270%2C77.2260%2C28.6380&amp;layer=mapnik&amp;marker=28.6328%2C77.2197"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '360px', width: '100%', display: 'block' }}
+                loading="lazy"
+              />
+
+              {/* Floating Pin Card on top of the map */}
+              <div style={{
+                position: 'absolute',
+                top: 16,
+                left: 16,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(8px)',
+                borderRadius: '12px',
+                padding: '0.6rem 0.9rem',
+                border: '1px solid #EFEAE2',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                pointerEvents: 'none'
+              }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: 'rgb(217, 119, 6)', boxShadow: '0 0 8px rgb(217, 119, 6)' }} />
+                <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#171717' }}>
+                  Connaught Place, New Delhi
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -766,6 +997,11 @@ export const ContactUsPage = () => {
       <style>{`
         @media (max-width: 900px) {
           .contact-main-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 860px) {
+          .studio-map-grid {
             grid-template-columns: 1fr !important;
           }
         }

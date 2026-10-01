@@ -8,14 +8,14 @@ export const FILTER_ITEMS = [
   { 
     id: 'all', 
     label: 'All Gifts', 
-    titlePart1: 'All Curated',
-    titlePart2: 'Gifts',
+    titlePart1: 'The Curated',
+    titlePart2: 'Gift Shop',
     icon: '🎁', 
     image: '/images/luxury_hamper.jpg',
-    bannerBg: '/images/all_gifts_banner_bg.png',
+    bannerBg: '/images/gift_shop_banner_bg.jpg',
     handwrittenNote: 'Gifts That Speak Love',
-    tagline: 'Explore our complete collection of personalized gifts, corporate hampers & luxury keepsakes',
-    features: ['⚡ Free Laser Engraving', '🚚 Express Delivery', '⭐ 4.9/5 Rating', '🛡️ Quality Guaranteed']
+    tagline: 'Step into our boutique gift shop — discover handpicked treasures, luxury hampers, cuddly companions & celebration keepsakes.',
+    features: ['🎁 50+ Curated Gifts', '⚡ Free Customization', '🚚 Express Delivery', '⭐ 4.9/5 Rating']
   },
   { 
     id: 'bottles', 
@@ -113,6 +113,28 @@ export const FILTER_ITEMS = [
     features: ['🪔 100% Pure Brass', '✨ Handcrafted Antique Finish', '🎁 Sacred Luxe Gift Box', '🚚 Safe Fragile Shipping']
   },
   { 
+    id: 'soft-toys', 
+    label: 'Teddy Bears & Dolls', 
+    titlePart1: 'Cuddly Plush &',
+    titlePart2: 'Collector Dolls',
+    icon: '🧸', 
+    image: '/images/doll_victorian_princess.jpg',
+    handwrittenNote: 'Sweet Keepsakes & Hugs',
+    tagline: 'Ultra-soft huggable plush teddy bears, poseable chibi baby dolls & Victorian collector dolls',
+    features: ['🧸 100% Non-Toxic Velvet Plush', '✨ Handcrafted Lace Attire', '🎀 Poseable BJD & Chibi Dolls', '🚚 Safe Express Delivery']
+  },
+  { 
+    id: 'keychains', 
+    label: 'Keychains & Charms', 
+    titlePart1: 'Handcrafted',
+    titlePart2: 'Keychains & Charms',
+    icon: '🔑', 
+    image: '/images/keychain_crochet_sunflower.jpg',
+    handwrittenNote: 'Cute Everyday Charms',
+    tagline: 'Handmade crochet sunflower & bow charms, anime collectibles and metallic insignia keychains',
+    features: ['🧶 100% Handcrafted Crochet', '✨ Premium Metal Clips & Clasps', '🎁 Gift-Ready Keepsake Packaging', '⚡ Express Pan-India Delivery']
+  },
+  { 
     id: 'gift-finder', 
     label: 'Gift Finder', 
     titlePart1: 'AI Gift',
@@ -134,8 +156,8 @@ export const ShopPage = () => {
   const [selectedOccasion, setSelectedOccasion] = useState(viewParams.occasion || 'all');
   const [selectedRecipient, setSelectedRecipient] = useState(viewParams.recipient || 'all');
   const [selectedFeeling, setSelectedFeeling] = useState(viewParams.feeling || 'all');
-  const [onlySameDay, setOnlySameDay] = useState(viewParams.delivery === 'same-day');
-  const [onlyPersonalized, setOnlyPersonalized] = useState(viewParams.category === 'personalized');
+  const [onlySameDay, setOnlySameDay] = useState(false);
+  const [onlyPersonalized, setOnlyPersonalized] = useState(false);
   const [priceMin, setPriceMin] = useState(viewParams.minPrice || 0);
   const [priceMax, setPriceMax] = useState(viewParams.maxPrice || 5000);
   const [activeBudgetId, setActiveBudgetId] = useState('all');
@@ -231,19 +253,8 @@ export const ShopPage = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '2rem 0 5rem' }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '85vh', padding: '1.5rem 0 5rem' }}>
       <div className="container">
-        
-        {/* Breadcrumb Navigation */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--charcoal-muted)', marginBottom: '1.25rem' }}>
-          <span onClick={() => navigateTo('home')} style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600 }}>Home</span>
-          <ChevronRight size={14} />
-          <span onClick={() => setSelectedCategory('all')} style={{ cursor: 'pointer', color: 'var(--charcoal-muted)', fontWeight: 600 }}>Catalog</span>
-          <ChevronRight size={14} />
-          <span style={{ color: 'var(--primary)', fontWeight: 700 }}>{getCategoryTitle()}</span>
-        </div>
-
-
 
         {/* 2. DYNAMIC CATEGORY HERO BANNER */}
         <div style={{
@@ -298,7 +309,7 @@ export const ShopPage = () => {
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase'
                 }}>
-                  {selectedCategory === 'all' ? 'ALL GIFTS COLLECTION' : `${(currentFilterInfo.label || '').toUpperCase()} COLLECTION`}
+                  {selectedCategory === 'all' ? 'THE GIFT SHOP COLLECTION' : `${(currentFilterInfo.label || '').toUpperCase()} COLLECTION`}
                 </span>
               </div>
 
@@ -525,30 +536,29 @@ export const ShopPage = () => {
           {/* SIDEBAR FILTER PANEL */}
           <aside className={`shop-sidebar ${isMobileFilterOpen ? 'mobile-open' : ''}`} style={{
             position: 'sticky',
-            top: '165px',
-            maxHeight: 'calc(100vh - 180px)',
-            overflowY: 'auto',
-            scrollbarWidth: 'thin',
+            top: '105px',
+            height: 'calc(100vh - 125px)',
+            maxHeight: 'calc(100vh - 125px)',
+            display: 'flex',
+            flexDirection: 'column',
             zIndex: 20,
             background: '#ffffff',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-xl)',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-xs)'
+            boxShadow: 'var(--shadow-xs)',
+            overflow: 'hidden'
           }}>
+            {/* ANCHORED FILTER HEADER - NEVER OVERLAPS OR CLIPS */}
             <div style={{ 
-              position: 'sticky', 
-              top: 0, 
+              padding: '1.1rem 1.25rem 0.85rem 1.25rem',
               backgroundColor: '#ffffff', 
-              zIndex: 5, 
+              borderBottom: '1px solid var(--border-light)', 
               display: 'flex', 
               justifyContent: 'space-between', 
-              alignItems: 'center', 
-              marginBottom: '1.25rem', 
-              borderBottom: '1px solid var(--border-light)', 
-              paddingBottom: '0.75rem' 
+              alignItems: 'center',
+              flexShrink: 0
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 800, fontSize: '1rem', color: 'var(--charcoal-dark)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 800, fontSize: '0.98rem', color: 'var(--charcoal-dark)' }}>
                 <SlidersHorizontal size={18} color="var(--primary)" />
                 <span>Filters</span>
               </div>
@@ -560,187 +570,101 @@ export const ShopPage = () => {
               </button>
             </div>
 
-            {/* Quick Delivery & Personalization Toggles */}
-            <div style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: '0.88rem', fontWeight: 600 }}>
-                <input 
-                  type="checkbox" 
-                  checked={onlySameDay} 
-                  onChange={(e) => setOnlySameDay(e.target.checked)} 
-                  style={{ accentColor: 'var(--primary)', width: 16, height: 16 }}
-                />
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#b91c1c' }}>
-                  <Zap size={14} fill="#b91c1c" /> Same-Day Delivery
-                </span>
-              </label>
-
-              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: '0.88rem', fontWeight: 600 }}>
-                <input 
-                  type="checkbox" 
-                  checked={onlyPersonalized} 
-                  onChange={(e) => setOnlyPersonalized(e.target.checked)} 
-                  style={{ accentColor: 'var(--primary)', width: 16, height: 16 }}
-                />
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, color: 'var(--accent-gold-dark)' }}>
-                  <Sparkles size={14} /> Free Laser Engraving Only
-                </span>
-              </label>
-            </div>
-
-            {/* Category Filter */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase', marginBottom: '0.65rem' }}>
-                Categories ({CATEGORIES.length})
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', maxHeight: 250, overflowY: 'auto' }}>
-                <div 
-                  onClick={() => setSelectedCategory('all')}
-                  style={{ 
-                    fontSize: '0.85rem', 
-                    cursor: 'pointer', 
-                    fontWeight: selectedCategory === 'all' ? 700 : 500, 
-                    color: selectedCategory === 'all' ? 'var(--charcoal-dark)' : 'var(--charcoal-body)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    padding: '4px 6px',
-                    borderRadius: '8px',
-                    background: selectedCategory === 'all' ? 'var(--secondary-warm)' : 'transparent'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <img src="/images/luxury_hamper.jpg" alt="" aria-hidden="true" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
-                    <span>All Categories</span>
-                  </div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>({productsList.length})</span>
+            {/* SCROLLABLE FILTER BODY */}
+            <div style={{
+              flex: 1,
+              overflowY: 'auto',
+              padding: '1.25rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.4rem',
+              scrollbarWidth: 'thin'
+            }}>
+              {/* Category Filter */}
+              <div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase', marginBottom: '0.65rem' }}>
+                  Categories ({CATEGORIES.length})
                 </div>
-                {CATEGORIES.map(cat => {
-                  const isCatSelected = selectedCategory === cat.id;
-                  const catCount = productsList.filter(p => p.category === cat.id).length;
-                  return (
-                    <div 
-                      key={cat.id}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      style={{ 
-                        fontSize: '0.85rem', 
-                        cursor: 'pointer', 
-                        fontWeight: isCatSelected ? 700 : 500, 
-                        color: isCatSelected ? 'var(--charcoal-dark)' : 'var(--charcoal-body)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        padding: '4px 6px',
-                        borderRadius: '8px',
-                        background: isCatSelected ? 'var(--secondary-warm)' : 'transparent'
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <img src={cat.image} alt="" aria-hidden="true" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
-                        <span>{cat.name}</span>
-                      </div>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>({catCount})</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Occasion Filter */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase', marginBottom: '0.65rem' }}>
-                Occasions
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', maxHeight: 200, overflowY: 'auto' }}>
-                <div 
-                  onClick={() => setSelectedOccasion('all')}
-                  style={{ fontSize: '0.85rem', cursor: 'pointer', fontWeight: selectedOccasion === 'all' ? 700 : 500, color: selectedOccasion === 'all' ? 'var(--primary)' : 'var(--charcoal-body)' }}
-                >
-                  All Occasions
-                </div>
-                {OCCASIONS.map(occ => (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                   <div 
-                    key={occ.id}
-                    onClick={() => setSelectedOccasion(occ.id)}
-                    style={{ fontSize: '0.85rem', cursor: 'pointer', fontWeight: selectedOccasion === occ.id ? 700 : 500, color: selectedOccasion === occ.id ? 'var(--primary)' : 'var(--charcoal-body)', display: 'flex', alignItems: 'center', gap: 6 }}
+                    onClick={() => setSelectedCategory('all')}
+                    style={{ 
+                      fontSize: '0.85rem', 
+                      cursor: 'pointer', 
+                      fontWeight: selectedCategory === 'all' ? 700 : 500, 
+                      color: selectedCategory === 'all' ? 'var(--charcoal-dark)' : 'var(--charcoal-body)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      padding: '5px 8px',
+                      borderRadius: '8px',
+                      background: selectedCategory === 'all' ? 'var(--secondary-warm)' : 'transparent',
+                      transition: 'background 120ms ease'
+                    }}
                   >
-                    <span>{occ.icon}</span>
-                    <span>{occ.name}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <img src="/images/luxury_hamper.jpg" alt="" aria-hidden="true" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
+                      <span>All Categories</span>
+                    </div>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>({productsList.length})</span>
                   </div>
-                ))}
+                  {CATEGORIES.map(cat => {
+                    const isCatSelected = selectedCategory === cat.id;
+                    const catCount = productsList.filter(p => p.category === cat.id).length;
+                    return (
+                      <div 
+                        key={cat.id}
+                        onClick={() => setSelectedCategory(cat.id)}
+                        style={{ 
+                          fontSize: '0.85rem', 
+                          cursor: 'pointer', 
+                          fontWeight: isCatSelected ? 700 : 500, 
+                          color: isCatSelected ? 'var(--charcoal-dark)' : 'var(--charcoal-body)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '5px 8px',
+                          borderRadius: '8px',
+                          background: isCatSelected ? 'var(--secondary-warm)' : 'transparent',
+                          transition: 'background 120ms ease'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <img src={cat.image} alt="" aria-hidden="true" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
+                          <span>{cat.name}</span>
+                        </div>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>({catCount})</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+              {/* Price Range Slider */}
+              <div style={{ paddingBottom: '0.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase' }}>Max Price</span>
+                  <span style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--primary)' }}>₹{priceMax.toLocaleString('en-IN')}</span>
+                </div>
+                <input 
+                  type="range"
+                  min={399}
+                  max={5000}
+                  step={200}
+                  value={priceMax}
+                  onChange={(e) => {
+                    setPriceMax(Number(e.target.value));
+                    setActiveBudgetId('custom');
+                  }}
+                  style={{ width: '100%', accentColor: 'var(--primary)' }}
+                />
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--charcoal-muted)', marginTop: 4 }}>
+                  <span>₹399</span>
+                  <span>₹5,000+</span>
+                </div>
               </div>
             </div>
-
-            {/* Recipient Filter */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase', marginBottom: '0.65rem' }}>
-                Recipient
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {['all', ...FLAT_RECIPIENTS].map(rec => {
-                  const isRecSelected = selectedRecipient === rec;
-                  return (
-                    <button
-                      key={rec}
-                      type="button"
-                      onClick={() => setSelectedRecipient(rec)}
-                      style={{
-                        padding: '0.34rem 0.78rem',
-                        borderRadius: 'var(--radius-full)',
-                        border: isRecSelected ? '1px solid #171717' : '1px solid #E5E7EB',
-                        background: isRecSelected ? '#171717' : '#FFFFFF',
-                        color: isRecSelected ? '#FFFFFF' : 'var(--charcoal-dark)',
-                        fontSize: '0.78rem',
-                        fontWeight: isRecSelected ? 700 : 500,
-                        cursor: 'pointer',
-                        boxShadow: isRecSelected ? '0 2px 6px rgba(23, 23, 23, 0.22)' : '0 1px 2px rgba(0, 0, 0, 0.03)',
-                        transition: 'all 150ms ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isRecSelected) {
-                          e.currentTarget.style.borderColor = 'var(--primary)';
-                          e.currentTarget.style.background = '#FFF9ED';
-                          e.currentTarget.style.color = '#171717';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isRecSelected) {
-                          e.currentTarget.style.borderColor = '#E5E7EB';
-                          e.currentTarget.style.background = '#FFFFFF';
-                          e.currentTarget.style.color = 'var(--charcoal-dark)';
-                        }
-                      }}
-                    >
-                      {rec === 'all' ? 'Everyone' : rec}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Price Range Slider */}
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--charcoal-dark)', textTransform: 'uppercase' }}>Max Price</span>
-                <span style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--primary)' }}>₹{priceMax.toLocaleString('en-IN')}</span>
-              </div>
-              <input 
-                type="range"
-                min={399}
-                max={5000}
-                step={200}
-                value={priceMax}
-                onChange={(e) => {
-                  setPriceMax(Number(e.target.value));
-                  setActiveBudgetId('custom');
-                }}
-                style={{ width: '100%', accentColor: 'var(--primary)' }}
-              />
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--charcoal-muted)', marginTop: 4 }}>
-                <span>₹399</span>
-                <span>₹5,000+</span>
-              </div>
-            </div>
-
           </aside>
 
           {/* MAIN PRODUCTS GRID */}
@@ -797,13 +721,15 @@ export const ShopPage = () => {
             display: none;
             position: static !important;
             top: auto !important;
+            height: auto !important;
             max-height: none !important;
           }
           .shop-sidebar.mobile-open {
-            display: block !important;
+            display: flex !important;
             margin-bottom: 2rem;
             position: static !important;
             top: auto !important;
+            height: auto !important;
             max-height: none !important;
           }
         }

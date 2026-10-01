@@ -35,7 +35,6 @@ export const Navbar = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
-  const [showShopDropdown, setShowShopDropdown] = useState(false);
   const [showPincodeModal, setShowPincodeModal] = useState(false);
   const [tempPincode, setTempPincode] = useState(pincode);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -55,18 +54,6 @@ export const Navbar = () => {
       setShowPincodeModal(false);
     }
   };
-
-  const SHOP_CATEGORIES = [
-    { id: 'all', name: 'All Gifts & Hampers', icon: '🎁' },
-    { id: 'religious-idols', name: 'Religious Idols & Statues', icon: '🪔' },
-    { id: 'flowers', name: 'Fresh Flower Bouquets', icon: '💐' },
-    { id: 'hampers', name: 'Luxury Gift Hampers', icon: '🧺' },
-    { id: 'personalized', name: 'Personalized & Laser Gifts', icon: '✨' },
-    { id: 'bottles', name: 'Drinkware & Insulated Flasks', icon: '🍶' },
-    { id: 'wallets', name: 'Leather Wallets & Sets', icon: '💼' },
-    { id: 'lamps', name: '3D Optical LED Lamps', icon: '💡' },
-    { id: 'mugs', name: 'Customized Photo Mugs', icon: '☕' }
-  ];
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', boxShadow: '0 2px 12px rgba(0,0,0,0.05)' }}>
@@ -104,14 +91,6 @@ export const Navbar = () => {
             >
               <HelpCircle size={12} color="var(--primary)" />
               <span>Delivery Info</span>
-            </span>
-
-            <span 
-              onClick={() => navigateTo('corporate-gifting')}
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4, color: 'var(--primary)', fontWeight: 700 }}
-            >
-              <Building size={12} />
-              <span>Bulk Gifting</span>
             </span>
           </div>
 
@@ -362,82 +341,23 @@ export const Navbar = () => {
               Home
             </button>
 
-            {/* Shop with Category Dropdown */}
-            <div 
-              style={{ position: 'relative' }}
-              onMouseEnter={() => setShowShopDropdown(true)}
-              onMouseLeave={() => setShowShopDropdown(false)}
+            {/* Shop Catalog */}
+            <button
+              type="button"
+              onClick={() => navigateTo('shop')}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0.88rem',
+                fontWeight: currentView === 'shop' ? 800 : 600,
+                color: currentView === 'shop' ? 'var(--primary)' : 'var(--charcoal-dark)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                padding: '0.35rem 0.5rem'
+              }}
             >
-              <button
-                type="button"
-                onClick={() => navigateTo('shop')}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  fontSize: '0.88rem',
-                  fontWeight: currentView === 'shop' ? 800 : 600,
-                  color: currentView === 'shop' ? 'var(--primary)' : 'var(--charcoal-dark)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 4,
-                  whiteSpace: 'nowrap',
-                  padding: '0.35rem 0.5rem'
-                }}
-              >
-                <span>Shop Catalog</span>
-                <ChevronDown size={14} />
-              </button>
-
-              {/* Shop Categories Mega Dropdown */}
-              {showShopDropdown && (
-                <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  width: '280px',
-                  background: '#ffffff',
-                  borderRadius: '16px',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)',
-                  border: '1px solid #EFEAE2',
-                  padding: '0.65rem',
-                  zIndex: 200
-                }}>
-                  {SHOP_CATEGORIES.map(cat => (
-                    <div
-                      key={cat.id}
-                      onClick={() => {
-                        navigateTo('shop', { category: cat.id });
-                        setShowShopDropdown(false);
-                      }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 10,
-                        padding: '0.55rem 0.85rem',
-                        borderRadius: '10px',
-                        cursor: 'pointer',
-                        fontSize: '0.84rem',
-                        fontWeight: 600,
-                        color: '#171717',
-                        transition: 'background 150ms'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = '#FFF8E7';
-                        e.currentTarget.style.color = '#B45309';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = '#171717';
-                      }}
-                    >
-                      <span style={{ fontSize: '1rem' }}>{cat.icon}</span>
-                      <span>{cat.name}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+              Shop Catalog
+            </button>
 
             {/* Occasions */}
             <button
@@ -456,29 +376,6 @@ export const Navbar = () => {
             >
               Occasions
             </button>
-
-            {/* Custom Gifts */}
-            <button
-              type="button"
-              onClick={() => navigateTo('custom-gifts')}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                fontSize: '0.88rem',
-                fontWeight: currentView === 'custom-gifts' ? 800 : 600,
-                color: currentView === 'custom-gifts' ? 'var(--primary)' : 'var(--charcoal-dark)',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                padding: '0.35rem 0.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5
-              }}
-            >
-              <Sparkles size={14} color="rgb(217, 119, 6)" />
-              <span>Custom Gifts</span>
-            </button>
-
 
             {/* About */}
             <button
@@ -634,18 +531,6 @@ export const Navbar = () => {
                 style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
               >
                 Occasions
-              </button>
-              <button 
-                onClick={() => { navigateTo('custom-gifts'); setIsMobileMenuOpen(false); }}
-                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
-              >
-                Custom Gifts
-              </button>
-              <button 
-                onClick={() => { navigateTo('corporate-gifting'); setIsMobileMenuOpen(false); }}
-                style={{ textAlign: 'left', padding: '0.75rem', background: '#F9FAFB', border: 'none', borderRadius: '8px', fontWeight: 700 }}
-              >
-                Corporate Gifting
               </button>
               <button 
                 onClick={() => { navigateTo('about-us'); setIsMobileMenuOpen(false); }}

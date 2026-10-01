@@ -59,11 +59,14 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
         style={{ 
           position: 'relative', 
           width: '100%', 
-          height: imageHeight || (compact ? 175 : 220), 
+          height: imageHeight || (compact ? 180 : 250), 
           overflow: 'hidden', 
-          backgroundColor: '#f9f9f8',
+          backgroundColor: product.cardBg || '#f9f9f8',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           margin: 0,
-          padding: 0
+          padding: product.imagePadding || 0
         }}
       >
         <img 
@@ -74,15 +77,15 @@ export const ProductCard = ({ product, compact = false, imageHeight }) => {
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            objectFit: product.objectFit || 'cover',
             objectPosition: product.imagePosition || 'center center',
             display: 'block',
             margin: 0,
             padding: 0,
-            transition: 'transform 400ms ease'
+            transition: 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.transform = 'scale(1.04)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';

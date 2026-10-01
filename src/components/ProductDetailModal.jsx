@@ -37,8 +37,14 @@ export const ProductDetailModal = () => {
     return defaults;
   });
   const [personalizationNote, setPersonalizationNote] = useState('');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   if (!selectedProduct) return null;
+
+  const productImages = (selectedProduct.images && selectedProduct.images.length > 0)
+    ? selectedProduct.images
+    : [selectedProduct.image];
+  const currentImage = productImages[activeImageIndex] || selectedProduct.image;
 
   const isFavorited = isInWishlist(selectedProduct.id);
   const discountPercent = selectedProduct.originalPrice 
@@ -88,22 +94,26 @@ export const ProductDetailModal = () => {
           onClick={closeProductDetail}
           style={{
             position: 'absolute',
-            top: 16,
-            right: 16,
-            zIndex: 10,
+            top: 14,
+            right: 14,
+            zIndex: 30,
             width: 36,
             height: 36,
             borderRadius: '50%',
             background: 'rgba(255, 255, 255, 0.95)',
-            border: 'none',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: 'var(--shadow-sm)'
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
+            transition: 'transform 120ms ease, background 120ms ease'
           }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.background = '#f3f4f6'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.95)'; }}
+          title="Close"
         >
-          <X size={20} color="var(--charcoal-dark)" />
+          <X size={18} color="var(--charcoal-dark)" />
         </button>
 
         {/* Modal Scrollable Container */}
@@ -112,9 +122,17 @@ export const ProductDetailModal = () => {
             
             {/* Left Image Area */}
             <div>
-              <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', position: 'relative', width: '100%', paddingTop: '100%', boxShadow: 'var(--shadow-md)' }}>
+              <div style={{ 
+                borderRadius: 'var(--radius-xl)', 
+                overflow: 'hidden', 
+                position: 'relative', 
+                width: '100%', 
+                paddingTop: '100%', 
+                boxShadow: 'var(--shadow-md)',
+                backgroundColor: selectedProduct.cardBg || '#f8f8f7'
+              }}>
                 <img 
-                  src={selectedProduct.image || (selectedProduct.images && selectedProduct.images[0])} 
+                  src={currentImage} 
                   alt={selectedProduct.name}
                   style={{
                     position: 'absolute',
@@ -122,7 +140,7 @@ export const ProductDetailModal = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: selectedProduct.objectFit || 'cover'
                   }} 
                 />
 
@@ -144,6 +162,33 @@ export const ProductDetailModal = () => {
                 )}
               </div>
 
+              {/* Multiple Images Gallery Selector */}
+              {productImages.length > 1 && (
+                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem', justifyContent: 'center' }}>
+                  {productImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveImageIndex(idx)}
+                      style={{
+                        width: 56,
+                        height: 56,
+                        borderRadius: 'var(--radius-md)',
+                        border: activeImageIndex === idx ? '2px solid var(--primary, #D97706)' : '1px solid var(--border-subtle, #e5e7eb)',
+                        padding: 3,
+                        backgroundColor: '#ffffff',
+                        cursor: 'pointer',
+                        overflow: 'hidden',
+                        boxShadow: activeImageIndex === idx ? '0 0 0 2px rgba(217, 119, 6, 0.2)' : 'none',
+                        transition: 'border-color 150ms ease, transform 150ms ease'
+                      }}
+                    >
+                      <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {/* Trust highlights */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '1rem' }}>
                 <div style={{ background: '#F9FAFB', padding: '0.65rem', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem', color: '#4B5563' }}>
@@ -158,40 +203,71 @@ export const ProductDetailModal = () => {
             </div>
 
             {/* Right Details Area */}
-            <div>
-              {/* Category & Rating */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  {selectedProduct.category}
+            <div style={{ minWidth: 0 }}>
+              {/* Category, Rating & Tag Badges */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', flexWrap: 'wrap', paddingRight: '2.5rem' }}>
+                <span style={{ 
+                  fontSize: '0.72rem', 
+                  fontWeight: 800, 
+                  color: '#92400E', 
+                  backgroundColor: '#FEF3C7',
+                  padding: '3px 10px',
+                  borderRadius: '9999px',
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.04em' 
+                }}>
+                  {selectedProduct.category?.replace('-', ' ')}
                 </span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#FFF9F0', border: '1px solid #F4EBDD', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
-                  <Star size={12} fill="rgb(217, 119, 6)" color="rgb(217, 119, 6)" />
+
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: '#FFFDF0', border: '1px solid #FDE68A', padding: '2px 8px', borderRadius: '9999px' }}>
+                  <Star size={12} fill="#D97706" color="#D97706" />
                   <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#171717' }}>{selectedProduct.rating || '4.9'}</span>
+                  {selectedProduct.reviewCount && (
+                    <span style={{ fontSize: '0.72rem', color: '#78716C' }}>({selectedProduct.reviewCount})</span>
+                  )}
                 </div>
+
+                {selectedProduct.tag && (
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#047857', background: '#D1FAE5', padding: '2px 9px', borderRadius: '9999px' }}>
+                    {selectedProduct.tag}
+                  </span>
+                )}
               </div>
 
               {/* Title */}
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#171717', lineHeight: 1.25, marginBottom: '0.65rem' }}>
+              <h2 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#171717', lineHeight: 1.3, marginBottom: '0.75rem', paddingRight: '2rem' }}>
                 {selectedProduct.name}
               </h2>
 
-              {/* Price */}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: '1rem' }}>
+              {/* Price & Tax Strip */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '1.65rem', fontWeight: 900, color: '#171717' }}>
                   ₹{selectedProduct.price?.toLocaleString('en-IN')}
                 </span>
                 {selectedProduct.originalPrice && (
-                  <span style={{ fontSize: '0.95rem', color: '#9CA3AF', textDecoration: 'line-through' }}>
+                  <span style={{ fontSize: '0.98rem', color: '#9CA3AF', textDecoration: 'line-through' }}>
                     ₹{selectedProduct.originalPrice.toLocaleString('en-IN')}
                   </span>
                 )}
-                <span style={{ fontSize: '0.76rem', color: '#16A34A', fontWeight: 700 }}>
-                  Inclusive of all taxes
+                {discountPercent > 0 && (
+                  <span style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 800,
+                    color: '#DC2626',
+                    backgroundColor: '#FEE2E2',
+                    padding: '2px 8px',
+                    borderRadius: '6px'
+                  }}>
+                    {discountPercent}% OFF
+                  </span>
+                )}
+                <span style={{ fontSize: '0.78rem', color: '#16A34A', fontWeight: 700, marginLeft: 'auto' }}>
+                  ✓ Inclusive of all taxes
                 </span>
               </div>
 
               {/* Description */}
-              <p style={{ fontSize: '0.86rem', color: '#525252', lineHeight: 1.55, marginBottom: '1.25rem' }}>
+              <p style={{ fontSize: '0.88rem', color: '#4B5563', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                 {selectedProduct.description}
               </p>
 
@@ -210,14 +286,15 @@ export const ProductDetailModal = () => {
                           type="button"
                           onClick={() => setSelectedOptions(prev => ({ ...prev, [optKey]: val }))}
                           style={{
-                            padding: '0.35rem 0.8rem',
+                            padding: '0.38rem 0.85rem',
                             borderRadius: '9999px',
                             border: isSel ? '1.5px solid rgb(217, 119, 6)' : '1px solid #E5E7EB',
                             background: isSel ? '#FFF8E7' : '#ffffff',
-                            color: isSel ? '#171717' : '#525252',
+                            color: isSel ? '#171717' : '#4B5563',
                             fontWeight: isSel ? 800 : 500,
-                            fontSize: '0.78rem',
-                            cursor: 'pointer'
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                            transition: 'all 120ms ease'
                           }}
                         >
                           {val}
@@ -228,40 +305,6 @@ export const ProductDetailModal = () => {
                 </div>
               ))}
 
-              {/* Personalization Note Field */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#171717', display: 'flex', alignItems: 'center', gap: 6, marginBottom: '0.35rem' }}>
-                  <Sparkles size={14} color="#D97706" />
-                  <span>Personalization Note / Custom Name / Message:</span>
-                </label>
-                <textarea
-                  rows={2}
-                  className="form-textarea"
-                  placeholder="e.g. Laser engrave 'Amit & Pooja' / Card message: 'Happy 25th Anniversary!'"
-                  value={personalizationNote}
-                  onChange={(e) => setPersonalizationNote(e.target.value)}
-                  style={{ borderRadius: '10px', padding: '0.55rem 0.85rem', fontSize: '0.84rem' }}
-                />
-              </div>
-
-              {/* Delivery info */}
-              <div style={{
-                background: '#FFFDF9',
-                border: '1px solid #F3ECE1',
-                borderRadius: '12px',
-                padding: '0.75rem 0.95rem',
-                marginBottom: '1.5rem',
-                fontSize: '0.8rem',
-                color: '#525252',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8
-              }}>
-                <Clock size={16} color="#D97706" style={{ flexShrink: 0 }} />
-                <span>
-                  Same-day express in metro hubs • 24–48 hours pan-India delivery with live tracking.
-                </span>
-              </div>
 
               {/* Actions: Prominent Order on WhatsApp */}
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>

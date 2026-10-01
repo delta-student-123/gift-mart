@@ -11,7 +11,8 @@ import {
   ShieldCheck, 
   MessageCircle, 
   ArrowRight,
-  ChevronRight
+  Search,
+  CheckCircle2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { siteConfig } from '../config/siteConfig';
@@ -20,51 +21,76 @@ export const FaqDeliveryPage = () => {
   const { navigateTo } = useApp();
   const [openFaq, setOpenFaq] = useState(0);
 
-  const deliverySlots = [
-    {
-      title: 'Standard Delivery',
-      time: '10:00 AM – 7:00 PM',
-      cost: 'FREE on orders over ₹500',
-      desc: 'Dispatched via premium express couriers (Bluedart, Delhivery). Delivery within 24 to 48 hours.'
+  // WhatsApp Quick Enquiry State
+  const enquiryTopics = [
+    { 
+      id: 'pincode', 
+      label: 'Delivery Time & City/Pincode', 
+      defaultText: 'Hi Step In Gift Mart, I would like to check delivery timeline and courier availability for my City/Pincode: ' 
     },
-    {
-      title: 'Same-Day Express',
-      time: 'Within 4 – 6 Hours',
-      cost: '₹149 Flat Fee',
-      desc: 'Available across Delhi NCR, Mumbai, Bengaluru, Hyderabad, and Kolkata for orders placed before 5 PM IST.'
+    { 
+      id: 'urgent', 
+      label: 'Urgent / Same-Day Inquiry', 
+      defaultText: 'Hi Step In Gift Mart, I need an urgent gift delivery. Can you please let me know the fastest available option?' 
     },
-    {
-      title: 'Midnight Celebration Delivery',
-      time: '11:15 PM – 12:00 Midnight',
-      cost: '₹249 Flat Fee',
-      desc: 'Make birthdays and anniversaries magical with surprise doorstep delivery right at 12:00 AM.'
+    { 
+      id: 'custom', 
+      label: 'Customization & Photo Proof', 
+      defaultText: 'Hi Step In Gift Mart, I want to inquire about custom laser engraving/photo preview on a gift item.' 
+    },
+    { 
+      id: 'bulk', 
+      label: 'Bulk / Corporate Order', 
+      defaultText: 'Hi Step In Gift Mart, I would like to inquire about corporate/bulk order pricing and delivery schedule.' 
+    },
+    { 
+      id: 'status', 
+      label: 'Existing Order Status', 
+      defaultText: 'Hi Step In Gift Mart, I placed an order with you and would like to know the latest status and dispatch update.' 
     }
   ];
+
+  const [selectedTopic, setSelectedTopic] = useState('pincode');
+  const [enquiryMessage, setEnquiryMessage] = useState(enquiryTopics[0].defaultText);
+
+  const handleTopicSelect = (topic) => {
+    setSelectedTopic(topic.id);
+    setEnquiryMessage(topic.defaultText);
+  };
+
+  const handleSendWhatsApp = () => {
+    const text = encodeURIComponent(enquiryMessage.trim());
+    window.open(`https://wa.me/919971112444?text=${text}`, '_blank');
+  };
 
   const paymentSteps = [
     {
       step: '1',
-      title: 'Browse & Tap "Order on WhatsApp"',
-      desc: 'Choose your product, pick your desired size/flavour/color, and add your custom engraving text or message.'
+      title: 'Choose & Personalize',
+      desc: 'Pick your gift and enter your custom name, initials, photo, or personalized message.'
     },
     {
       step: '2',
-      title: 'Message Auto-Fills on WhatsApp',
-      desc: 'Clicking the button opens our verified WhatsApp desk with your selected options and delivery details pre-filled.'
+      title: 'Auto-Fill on WhatsApp',
+      desc: 'Tap "Order on WhatsApp" — your exact product details and delivery info format automatically.'
     },
     {
       step: '3',
-      title: 'Confirm & Secure Payment',
-      desc: 'Our team verifies stock & delivery slot. Pay securely via UPI (Google Pay, PhonePe, Paytm), Card/NetBanking link, or COD.'
+      title: 'Confirm & Secure Pay',
+      desc: 'Our team verifies your proof & slot. Pay smoothly via UPI (GPay, PhonePe, Paytm), Card, or COD.'
     },
     {
       step: '4',
-      title: 'Live Tracking & Delivery',
-      desc: 'Receive live tracking links, packaging photographs, and doorstep delivery updates right inside your WhatsApp chat.'
+      title: 'Direct WhatsApp Updates',
+      desc: 'No confusing tracking portals — simply message us directly on WhatsApp anytime for packaging photos and order status.'
     }
   ];
 
   const faqs = [
+    {
+      q: 'How do I check my order status if there is no tracking portal?',
+      a: 'We keep things simple and direct! There are no confusing tracking links or account logins required. Just send us a quick text on WhatsApp (+91 99711 12444) with your name or product details. Our team is right on chat to share actual photos of your finished gift, packaging status, and dispatch progress.'
+    },
     {
       q: 'Which cities and pincodes do you deliver to?',
       a: 'We deliver to over 19,000 pincodes across India. All metro cities, tier-1, tier-2, and most tier-3 towns are fully covered with doorstep air and ground express courier service.'
@@ -86,140 +112,269 @@ export const FaqDeliveryPage = () => {
       a: 'We provide a 100% Zero-Breakage Guarantee. In the rare event of transit damage, simply send a photo on WhatsApp within 24 hours of delivery, and we will dispatch a free replacement immediately with zero hassle.'
     },
     {
-      q: 'Are cakes and flowers delivered fresh?',
-      a: 'Yes, 100%! Cakes are baked fresh to order by certified master pastry chefs, and flowers are freshly cut and hand-arranged right before delivery in specialized temperature-regulated vans.'
+      q: 'Are fragile hampers and keepsake gifts delivered securely?',
+      a: 'Yes, 100%! All hampers, 3D acrylic lamps, glass bottles, and delicate keepsakes are protected with multi-layer bubble wrap, custom foam inserts, and rigid branded boxes for a 100% zero-breakage delivery.'
     }
   ];
 
   return (
-    <div style={{ backgroundColor: '#FCFBF9', minHeight: '90vh', padding: '1.5rem 0 5rem' }}>
+    <div style={{ backgroundColor: '#FCFBF9', minHeight: '90vh', padding: '2.5rem 0 5rem' }}>
       <div className="container" style={{ maxWidth: 1120 }}>
-        
-        {/* Breadcrumb Navigation */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '0.45rem', 
-          fontSize: '0.84rem', 
-          color: 'var(--charcoal-muted)', 
-          marginBottom: '1.75rem' 
-        }}>
-          <span 
-            onClick={() => navigateTo('home')} 
-            style={{ cursor: 'pointer', color: 'var(--charcoal-dark)', fontWeight: 600, transition: 'color 150ms' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal-dark)'}
-          >
-            Home
-          </span>
-          <ChevronRight size={14} />
-          <span style={{ color: 'var(--primary)', fontWeight: 700 }}>FAQ & Delivery Information</span>
-        </div>
 
-        {/* HERO SECTION */}
-        <div style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto 3rem' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 7,
-            background: '#FFF2D6',
-            border: '1px solid rgba(217, 119, 6, 0.45)',
-            padding: '5px 14px',
-            borderRadius: '9999px',
-            marginBottom: '0.75rem'
-          }}>
-            <Truck size={14} color="#D97706" />
-            <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#92400E', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-              TRANSPARENT & RELIABLE LOGISTICS
-            </span>
-          </div>
-
-          <h1 style={{
-            fontSize: 'clamp(2.1rem, 3.6vw, 2.9rem)',
-            fontWeight: 900,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.15,
-            color: '#171717',
-            marginBottom: '0.75rem'
-          }}>
-            Delivery Information & <span style={{ color: 'rgb(217, 119, 6)' }}>Help Center</span>
-          </h1>
-
-          <p style={{ fontSize: '1rem', color: '#525252', lineHeight: 1.6, margin: 0 }}>
-            Everything you need to know about our pan-India delivery areas, express delivery slots, easy WhatsApp ordering, and secure payment methods.
-          </p>
-        </div>
-
-        {/* 1. DELIVERY SLOTS & TIMINGS */}
-        <div style={{ marginBottom: '4rem' }}>
+        {/* 1. DIRECT WHATSAPP DELIVERY & ORDER ENQUIRIES */}
+        <div style={{ marginBottom: '4rem', paddingTop: '0.5rem' }}>
+          
+          {/* Section Header */}
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              PAN-INDIA COURIER NETWORK
+              DIRECT WHATSAPP ASSISTANCE
             </span>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 900, color: '#171717', margin: '0.35rem 0 0' }}>
-              Express Delivery Slots & Timings
-            </h2>
+            <h1 style={{ fontSize: 'clamp(1.85rem, 3vw, 2.35rem)', fontWeight: 900, color: '#171717', margin: '0.35rem 0 0.55rem' }}>
+              Delivery Enquiries & Direct WhatsApp Support
+            </h1>
+            <p style={{ fontSize: '0.94rem', color: '#57534E', margin: 0, maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6 }}>
+              We do not use complicated tracking portals or ticket systems. Speak directly with our store team on WhatsApp for delivery estimates, personalization checks, and direct order updates.
+            </p>
           </div>
 
+          {/* Interactive Enquiry Assistant Box */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem'
+            background: '#ffffff',
+            borderRadius: '24px',
+            border: '1.5px solid #EFEAE2',
+            padding: '2rem 2.25rem',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.04)',
+            marginBottom: '1.75rem'
           }}>
-            {deliverySlots.map((slot, idx) => (
-              <div
-                key={idx}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '20px',
-                  border: '1px solid #EFEAE2',
-                  padding: '1.75rem',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                    <div style={{
-                      width: 44,
-                      height: 44,
+            {/* Quick Topic Chips */}
+            <div style={{ marginBottom: '1.25rem' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                Select an Inquiry Topic:
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                {enquiryTopics.map((topic) => (
+                  <button
+                    key={topic.id}
+                    type="button"
+                    onClick={() => handleTopicSelect(topic)}
+                    style={{
+                      background: selectedTopic === topic.id ? '#FEF3C7' : '#FAF9F6',
+                      color: selectedTopic === topic.id ? '#92400E' : '#44403C',
+                      border: `1.5px solid ${selectedTopic === topic.id ? '#D97706' : '#E7E5E4'}`,
+                      padding: '0.5rem 0.95rem',
                       borderRadius: '12px',
-                      background: '#FFF8E7',
-                      color: '#D97706',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <Clock size={22} />
-                    </div>
-                    <span style={{
-                      background: '#F0FDF4',
-                      color: '#15803D',
-                      fontSize: '0.74rem',
-                      fontWeight: 800,
-                      padding: '4px 10px',
-                      borderRadius: '9999px',
-                      border: '1px solid #BBF7D0'
-                    }}>
-                      {slot.cost}
-                    </span>
-                  </div>
+                      fontSize: '0.82rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 150ms'
+                    }}
+                  >
+                    {topic.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#171717', margin: '0 0 0.35rem' }}>
-                    {slot.title}
-                  </h3>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#D97706', marginBottom: '0.65rem' }}>
-                    ⏱ {slot.time}
+            {/* Editable Inquiry Message Area */}
+            <div style={{ marginBottom: '1.25rem' }}>
+              <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginBottom: '0.45rem' }}>
+                Message Preview (You can type or edit before sending):
+              </label>
+              <textarea
+                rows={3}
+                value={enquiryMessage}
+                onChange={(e) => setEnquiryMessage(e.target.value)}
+                placeholder="Type your question, city, or pincode here..."
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1.1rem',
+                  borderRadius: '14px',
+                  border: '1.5px solid #E5E7EB',
+                  fontSize: '0.94rem',
+                  fontWeight: 500,
+                  lineHeight: 1.5,
+                  outline: 'none',
+                  transition: 'border-color 150ms',
+                  backgroundColor: '#FAF9F6',
+                  resize: 'vertical',
+                  boxSizing: 'border-box',
+                  fontFamily: 'inherit'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#25D366'}
+                onBlur={(e) => e.target.style.borderColor = '#E5E7EB'}
+              />
+            </div>
+
+            {/* Action Row */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              background: '#F0FDF4',
+              border: '1.5px solid #BBF7D0',
+              borderRadius: '16px',
+              padding: '1.15rem 1.4rem'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: '50%',
+                  background: '#DCFCE7',
+                  color: '#15803D',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <MessageCircle size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#166534' }}>
+                    Direct WhatsApp Store Support
                   </div>
-                  <p style={{ fontSize: '0.85rem', color: '#666666', lineHeight: 1.55, margin: 0 }}>
-                    {slot.desc}
-                  </p>
+                  <div style={{ fontSize: '0.78rem', color: '#15803D', marginTop: 2 }}>
+                    Quick replies within 10–15 minutes • 10:00 AM – 9:00 PM IST
+                  </div>
                 </div>
               </div>
-            ))}
+
+              <button
+                type="button"
+                onClick={handleSendWhatsApp}
+                style={{
+                  background: '#25D366',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '14px',
+                  padding: '0.85rem 1.75rem',
+                  fontSize: '0.92rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  boxShadow: '0 4px 14px rgba(37, 211, 102, 0.35)',
+                  transition: 'background 150ms'
+                }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1ebc59'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#25D366'}
+              >
+                <MessageCircle size={18} />
+                <span>Send Enquiry on WhatsApp</span>
+              </button>
+            </div>
+
           </div>
+
+          {/* 3 Delivery & Service Guarantees */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1.25rem'
+          }}>
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '18px',
+              border: '1px solid #EFEAE2',
+              padding: '1.4rem 1.25rem',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.85rem',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.02)'
+            }}>
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: '12px',
+                background: '#FEF3C7',
+                color: '#D97706',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <ShieldCheck size={22} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.96rem', fontWeight: 800, color: '#171717', margin: '0 0 0.25rem' }}>
+                  Zero-Breakage Guarantee
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: '#666666', lineHeight: 1.5, margin: 0 }}>
+                  High-density shock foam & rigid gift boxes. In the rare event of transit damage, replacement is dispatched immediately.
+                </p>
+              </div>
+            </div>
+
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '18px',
+              border: '1px solid #EFEAE2',
+              padding: '1.4rem 1.25rem',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.85rem',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.02)'
+            }}>
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: '12px',
+                background: '#DCFCE7',
+                color: '#15803D',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <MessageCircle size={22} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.96rem', fontWeight: 800, color: '#171717', margin: '0 0 0.25rem' }}>
+                  Live WhatsApp Photo Proofs
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: '#666666', lineHeight: 1.5, margin: 0 }}>
+                  We share genuine photos and videos of your custom engraved gift and packaging box directly on WhatsApp before courier handover.
+                </p>
+              </div>
+            </div>
+
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '18px',
+              border: '1px solid #EFEAE2',
+              padding: '1.4rem 1.25rem',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.85rem',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.02)'
+            }}>
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: '12px',
+                background: '#EFF6FF',
+                color: '#2563EB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <Truck size={22} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.96rem', fontWeight: 800, color: '#171717', margin: '0 0 0.25rem' }}>
+                  Pan-India Doorstep Delivery
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: '#666666', lineHeight: 1.5, margin: 0 }}>
+                  Reliable express delivery reaching metro hubs and cities across India. Simply message us on WhatsApp for fast assistance anytime.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* 2. HOW WHATSAPP ORDERING & PAYMENT WORKS */}
@@ -246,7 +401,7 @@ export const FaqDeliveryPage = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.5rem'
+            gap: '1.25rem'
           }}>
             {paymentSteps.map((s, idx) => (
               <div 
@@ -256,17 +411,31 @@ export const FaqDeliveryPage = () => {
                   borderRadius: '18px',
                   border: '1px solid #EFEAE2',
                   padding: '1.5rem',
-                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.03)'
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                  cursor: 'default'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(217, 119, 6, 0.1), 0 2px 8px rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(217, 119, 6, 0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.03)';
+                  e.currentTarget.style.borderColor = '#EFEAE2';
                 }}
               >
                 <div style={{
-                  width: 40,
-                  height: 40,
+                  width: 38,
+                  height: 38,
                   borderRadius: '10px',
                   background: '#171717',
                   color: 'rgb(217, 119, 6)',
                   fontWeight: 900,
-                  fontSize: '1.1rem',
+                  fontSize: '1.05rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -274,10 +443,16 @@ export const FaqDeliveryPage = () => {
                 }}>
                   {s.step}
                 </div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#171717', margin: '0 0 0.45rem' }}>
+                <h4 style={{ 
+                  fontSize: '1.02rem', 
+                  fontWeight: 800, 
+                  color: '#171717', 
+                  margin: '0 0 0.5rem',
+                  lineHeight: 1.3
+                }}>
                   {s.title}
                 </h4>
-                <p style={{ fontSize: '0.84rem', color: '#666666', lineHeight: 1.55, margin: 0 }}>
+                <p style={{ fontSize: '0.84rem', color: '#555555', lineHeight: 1.55, margin: 0 }}>
                   {s.desc}
                 </p>
               </div>
@@ -430,7 +605,6 @@ export const FaqDeliveryPage = () => {
             </a>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -13,7 +13,6 @@ import {
   CheckCircle2, 
   MapPin, 
   Star,
-  ChevronRight,
   PackageCheck,
   Edit3
 } from 'lucide-react';
@@ -45,14 +44,14 @@ export const AboutUsPage = () => {
     },
     {
       icon: Clock,
-      title: 'Express & Midnight Delivery',
-      desc: 'Timely celebrations matter. We offer same-day express delivery within 4-6 hours across Delhi NCR, Mumbai, Bengaluru and guaranteed midnight surprise slots.',
-      tag: 'On-Time Always'
+      title: 'Prompt Pan-India Dispatch',
+      desc: 'Timely celebrations matter. We carefully pack and dispatch personalized gifts across India with zero-breakage protective packaging.',
+      tag: 'Fast Dispatch'
     },
     {
       icon: MessageCircle,
       title: 'Personalized WhatsApp Service',
-      desc: 'No confusing forms. Our dedicated gifting specialists assist you directly on WhatsApp with recommendations, custom previews, and live order tracking.',
+      desc: 'No confusing forms. Our dedicated gifting specialists assist you directly on WhatsApp with recommendations, custom previews, and quick order inquiries.',
       tag: 'Dedicated Support'
     }
   ];
@@ -61,7 +60,7 @@ export const AboutUsPage = () => {
     {
       step: '01',
       title: 'Thoughtful Curation',
-      desc: 'Browse hundreds of handpicked cakes, blooms, luxury hampers, and personalized keepsakes.'
+      desc: 'Browse hundreds of curated gifts, artisan keepsakes, luxury hampers, and personalized treasures.'
     },
     {
       step: '02',
@@ -83,20 +82,6 @@ export const AboutUsPage = () => {
   return (
     <div style={{ backgroundColor: '#FCFBF9', minHeight: '100vh', paddingBottom: '5rem', color: '#111827' }}>
       
-      {/* 1. BREADCRUMB */}
-      <div style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #F3EDE4' }}>
-        <div className="container" style={{ padding: '0.85rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem' }}>
-          <button 
-            onClick={() => navigateTo('home')} 
-            style={{ background: 'none', border: 'none', color: '#6B7280', cursor: 'pointer', padding: 0 }}
-          >
-            Home
-          </button>
-          <ChevronRight size={14} color="#9CA3AF" />
-          <span style={{ color: 'rgb(217, 119, 6)', fontWeight: 700 }}>About Step IN Gift Mart</span>
-        </div>
-      </div>
-
       {/* 2. HERO SHOWCASE SECTION */}
       <section style={{ padding: '2.5rem 0' }}>
         <div className="container">
@@ -133,55 +118,52 @@ export const AboutUsPage = () => {
                 gap: '0.45rem',
                 background: '#FFF2D6',
                 border: '1px solid rgba(217, 119, 6, 0.35)',
-                padding: '0.35rem 0.9rem',
+                padding: '0.28rem 0.8rem',
                 borderRadius: '9999px',
-                fontSize: '0.74rem',
+                fontSize: '0.7rem',
                 fontWeight: 800,
                 color: '#92400E',
                 letterSpacing: '0.05em',
-                marginBottom: '1rem'
+                marginBottom: '0.85rem'
               }}>
-                <Sparkles size={14} color="rgb(217, 119, 6)" />
+                <Sparkles size={13} color="rgb(217, 119, 6)" />
                 <span>ABOUT STEP IN GIFT MART</span>
               </div>
 
               <h1 style={{
-                fontSize: 'clamp(2rem, 3.2vw, 2.75rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.025em',
-                lineHeight: 1.2,
+                fontSize: 'clamp(1.45rem, 2.1vw, 1.85rem)',
+                fontWeight: 850,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.25,
                 margin: 0,
-                marginBottom: '1rem',
+                marginBottom: '0.85rem',
                 color: '#111827'
               }}>
                 Where Every Gift Tells a Story of{' '}
-                <span style={{ color: 'rgb(217, 119, 6)', position: 'relative', display: 'inline-block' }}>
+                <span style={{ color: 'rgb(217, 119, 6)' }}>
                   Love & Gratitude
-                  <svg width="100%" height="8" viewBox="0 0 240 8" fill="none" style={{ position: 'absolute', bottom: -3, left: 0 }}>
-                    <path d="M2 6C80 2 160 2 238 5" stroke="rgb(217, 119, 6)" strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
-                  </svg>
                 </span>
               </h1>
 
-              <p style={{ fontSize: '0.96rem', color: '#4B5563', lineHeight: 1.65, margin: 0, marginBottom: '1.75rem', maxWidth: '520px' }}>
-                Since 2018, Step IN Gift Mart has united master bakers, bespoke florists, and precision laser artisans under one roof — delivering thousands of smiles, warm celebrations, and cherished keepsakes across 19,000+ Indian pincodes.
+              <p style={{ fontSize: '0.86rem', color: '#4B5563', lineHeight: 1.58, margin: 0, marginBottom: '1.4rem', maxWidth: '500px' }}>
+                Since 2018, Step IN Gift Mart has united skilled artisans, bespoke gift curators, and precision laser craftsmen under one roof — delivering thousands of smiles, personalized keepsakes, and warm celebrations across 19,000+ Indian pincodes.
               </p>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', marginBottom: '1.75rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.4rem' }}>
                 <button
                   onClick={() => navigateTo('shop')}
                   style={{
                     background: 'rgb(217, 119, 6)',
                     color: '#FFFFFF',
                     border: 'none',
-                    padding: '0.75rem 1.6rem',
+                    padding: '0.65rem 1.4rem',
                     borderRadius: '9999px',
-                    fontSize: '0.9rem',
+                    fontSize: '0.84rem',
                     fontWeight: 700,
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
+                    gap: '0.45rem',
                     cursor: 'pointer',
                     boxShadow: '0 4px 14px rgba(217, 119, 6, 0.3)',
                     transition: 'all 0.2s ease'
@@ -190,7 +172,7 @@ export const AboutUsPage = () => {
                   onMouseLeave={e => e.currentTarget.style.background = 'rgb(217, 119, 6)'}
                 >
                   <span>Explore Gift Catalog</span>
-                  <ArrowRight size={15} />
+                  <ArrowRight size={14} />
                 </button>
 
                 <a
@@ -201,20 +183,20 @@ export const AboutUsPage = () => {
                     background: '#25D366',
                     color: '#FFFFFF',
                     textDecoration: 'none',
-                    padding: '0.75rem 1.5rem',
+                    padding: '0.65rem 1.35rem',
                     borderRadius: '9999px',
-                    fontSize: '0.9rem',
+                    fontSize: '0.84rem',
                     fontWeight: 700,
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
+                    gap: '0.45rem',
                     boxShadow: '0 4px 14px rgba(37, 211, 102, 0.25)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = '#20ba5a'}
                   onMouseLeave={e => e.currentTarget.style.background = '#25D366'}
                 >
-                  <MessageCircle size={16} />
+                  <MessageCircle size={15} />
                   <span>Order on WhatsApp</span>
                 </a>
               </div>
@@ -224,22 +206,22 @@ export const AboutUsPage = () => {
                 display: 'flex',
                 flexWrap: 'wrap',
                 alignItems: 'center',
-                gap: '1.25rem',
-                fontSize: '0.82rem',
+                gap: '1.1rem',
+                fontSize: '0.78rem',
                 color: '#4B5563',
-                paddingTop: '0.75rem',
+                paddingTop: '0.7rem',
                 borderTop: '1px solid rgba(217, 119, 6, 0.15)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <CheckCircle2 size={16} color="rgb(217, 119, 6)" />
+                  <CheckCircle2 size={15} color="rgb(217, 119, 6)" />
                   <span style={{ fontWeight: 600 }}>100% Quality Assured</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <CheckCircle2 size={16} color="rgb(217, 119, 6)" />
+                  <CheckCircle2 size={15} color="rgb(217, 119, 6)" />
                   <span style={{ fontWeight: 600 }}>Same-Day Express Slots</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <CheckCircle2 size={16} color="rgb(217, 119, 6)" />
+                  <CheckCircle2 size={15} color="rgb(217, 119, 6)" />
                   <span style={{ fontWeight: 600 }}>Bespoke Laser Personalization</span>
                 </div>
               </div>
@@ -256,11 +238,11 @@ export const AboutUsPage = () => {
                 backgroundColor: '#F9FAFB'
               }}>
                 <img 
-                  src="/images/celebration_couple.jpg" 
-                  alt="Step IN Gift Mart Gifting Celebrations"
+                  src="/images/about_gift_shop_hero.jpg" 
+                  alt="Step IN Gift Mart Boutique Gift Shop & Studio"
                   style={{
                     width: '100%',
-                    height: '350px',
+                    height: '330px',
                     objectFit: 'cover',
                     display: 'block'
                   }}
@@ -293,11 +275,11 @@ export const AboutUsPage = () => {
                       justifyContent: 'center',
                       color: 'rgb(217, 119, 6)'
                     }}>
-                      <Heart size={16} fill="rgb(217, 119, 6)" />
+                      <Gift size={16} />
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#111827', lineHeight: 1.1 }}>100K+ Celebrations</div>
-                      <div style={{ fontSize: '0.7rem', color: '#6B7280' }}>Delivered across 19,000+ pincodes</div>
+                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#111827', lineHeight: 1.1 }}>Step IN Gifting Boutique</div>
+                      <div style={{ fontSize: '0.7rem', color: '#6B7280' }}>100K+ curated gifts delivered pan-India</div>
                     </div>
                   </div>
                   <div style={{
@@ -391,8 +373,8 @@ export const AboutUsPage = () => {
             gap: '3.5rem',
             alignItems: 'center'
           }}>
-            {/* Visual with Artisan Keepsake */}
-            <div style={{ position: 'relative' }}>
+            {/* Visual with Curated Boutique Display */}
+            <div>
               <div style={{
                 borderRadius: '24px',
                 overflow: 'hidden',
@@ -400,36 +382,15 @@ export const AboutUsPage = () => {
                 border: '1px solid #EFE6D8'
               }}>
                 <img 
-                  src="/images/custom_studio_showcase.jpg" 
-                  alt="Artisan crafted gifts and laser engraving studio"
+                  src="/images/our_journey_boutique.jpg" 
+                  alt="Curated gifts, personalized hampers and boutique display"
                   style={{
                     width: '100%',
-                    height: '380px',
+                    height: '400px',
                     objectFit: 'cover',
                     display: 'block'
                   }}
                 />
-              </div>
-
-              {/* Founder quote pill */}
-              <div style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                right: '20px',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '16px',
-                padding: '1.1rem 1.4rem',
-                border: '1px solid #EFE6D8',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)'
-              }}>
-                <p style={{ fontSize: '0.86rem', fontStyle: 'italic', color: '#1F2937', margin: 0, marginBottom: '0.4rem', lineHeight: 1.45 }}>
-                  "A gift is never just an object. It is a tender reflection of love, gratitude, and remembrance that someone holds close forever."
-                </p>
-                <div style={{ fontSize: '0.74rem', fontWeight: 800, color: 'rgb(217, 119, 6)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  — Step IN Gifting Philosophy
-                </div>
               </div>
             </div>
 
@@ -461,7 +422,7 @@ export const AboutUsPage = () => {
               </p>
 
               <p style={{ fontSize: '0.94rem', color: '#4B5563', lineHeight: 1.7, marginBottom: '1.75rem' }}>
-                Too often, online gifting was cold and transactional. We set out to change that by uniting master bakers, bespoke florists, and in-house laser artisans under one roof — ensuring every box is packed with genuine care, tied with satin ribbon, and dispatched with white-glove precision.
+                Too often, online gifting was cold and transactional. We set out to change that by uniting skilled artisans, bespoke gift curators, and in-house laser craftsmen under one roof — ensuring every box is packed with genuine care, tied with satin ribbon, and dispatched with white-glove precision.
               </p>
 
               <div style={{
@@ -475,7 +436,7 @@ export const AboutUsPage = () => {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                   <CheckCircle2 size={18} color="rgb(217, 119, 6)" />
-                  <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#1F2937' }}>100% Pure Veg Cakes</span>
+                  <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#1F2937' }}>Premium Luxe Packaging</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                   <CheckCircle2 size={18} color="rgb(217, 119, 6)" />
@@ -616,16 +577,39 @@ export const AboutUsPage = () => {
                   backgroundColor: '#FCFBF9',
                   borderRadius: '18px',
                   padding: '2rem 1.5rem',
-                  border: '1px solid #EFE6D8'
+                  border: '1px solid #EFE6D8',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.02)',
+                  transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+                  cursor: 'default'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                  e.currentTarget.style.borderColor = 'rgba(217, 119, 6, 0.45)';
+                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(217, 119, 6, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04)';
+                  const num = e.currentTarget.querySelector('.step-number');
+                  if (num) num.style.color = 'rgb(217, 119, 6)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.backgroundColor = '#FCFBF9';
+                  e.currentTarget.style.borderColor = '#EFE6D8';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.02)';
+                  const num = e.currentTarget.querySelector('.step-number');
+                  if (num) num.style.color = 'rgba(217, 119, 6, 0.25)';
                 }}
               >
-                <div style={{
-                  fontSize: '2.5rem',
-                  fontWeight: 900,
-                  color: 'rgba(217, 119, 6, 0.25)',
-                  lineHeight: 1,
-                  marginBottom: '0.85rem'
-                }}>
+                <div 
+                  className="step-number"
+                  style={{
+                    fontSize: '2.5rem',
+                    fontWeight: 900,
+                    color: 'rgba(217, 119, 6, 0.25)',
+                    lineHeight: 1,
+                    marginBottom: '0.85rem',
+                    transition: 'color 0.28s ease'
+                  }}
+                >
                   {s.step}
                 </div>
                 <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#111827', margin: 0, marginBottom: '0.45rem' }}>

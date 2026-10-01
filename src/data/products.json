@@ -72,24 +72,6 @@
     "isFeatured": false
   },
   {
-    "id": "prod-hamper-01",
-    "name": "Celebration Sweet Indulgence Festive Hamper with Pure Brass Diya",
-    "category": "Gift Hampers",
-    "occasion": "Festivals",
-    "price": 2199,
-    "description": "Festive keepsake trunk filled with authentic pistachio baklava, roasted cashew dragees, organic wildflower honey, and handcrafted pure brass flower diya.",
-    "images": [
-      "https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=800&auto=format&fit=crop&q=80",
-      "/images/luxury_hamper.jpg"
-    ],
-    "options": {
-      "boxColor": ["Royal Emerald Green", "Imperial Navy Blue", "Burgundy Velvet"],
-      "diyaFinish": ["Antique Pure Brass", "Mirror Gold Polish"]
-    },
-    "tags": ["Diwali Favorite", "Festive", "Free Brass Diya"],
-    "isFeatured": true
-  },
-  {
     "id": "prod-hamper-02",
     "name": "Grand Emperor Velvet Keepsake Trunk with Gourmet Delicacies",
     "category": "Gift Hampers",
@@ -245,5 +227,405 @@
     },
     "tags": ["Real Solid Wood", "Permanent Engraving", "Couples"],
     "isFeatured": false
+  },
+  {
+    "id": "prod-3",
+    "name": "Sacred Shri Swami Samarth Maharaj Marble Finish Idol",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 999,
+    "description": "Exquisitely crafted white marble-look Swami Samarth / Sai Baba Maharaj holy deity statue in dhyana mudra with auspicious orange Urdhva Pundra tilak on forehead, seated on a serene pedestal.",
+    "images": [
+      "/images/swami_samarth_idol.png"
+    ],
+    "options": {
+      "finish": ["White Marble Finish", "Pristine Gloss Ceramic"]
+    },
+    "tags": ["Divine Blessings", "Housewarming", "Spiritual"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-6",
+    "name": "Cute Ceramic Panda Desk Figurine with Winter Woolen Scarf",
+    "category": "Desk Decor & Lamps",
+    "occasion": "Birthday",
+    "price": 499,
+    "description": "Charming ceramic panda keepsake figurine dressed in a cozy hand-knit green and red winter scarf with soft fluffy pom-poms. A delightful gift for desks, bedside tables, and panda lovers.",
+    "images": [
+      "/images/panda_scarf_lamp.png"
+    ],
+    "options": {
+      "scarf": ["Red & Green Festive Knit", "Royal Blue Wool"]
+    },
+    "tags": ["Cute Room Decor", "Bestseller", "Gifts for Friends"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-8",
+    "name": "Meditating Little Buddha Idol with Anjali Namaste Mudra",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 749,
+    "description": "Divine meditating child Buddha statue in sacred namaste greeting pose, dressed in richly carved golden-yellow robes with flame crown (Ushnisha) and red bindi.",
+    "images": [
+      "/images/meditating_buddha_gold.png"
+    ],
+    "options": {
+      "robeColor": ["Imperial Golden Yellow", "Antique Bronze"]
+    },
+    "tags": ["Auspicious Peace", "Zen Decor", "Spiritual"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-9",
+    "name": "Divine Bal Krishna (Makhan Chor) Idol with Butter Pot & Halo",
+    "category": "Religious Idols",
+    "occasion": "Festivals",
+    "price": 849,
+    "description": "Vibrant hand-painted Lord Bal Krishna idol crawling with a traditional earthen butter handi, wearing ornate peacock feather crown, golden jewelry, and radiant sun halo backplate.",
+    "images": [
+      "/images/bal_krishna_makhan.png"
+    ],
+    "options": {
+      "finish": ["Vibrant Hand-Painted", "Gold Accent Finish"]
+    },
+    "tags": ["Janmashtami Special", "Auspicious", "Festive"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-10",
+    "name": "Shri Swami Samarth Maharaj Saffron Robe Blessing Idol",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 1199,
+    "description": "Masterfully sculpted divine murti of Shri Swami Samarth Maharaj of Akkalkot seated gracefully in saffron attire with right hand in Abhaya Mudra (blessing pose) on a solid wooden asana.",
+    "images": [
+      "/images/swami_samarth_saffron.png"
+    ],
+    "options": {
+      "base": ["Solid Wooden Asana", "Mahogany Finish Base"]
+    },
+    "tags": ["Bhiu Nakos Mi Tula Pathishi Aahe", "Spiritual Blessings"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-7",
+    "name": "Peaceful Sleeping Baby Monk Buddha Statue in Crimson Robe",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 699,
+    "description": "Serene handcrafted baby monk Buddha resting peacefully with head tilted on knees, adorned in an ornate textured crimson robe with gold-studded accents and antique golden curls.",
+    "images": [
+      "/images/baby_buddha_resting.png"
+    ],
+    "options": {
+      "robeColor": ["Crimson Red", "Burgundy Velvet"]
+    },
+    "tags": ["Zen & Serenity", "Peaceful Home", "Spiritual"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-laughing-buddha",
+    "name": "Golden Laughing Buddha on Wealth Frog with Lucky Chinese Coins",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 899,
+    "description": "Auspicious Feng Shui / Vastu golden laughing Buddha (Hotei) seated majestically on a three-legged money toad with Chinese prosperity coins and gold ingot, attracting abundance, good fortune, and happiness.",
+    "images": [
+      "/images/laughing_buddha_gold.png"
+    ],
+    "options": {
+      "finish": ["24K Gold Luster Finish", "Antique Brass Gold"]
+    },
+    "tags": ["Wealth & Prosperity", "Good Luck", "Feng Shui"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-krishna-cow",
+    "name": "Divine Bal Krishna with Sacred Kamadhenu Cow in Prayer Mudra",
+    "category": "Religious Idols",
+    "occasion": "Housewarming",
+    "price": 799,
+    "description": "Beautiful hand-painted divine child Lord Krishna in sky blue finish with peacock feather crown, prayerful namaste mudra, seated lovingly beside sacred Kamadhenu cow on a white lotus pedestal.",
+    "images": [
+      "/images/krishna_cow_kamadhenu.png"
+    ],
+    "options": {
+      "finish": ["Vibrant Hand-Painted Sky Blue", "Pastel Divine Finish"]
+    },
+    "tags": ["Kamadhenu Blessings", "Divine Peace", "Spiritual"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-teddy-pink",
+    "name": "Adorable Blush Pink Plush Teddy Bear with Polka Dot Ribbon (40cm)",
+    "category": "Soft Toys & Teddy Bears",
+    "occasion": "Birthday",
+    "price": 649,
+    "description": "Ultra-cuddly blush pink teddy bear made from premium hypoallergenic velvet fur, featuring embroidered polka dot paws, pink stitched nose, and a delicate satin polka dot bow.",
+    "images": [
+      "/images/pink_teddy_bear.png"
+    ],
+    "options": {
+      "size": ["Medium (40cm)", "Large (60cm)"]
+    },
+    "tags": ["Super Soft & Cuddly", "Birthday Special", "Gifts for Her"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-teddy-blue",
+    "name": "Cute Sky Blue Cuddly Baby Teddy Bear with Bow Tie & Paw Prints (35cm)",
+    "category": "Soft Toys & Teddy Bears",
+    "occasion": "Birthday",
+    "price": 549,
+    "description": "Charming sky-blue soft plush teddy bear with a friendly smiling face, matching blue bow tie, and adorable white embroidered paw pads. Crafted with baby-safe materials.",
+    "images": [
+      "/images/blue_cuddle_bear.png"
+    ],
+    "options": {
+      "color": ["Sky Blue", "Pastel Mint"]
+    },
+    "tags": ["Sweet Companion", "Cuddly Soft", "Kids Favorite"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-teddy-giant-cream",
+    "name": "Grand Royal Giant Cream Honey Huggable Cuddly Teddy Bear (60cm)",
+    "category": "Soft Toys & Teddy Bears",
+    "occasion": "Anniversary",
+    "price": 1299,
+    "description": "Jumbo-sized luxury honey-cream teddy bear with dense fluffy fur, wide friendly smile, and classic plaid bow tie. The ultimate romantic birthday and anniversary surprise gift.",
+    "images": [
+      "/images/giant_cream_teddy.png"
+    ],
+    "options": {
+      "size": ["Giant (60cm)", "Mega Jumbo (90cm)"]
+    },
+    "tags": ["Giant 3-Foot Bear", "Romantic Surprise", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-keychain-sunflower",
+    "name": "Handmade Crochet Sunflower Charm Keychain in Keepsake Box",
+    "category": "Keychains & Charms",
+    "occasion": "Birthday",
+    "price": 299,
+    "description": "Charming 100% handmade crochet sunflower keychain crafted with vibrant golden yellow petals, textured chocolate brown center, and deep green leaf. Nestled in an eco-friendly kraft keepsake display box with 'Cute. Handmade. Just for You.' message.",
+    "images": [
+      "/images/keychain_crochet_sunflower.png"
+    ],
+    "options": {
+      "packaging": ["Kraft Keepsake Display Box", "Luxe Velvet Pouch"]
+    },
+    "tags": ["100% Handmade", "Crochet Charm", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-keychain-pink-bow",
+    "name": "Handcrafted Pastel Pink Crochet Ribbon Bow Keychain",
+    "category": "Keychains & Charms",
+    "occasion": "Birthday",
+    "price": 249,
+    "description": "Delicate coquette aesthetic pastel pink hand-knitted crochet ribbon bow keychain. Fitted with a high-shine golden keyring, lobster clasp, and heart charm. Perfect accessory for bags, purses, keys, and backpacks.",
+    "images": [
+      "/images/keychain_crochet_pink_bow.png"
+    ],
+    "options": {
+      "claspFinish": ["High-Shine Gold Clip", "Rose Gold Clip"]
+    },
+    "tags": ["Coquette Aesthetic", "Handmade Crochet", "Gifts for Her"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-keychain-shinchan",
+    "name": "Nostalgic Shinchan & Shiro Gold-Plated Enamel Charm Keychain",
+    "category": "Keychains & Charms",
+    "occasion": "Birthday",
+    "price": 299,
+    "description": "Adorable nostalgic anime keychain featuring glossy enamel-filled Shinchan character in his classic red shirt & yellow shorts, accompanied by a cute mini Shiro dog charm. Finished with heavy-duty gold-tone chain and swivel trigger lobster clasp.",
+    "images": [
+      "/images/keychain_shinchan_anime.png"
+    ],
+    "options": {
+      "charmType": ["Shinchan & Shiro Combo", "Classic Shinchan Solo"]
+    },
+    "tags": ["Anime Collectible", "Nostalgic", "Trending"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-keychain-indian-army",
+    "name": "Indian Army Insignia Antique Gunmetal Metallic Keyring",
+    "category": "Keychains & Charms",
+    "occasion": "Corporate",
+    "price": 349,
+    "description": "Substantial solid metal round keychain showcasing the prestigious Indian Army emblem with crossed swords and Lion Capital of Ashoka in an antique gunmetal silver finish. Built with strong heavy-gauge link chain and reinforced split ring.",
+    "images": [
+      "/images/keychain_indian_army.png"
+    ],
+    "options": {
+      "finish": ["Antique Gunmetal Silver", "Matte Brass"]
+    },
+    "tags": ["Patriotic Pride", "Solid Metallic", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-bottle-pastel-glass",
+    "name": "Personalized Pastel Glass Water Bottle with Wooden Bamboo Lid (550ml)",
+    "category": "Drinkware & Bottles",
+    "occasion": "Birthday",
+    "price": 599,
+    "description": "Ultra-chic high borosilicate glass hydration bottle featuring a soft-touch pastel silicone sleeve with personalized laser name cutout. Topped with a natural eco-friendly bamboo wood cap and leak-proof seal.",
+    "images": [
+      "/images/pastel_glass_water_bottle.jpg"
+    ],
+    "options": {
+      "color": ["Blush Pink (Meena)", "Lavender Lilac (Reema)", "Cloud White (Ritu)"]
+    },
+    "tags": ["Custom Cutout Name", "Eco-friendly Bamboo", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-bottle-motivational-glass",
+    "name": "Personalized Motivational Glass Water Bottle with Time Markers & Bamboo Lid (600ml)",
+    "category": "Drinkware & Bottles",
+    "occasion": "Corporate",
+    "price": 649,
+    "description": "Sleek frosted borosilicate glass bottle encased in a non-slip silicone sleeve with a clear viewing window and hourly motivational hydration tracking markers. Custom engraved with your recipient name above the base. Features a genuine bamboo screw lid with silicone gasket.",
+    "images": [
+      "/images/motivational_glass_bottle.jpg"
+    ],
+    "options": {
+      "color": ["Midnight Black", "Royal Cobalt Blue", "Crimson Red", "Pearl Ivory White"]
+    },
+    "tags": ["Hourly Time Markers", "Hydration Motivation", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-taj-mahal-gold",
+    "name": "24K Gold-Plated Crystal Taj Mahal Monument in Acrylic Display Showcase",
+    "category": "3D Lamps & Keepsakes",
+    "occasion": "Corporate",
+    "price": 1499,
+    "description": "Exquisite 24K gold-plated Taj Mahal architectural masterpiece featuring a faceted central crystal jewel, mounted inside a dust-free ultra-clear acrylic showcase with a solid wooden display base. Includes laser engraved brass metal plaque with company logo or personalized names.",
+    "images": [
+      "/images/golden_taj_mahal_crystal.jpg"
+    ],
+    "options": {
+      "displayBase": ["Executive Mahogany Wood Base", "Glossy Ebony Black Base"]
+    },
+    "tags": ["24K Gold & Crystal", "Luxury Keepsake", "Corporate Award"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-taj-mahal-marble",
+    "name": "Hand-Carved White Makrana Marble Taj Mahal Architectural Sculpture",
+    "category": "3D Lamps & Keepsakes",
+    "occasion": "Housewarming",
+    "price": 1299,
+    "description": "Handcrafted pristine white Makrana marble Taj Mahal monument featuring intricate jali filigree window carving, four grand minarets with golden finials, and an elevated marble plinth.",
+    "images": [
+      "/images/white_marble_taj_mahal.jpg"
+    ],
+    "options": {
+      "finish": ["Pure White Makrana Marble", "Polished Alabaster"]
+    },
+    "tags": ["Pure Alabaster Stone", "Hand-Carved", "Heritage Decor"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-doll-victorian-princess",
+    "name": "Royal Princess Victorian Collector Doll with Lace Gown & Handbag (30cm)",
+    "category": "Soft Toys & Dolls",
+    "occasion": "Birthday",
+    "price": 899,
+    "description": "Exquisite handcrafted Victorian princess collector doll featuring wavy auburn tresses, delicate floral gem tiara, and a multilayered white lace gown trimmed in gold bullion embroidery with pearl brooch and matching miniature satin handbag.",
+    "images": [
+      "/images/doll_victorian_princess.jpg"
+    ],
+    "options": {
+      "attire": ["Classic Royal White & Gold", "Pastel Rose Gold"]
+    },
+    "tags": ["Artisan Collector Doll", "Lace Gown", "Princess Keepsake"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-doll-chibi-pink",
+    "name": "Adorable Chibi Sweet Smile Poseable Baby Doll in Gingham Dungarees (20cm)",
+    "category": "Soft Toys & Dolls",
+    "occasion": "Birthday",
+    "price": 699,
+    "description": "Ultra-cute poseable mini BJD baby doll featuring expressive sparkling eyes, chubby cheeks, double bun brunette hair, and pink gingham check overalls with strawberry crossbody pouch and matching mini sneakers.",
+    "images": [
+      "/images/doll_cute_chibi_overalls.jpg"
+    ],
+    "options": {
+      "outfit": ["Pink Gingham Overalls", "Strawberry Pinafore"]
+    },
+    "tags": ["Poseable Joints", "Chibi Baby Doll", "Bestseller"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-doll-bjd-purple",
+    "name": "Royal Enchantress Ball-Jointed Fashion Doll in Ruffled Amethyst Velvet Gown",
+    "category": "Soft Toys & Dolls",
+    "occasion": "Anniversary",
+    "price": 1299,
+    "description": "Regal 1/4 scale ball-jointed fashion doll featuring flowing golden blonde curls, glass eyes, an ornate purple satin rose fascinator, and a breathtaking tiered amethyst ruffled velvet evening gown with lace cuffs.",
+    "images": [
+      "/images/doll_bjd_royal_purple.jpg"
+    ],
+    "options": {
+      "gownColor": ["Royal Amethyst Purple", "Midnight Sapphire"]
+    },
+    "tags": ["Artisan BJD", "Collector Doll", "Luxury Gift"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-lamp-tulip-dome",
+    "name": "Handcrafted Glowing Tulip Flower Cloche Glass Dome Night Lamp with Fairy LEDs",
+    "category": "3D Lamps & Frames",
+    "occasion": "Birthday",
+    "price": 799,
+    "description": "Enchanting handmade tulip garden nestled inside a crystal-clear borosilicate glass cloche dome. Embedded with micro-LED warm fairy lights and set upon a natural solid pine wood base.",
+    "images": [
+      "/images/tulip_glass_dome_lamp.jpg"
+    ],
+    "options": {
+      "flowerColor": ["Soft Coral Pink Tulips", "Romantic Crimson Red", "Pastel Lilac Purple"]
+    },
+    "tags": ["Everlasting Tulip Glow", "Fairy Lights", "Romantic Decor"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-lamp-infinity-heart",
+    "name": "Personalized Infinity Hearts Multi-Photo 3D Acrylic LED Night Lamp",
+    "category": "3D Lamps & Frames",
+    "occasion": "Anniversary",
+    "price": 999,
+    "description": "Capture your most cherished romantic milestones in a glowing infinity symbol with 5 heart-shaped photo balloons. Precision laser-engraved with names and your special anniversary date, illuminated with warm ambient glow from a solid handcrafted wooden LED base.",
+    "images": [
+      "/images/infinity_heart_acrylic_photo_lamp.jpg"
+    ],
+    "options": {
+      "lightMode": ["Warm Ambient Yellow", "Multi-Color RGB with Remote"]
+    },
+    "tags": ["Multi-Photo Custom", "Infinity Heart", "Anniversary Special"],
+    "isFeatured": true
+  },
+  {
+    "id": "prod-lamp-crystal-ball-heart",
+    "name": "3D Luminous Heart Crystal Ball Night Lamp with Wooden LED Pedestal (60mm)",
+    "category": "3D Lamps & Frames",
+    "occasion": "Birthday",
+    "price": 649,
+    "description": "Flawless optical K9 crystal sphere with high-precision 3D inner laser-etched glowing heart. Rests elegantly upon a polished natural beechwood LED pedestal with USB power. Projects gentle celestial ambient reflections across the ceiling and room.",
+    "images": [
+      "/images/crystal_ball_heart_night_lamp.jpg"
+    ],
+    "options": {
+      "crystalDesign": ["Glowing Heart", "Dandelion Wish", "Galaxy Solar System"]
+    },
+    "tags": ["K9 Optical Crystal", "Inner 3D Laser", "Night Light"],
+    "isFeatured": true
   }
 ]

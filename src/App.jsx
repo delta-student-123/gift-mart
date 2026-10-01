@@ -13,12 +13,10 @@ import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AdminPanel } from './pages/AdminPanel';
 import { AccountPage } from './pages/AccountPage';
-import { CorporatePage } from './pages/CorporatePage';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { ContactUsPage } from './pages/ContactUsPage';
 import { BlogPage } from './pages/BlogPage';
 import { OccasionsPage } from './pages/OccasionsPage';
-import { CustomGiftsPage } from './pages/CustomGiftsPage';
 import { FaqDeliveryPage } from './pages/FaqDeliveryPage';
 
 const AppContent = () => {
@@ -50,9 +48,6 @@ const AppContent = () => {
         {/* OCCASIONS & CURATED COLLECTIONS */}
         {currentView === 'occasions' && <OccasionsPage />}
 
-        {/* CUSTOM & PERSONALIZED GIFTS */}
-        {(currentView === 'custom-gifts' || currentView === 'custom') && <CustomGiftsPage />}
-
         {/* PRE-FILTERED CATEGORIES */}
         {currentView === 'personalized-gifts' && (
           <ShopPage />
@@ -68,9 +63,6 @@ const AppContent = () => {
         {currentView === 'product-detail' && (
           <ProductDetailPage product={selectedProduct || viewParams.product} />
         )}
-
-        {/* CORPORATE GIFTING */}
-        {(currentView === 'corporate-gifting' || currentView === 'corporate') && <CorporatePage />}
 
         {/* FAQ & DELIVERY INFORMATION */}
         {(currentView === 'faq-delivery' || currentView === 'faq') && <FaqDeliveryPage />}

@@ -47,8 +47,8 @@ export const HomePage = () => {
     { id: 'flowers', name: 'Flowers', image: '/images/gold_rose.jpg' },
     { id: 'hampers', name: 'Hampers', image: '/images/luxury_hamper.jpg' },
     { id: 'bottles', name: 'Bottles', image: '/images/drinkware_flask.jpg' },
-    { id: 'wallets', name: 'Wallets', image: '/images/executive_wallet.jpg' },
-    { id: 'lamps', name: 'Lamps', image: '/images/modern_table_lamp.jpg' },
+    { id: 'wallets', name: 'Wallets', image: '/images/luxury_wallet_category.jpg' },
+    { id: 'lamps', name: 'Lamps', image: '/images/crystal_heart_lamp.jpg' },
     { id: 'all', name: 'Teddy Bears', image: '/images/category_teddy_bear.jpg' },
     { id: 'religious-idols', name: 'Religious Idol', image: '/images/religious_idol.jpg' },
     { id: 'more', name: 'More', isMore: true }
@@ -97,14 +97,14 @@ export const HomePage = () => {
       tabCategory: ['popular', 'new', 'bestsellers']
     },
     {
-      id: 'prod-lamp-1',
-      name: 'Table Lamp',
-      price: 1699,
+      id: 'prod-lamp-crystal-ball-heart',
+      name: 'Lamp',
+      price: 649,
       rating: 4.9,
-      reviews: 114,
-      image: '/images/modern_table_lamp.jpg',
+      reviews: 260,
+      image: '/images/crystal_heart_lamp.jpg',
       category: 'lamps',
-      tabCategory: ['popular', 'new']
+      tabCategory: ['popular', 'new', 'bestsellers']
     }
   ];
 
@@ -712,8 +712,8 @@ export const HomePage = () => {
             {/* Left Column: Visual Showcase */}
             <div style={{ borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
               <img 
-                src="/images/religious_idol.jpg" 
-                alt="Divine Handcrafted Brass Lord Ganesha Idol Statue"
+                src="/images/minimalist_marble_ganesha.jpg" 
+                alt="Pristine Handcrafted White Marble & Gold Leaf Lord Ganesha Idol"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -826,7 +826,7 @@ export const HomePage = () => {
                       marginBottom: '0.15rem', 
                       whiteSpace: 'nowrap' 
                     }}>
-                      100% Solid Brass
+                      Marble & Brass Idols
                     </div>
                     <div style={{ 
                       fontSize: '0.72rem', 
@@ -834,7 +834,7 @@ export const HomePage = () => {
                       lineHeight: 1.25, 
                       whiteSpace: 'nowrap' 
                     }}>
-                      Artisanal antique finish
+                      Artisanal gold leaf finish
                     </div>
                   </div>
                 </div>

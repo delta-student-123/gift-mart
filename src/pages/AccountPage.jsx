@@ -244,10 +244,16 @@ export const AccountPage = () => {
             {activeTab === 'orders' && (
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Orders & Live Tracking</h3>
-                  <button className="btn btn-secondary btn-sm" onClick={() => navigateTo('track-order')}>
-                    Visual Tracker
-                  </button>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Orders & Inquiries</h3>
+                  <a 
+                    href="https://wa.me/919971112444" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-secondary btn-sm"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    WhatsApp Support
+                  </a>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
